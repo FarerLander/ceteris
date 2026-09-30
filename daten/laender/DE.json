@@ -1,7 +1,7 @@
 {
  "code": "DE",
  "iso3": "DEU",
- "abgerufen": "2026-09-27T20:44:38.923Z",
+ "abgerufen": "2026-09-30T23:09:11.589Z",
  "reihen": {
   "bev": {
    "1995": 81.678051,
@@ -2159,6 +2159,22 @@
    "2024": 3.571515,
    "2025": 2.179261
   },
+  "giniOecd": {
+   "2008": 28.5,
+   "2011": 29.1,
+   "2012": 28.9,
+   "2013": 29.2,
+   "2014": 28.9,
+   "2015": 29.3,
+   "2016": 29.4,
+   "2017": 28.9,
+   "2018": 28.9,
+   "2019": 29.6,
+   "2020": 30.3,
+   "2021": 31.3,
+   "2022": 30.9,
+   "2023": 30.7
+  },
   "npl": {
    "2022": 1.23497612551347,
    "2023": 1.53513253215757,
@@ -2439,22 +2455,6 @@
    "2023": 91.622439447144,
    "2024": 86.2755312691745,
    "2025": 86.6031278673189
-  },
-  "giniOecd": {
-   "2008": 28.5,
-   "2011": 29.1,
-   "2012": 28.9,
-   "2013": 29.2,
-   "2014": 28.9,
-   "2015": 29.3,
-   "2016": 29.4,
-   "2017": 28.9,
-   "2018": 28.9,
-   "2019": 29.6,
-   "2020": 30.3,
-   "2021": 31.3,
-   "2022": 30.9,
-   "2023": 30.7
   }
  },
  "quellen": {
@@ -2517,20 +2517,20 @@
   "privatschuld": "IMF DataMapper PVD_LS",
   "rendite": "OECD Financial market statistics IRLT",
   "kurzzins": "OECD Financial market statistics IR3TIB",
+  "giniOecd": "OECD Income Distribution Database (Gini verfügbares Einkommen)",
   "npl": "World Bank FB.AST.NPER.ZS",
   "bankKapital": "World Bank FB.BNK.CAPA.ZS",
   "bankBilanz": "World Bank GFDD.DI.02",
   "hauspreisReal": "BIS WS_SPP Q.DE.R.628",
   "bankKredit": "BIS WS_TC Q.DE.P.B.M.770.A",
   "kreditGesamt": "BIS WS_TC Q.DE.P.A.M.770.A",
-  "hausEinkommen": "OECD Analytical house prices indicators HPI_YDH_AVG",
-  "giniOecd": "OECD Income Distribution Database (Gini verfügbares Einkommen)"
+  "hausEinkommen": "OECD Analytical house prices indicators HPI_YDH_AVG"
  },
  "fehlend": [],
  "konsens": {
   "kurz": "IWF",
   "name": "IMF World Economic Outlook (DataMapper)",
-  "stand": "2026-09-28",
+  "stand": "2026-09-30",
   "url": "https://www.imf.org/external/datamapper",
   "werte": {
    "wachstum": {

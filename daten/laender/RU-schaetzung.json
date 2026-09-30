@@ -1,38 +1,38 @@
 {
  "code": "RU",
- "stand": "2026-09-29T14:42:12.363Z",
+ "stand": "2026-09-30T23:30:48.783Z",
  "methode": "Kalman-Filter und -Glätter, Zustandsraummodell nach Laubach/Williams und OECD-NAIRU (Spec 13.1)",
  "jahr": 2025,
- "kappa": 3.07,
+ "kappa": 3.244,
  "werte": [
   {
    "groesse": "tfpTrend",
-   "wert": 1.215,
-   "band": 0.471,
+   "wert": 1.141,
+   "band": 0.495,
    "gueltig": false,
-   "grund": "Modell passt nicht zu den Daten (κ = 3,1)",
-   "hp": 1.745
+   "grund": "Modell passt nicht zu den Daten (κ = 3,2)",
+   "hp": 1.817
   },
   {
    "groesse": "nairu",
-   "wert": 5.197,
+   "wert": 4.123,
    "band": 1.437,
    "gueltig": false,
-   "grund": "Modell passt nicht zu den Daten (κ = 3,1)"
+   "grund": "Modell passt nicht zu den Daten (κ = 3,2)"
   },
   {
    "groesse": "rStern",
-   "wert": 13.037,
-   "band": 4.813,
+   "wert": 0,
+   "band": 0,
    "gueltig": false,
-   "grund": "Modell passt nicht zu den Daten (κ = 3,1)"
+   "grund": "kein Kurzfristzins"
   },
   {
    "groesse": "luecke",
-   "wert": 5.623,
-   "band": 2.755,
+   "wert": 3.675,
+   "band": 2.776,
    "gueltig": false,
-   "grund": "Modell passt nicht zu den Daten (κ = 3,1)"
+   "grund": "Modell passt nicht zu den Daten (κ = 3,2)"
   }
  ],
  "kredit": {
@@ -50,530 +50,399 @@
   "g": [
    {
     "jahr": 2000,
-    "wert": 4.445,
-    "band": 0.699
+    "wert": 4.46,
+    "band": 0.732
    },
    {
     "jahr": 2001,
-    "wert": 4.532,
-    "band": 0.639
+    "wert": 4.511,
+    "band": 0.668
    },
    {
     "jahr": 2002,
-    "wert": 4.625,
-    "band": 0.588
+    "wert": 4.569,
+    "band": 0.614
    },
    {
     "jahr": 2003,
-    "wert": 4.645,
-    "band": 0.546
+    "wert": 4.561,
+    "band": 0.571
    },
    {
     "jahr": 2004,
-    "wert": 4.587,
-    "band": 0.514
+    "wert": 4.476,
+    "band": 0.537
    },
    {
     "jahr": 2005,
-    "wert": 4.454,
-    "band": 0.488
-   },
-   {
-    "jahr": 2006,
-    "wert": 4.212,
-    "band": 0.47
-   },
-   {
-    "jahr": 2007,
-    "wert": 3.879,
-    "band": 0.456
-   },
-   {
-    "jahr": 2008,
-    "wert": 3.512,
-    "band": 0.446
-   },
-   {
-    "jahr": 2009,
-    "wert": 3.25,
-    "band": 0.439
-   },
-   {
-    "jahr": 2010,
-    "wert": 2.995,
-    "band": 0.434
-   },
-   {
-    "jahr": 2011,
-    "wert": 2.749,
-    "band": 0.431
-   },
-   {
-    "jahr": 2012,
-    "wert": 2.507,
-    "band": 0.429
-   },
-   {
-    "jahr": 2013,
-    "wert": 2.291,
-    "band": 0.429
-   },
-   {
-    "jahr": 2014,
-    "wert": 2.126,
-    "band": 0.429
-   },
-   {
-    "jahr": 2015,
-    "wert": 2.038,
-    "band": 0.431
-   },
-   {
-    "jahr": 2016,
-    "wert": 1.974,
-    "band": 0.435
-   },
-   {
-    "jahr": 2017,
-    "wert": 1.925,
-    "band": 0.441
-   },
-   {
-    "jahr": 2018,
-    "wert": 1.875,
-    "band": 0.45
-   },
-   {
-    "jahr": 2019,
-    "wert": 1.834,
-    "band": 0.464
-   },
-   {
-    "jahr": 2020,
-    "wert": 1.837,
-    "band": 0.484
-   },
-   {
-    "jahr": 2021,
-    "wert": 1.817,
+    "wert": 4.315,
     "band": 0.511
    },
    {
+    "jahr": 2006,
+    "wert": 4.049,
+    "band": 0.492
+   },
+   {
+    "jahr": 2007,
+    "wert": 3.701,
+    "band": 0.478
+   },
+   {
+    "jahr": 2008,
+    "wert": 3.329,
+    "band": 0.469
+   },
+   {
+    "jahr": 2009,
+    "wert": 3.058,
+    "band": 0.462
+   },
+   {
+    "jahr": 2010,
+    "wert": 2.801,
+    "band": 0.458
+   },
+   {
+    "jahr": 2011,
+    "wert": 2.548,
+    "band": 0.455
+   },
+   {
+    "jahr": 2012,
+    "wert": 2.3,
+    "band": 0.454
+   },
+   {
+    "jahr": 2013,
+    "wert": 2.082,
+    "band": 0.454
+   },
+   {
+    "jahr": 2014,
+    "wert": 1.918,
+    "band": 0.455
+   },
+   {
+    "jahr": 2015,
+    "wert": 1.832,
+    "band": 0.457
+   },
+   {
+    "jahr": 2016,
+    "wert": 1.778,
+    "band": 0.461
+   },
+   {
+    "jahr": 2017,
+    "wert": 1.733,
+    "band": 0.467
+   },
+   {
+    "jahr": 2018,
+    "wert": 1.686,
+    "band": 0.476
+   },
+   {
+    "jahr": 2019,
+    "wert": 1.645,
+    "band": 0.49
+   },
+   {
+    "jahr": 2020,
+    "wert": 1.639,
+    "band": 0.509
+   },
+   {
+    "jahr": 2021,
+    "wert": 1.616,
+    "band": 0.537
+   },
+   {
     "jahr": 2022,
-    "wert": 1.862,
-    "band": 0.549
+    "wert": 1.646,
+    "band": 0.575
    },
    {
     "jahr": 2023,
-    "wert": 1.89,
-    "band": 0.597
+    "wert": 1.667,
+    "band": 0.625
    },
    {
     "jahr": 2024,
-    "wert": 1.887,
-    "band": 0.657
+    "wert": 1.662,
+    "band": 0.688
    },
    {
     "jahr": 2025,
-    "wert": 1.887,
-    "band": 0.725
+    "wert": 1.662,
+    "band": 0.761
    }
   ],
   "luecke": [
    {
     "jahr": 2000,
-    "wert": 5.203,
-    "band": 3.523
+    "wert": -0.892,
+    "band": 3.358
    },
    {
     "jahr": 2001,
-    "wert": 6.552,
-    "band": 3.152
+    "wert": 0.168,
+    "band": 2.906
    },
    {
     "jahr": 2002,
-    "wert": 6.648,
-    "band": 2.903
+    "wert": 0.354,
+    "band": 2.591
    },
    {
     "jahr": 2003,
-    "wert": 8.37,
-    "band": 2.731
+    "wert": 2.175,
+    "band": 2.365
    },
    {
     "jahr": 2004,
-    "wert": 9.978,
-    "band": 2.615
+    "wert": 3.85,
+    "band": 2.204
    },
    {
     "jahr": 2005,
-    "wert": 10.976,
-    "band": 2.538
+    "wert": 4.939,
+    "band": 2.092
    },
    {
     "jahr": 2006,
-    "wert": 13.413,
-    "band": 2.488
+    "wert": 7.493,
+    "band": 2.016
    },
    {
     "jahr": 2007,
-    "wert": 16.61,
-    "band": 2.457
+    "wert": 10.833,
+    "band": 1.965
    },
    {
     "jahr": 2008,
-    "wert": 17.523,
-    "band": 2.438
+    "wert": 11.931,
+    "band": 1.932
    },
    {
     "jahr": 2009,
-    "wert": 6.941,
-    "band": 2.426
+    "wert": 1.59,
+    "band": 1.911
    },
    {
     "jahr": 2010,
-    "wert": 8.1,
-    "band": 2.419
+    "wert": 2.978,
+    "band": 1.898
    },
    {
     "jahr": 2011,
-    "wert": 9.42,
-    "band": 2.414
+    "wert": 4.418,
+    "band": 1.891
    },
    {
     "jahr": 2012,
-    "wert": 10.66,
-    "band": 2.41
+    "wert": 5.845,
+    "band": 1.888
    },
    {
     "jahr": 2013,
-    "wert": 10.143,
-    "band": 2.406
+    "wert": 5.543,
+    "band": 1.889
    },
    {
     "jahr": 2014,
-    "wert": 9.062,
-    "band": 2.401
+    "wert": 4.693,
+    "band": 1.892
    },
    {
     "jahr": 2015,
-    "wert": 5.678,
-    "band": 2.395
+    "wert": 1.545,
+    "band": 1.899
    },
    {
     "jahr": 2016,
-    "wert": 4.018,
-    "band": 2.388
+    "wert": 0.17,
+    "band": 1.911
    },
    {
     "jahr": 2017,
-    "wert": 3.968,
-    "band": 2.381
+    "wert": 0.283,
+    "band": 1.928
    },
    {
     "jahr": 2018,
-    "wert": 4.775,
-    "band": 2.374
+    "wert": 1.263,
+    "band": 1.952
    },
    {
     "jahr": 2019,
-    "wert": 5.144,
-    "band": 2.369
+    "wert": 1.798,
+    "band": 1.988
    },
    {
     "jahr": 2020,
-    "wert": 1.027,
-    "band": 2.374
+    "wert": -2.148,
+    "band": 2.039
    },
    {
     "jahr": 2021,
-    "wert": 4.538,
-    "band": 2.363
+    "wert": 1.655,
+    "band": 2.114
    },
    {
     "jahr": 2022,
-    "wert": 1.949,
-    "band": 2.41
+    "wert": -0.821,
+    "band": 2.206
    },
    {
     "jahr": 2023,
-    "wert": 3.867,
-    "band": 2.448
+    "wert": 1.406,
+    "band": 2.328
    },
    {
     "jahr": 2024,
-    "wert": 6.457,
-    "band": 2.548
+    "wert": 4.265,
+    "band": 2.5
    },
    {
     "jahr": 2025,
-    "wert": 5.623,
-    "band": 2.755
+    "wert": 3.675,
+    "band": 2.776
    }
   ],
   "nairu": [
    {
     "jahr": 2000,
-    "wert": 12.687,
-    "band": 1.737
+    "wert": 9.592,
+    "band": 1.648
    },
    {
     "jahr": 2001,
-    "wert": 12.343,
-    "band": 1.618
+    "wert": 9.215,
+    "band": 1.504
    },
    {
     "jahr": 2002,
-    "wert": 12.062,
-    "band": 1.516
+    "wert": 8.944,
+    "band": 1.377
    },
    {
     "jahr": 2003,
-    "wert": 12.379,
-    "band": 1.436
+    "wert": 9.292,
+    "band": 1.274
    },
    {
     "jahr": 2004,
-    "wert": 12.686,
-    "band": 1.378
+    "wert": 9.636,
+    "band": 1.196
    },
    {
     "jahr": 2005,
-    "wert": 12.946,
-    "band": 1.338
+    "wert": 9.945,
+    "band": 1.141
    },
    {
     "jahr": 2006,
-    "wert": 13.438,
-    "band": 1.312
+    "wert": 10.497,
+    "band": 1.102
    },
    {
     "jahr": 2007,
-    "wert": 13.705,
-    "band": 1.296
+    "wert": 10.838,
+    "band": 1.077
    },
    {
     "jahr": 2008,
-    "wert": 13.555,
-    "band": 1.285
+    "wert": 10.776,
+    "band": 1.06
    },
    {
     "jahr": 2009,
-    "wert": 12.424,
-    "band": 1.279
+    "wert": 9.746,
+    "band": 1.049
    },
    {
     "jahr": 2010,
-    "wert": 11.746,
-    "band": 1.275
+    "wert": 9.167,
+    "band": 1.043
    },
    {
     "jahr": 2011,
-    "wert": 11.268,
-    "band": 1.272
+    "wert": 8.778,
+    "band": 1.039
    },
    {
     "jahr": 2012,
-    "wert": 10.781,
-    "band": 1.27
+    "wert": 8.386,
+    "band": 1.037
    },
    {
     "jahr": 2013,
-    "wert": 10.27,
-    "band": 1.268
+    "wert": 7.98,
+    "band": 1.037
    },
    {
     "jahr": 2014,
-    "wert": 9.542,
-    "band": 1.265
+    "wert": 7.363,
+    "band": 1.039
    },
    {
     "jahr": 2015,
-    "wert": 8.674,
-    "band": 1.262
+    "wert": 6.609,
+    "band": 1.043
    },
    {
     "jahr": 2016,
-    "wert": 7.959,
-    "band": 1.258
+    "wert": 6.01,
+    "band": 1.048
    },
    {
     "jahr": 2017,
-    "wert": 7.493,
-    "band": 1.255
+    "wert": 5.642,
+    "band": 1.056
    },
    {
     "jahr": 2018,
-    "wert": 7.214,
-    "band": 1.251
+    "wert": 5.457,
+    "band": 1.068
    },
    {
     "jahr": 2019,
-    "wert": 6.906,
-    "band": 1.249
+    "wert": 5.24,
+    "band": 1.085
    },
    {
     "jahr": 2020,
-    "wert": 6.473,
-    "band": 1.25
+    "wert": 4.904,
+    "band": 1.11
    },
    {
     "jahr": 2021,
-    "wert": 6.275,
-    "band": 1.254
+    "wert": 4.816,
+    "band": 1.144
    },
    {
     "jahr": 2022,
-    "wert": 5.562,
-    "band": 1.271
+    "wert": 4.201,
+    "band": 1.188
    },
    {
     "jahr": 2023,
-    "wert": 5.349,
-    "band": 1.299
+    "wert": 4.102,
+    "band": 1.248
    },
    {
     "jahr": 2024,
-    "wert": 5.372,
-    "band": 1.35
+    "wert": 4.229,
+    "band": 1.327
    },
    {
     "jahr": 2025,
-    "wert": 5.197,
+    "wert": 4.123,
     "band": 1.437
    }
   ],
-  "rStern": [
-   {
-    "jahr": 2000,
-    "wert": 16.225,
-    "band": 4.512
-   },
-   {
-    "jahr": 2001,
-    "wert": 16.359,
-    "band": 4.469
-   },
-   {
-    "jahr": 2002,
-    "wert": 16.509,
-    "band": 4.434
-   },
-   {
-    "jahr": 2003,
-    "wert": 16.578,
-    "band": 4.405
-   },
-   {
-    "jahr": 2004,
-    "wert": 16.56,
-    "band": 4.382
-   },
-   {
-    "jahr": 2005,
-    "wert": 16.459,
-    "band": 4.363
-   },
-   {
-    "jahr": 2006,
-    "wert": 16.223,
-    "band": 4.349
-   },
-   {
-    "jahr": 2007,
-    "wert": 15.857,
-    "band": 4.338
-   },
-   {
-    "jahr": 2008,
-    "wert": 15.418,
-    "band": 4.331
-   },
-   {
-    "jahr": 2009,
-    "wert": 15.123,
-    "band": 4.328
-   },
-   {
-    "jahr": 2010,
-    "wert": 14.819,
-    "band": 4.328
-   },
-   {
-    "jahr": 2011,
-    "wert": 14.521,
-    "band": 4.332
-   },
-   {
-    "jahr": 2012,
-    "wert": 14.211,
-    "band": 4.34
-   },
-   {
-    "jahr": 2013,
-    "wert": 13.917,
-    "band": 4.351
-   },
-   {
-    "jahr": 2014,
-    "wert": 13.668,
-    "band": 4.367
-   },
-   {
-    "jahr": 2015,
-    "wert": 13.509,
-    "band": 4.386
-   },
-   {
-    "jahr": 2016,
-    "wert": 13.375,
-    "band": 4.411
-   },
-   {
-    "jahr": 2017,
-    "wert": 13.261,
-    "band": 4.441
-   },
-   {
-    "jahr": 2018,
-    "wert": 13.146,
-    "band": 4.476
-   },
-   {
-    "jahr": 2019,
-    "wert": 13.041,
-    "band": 4.518
-   },
-   {
-    "jahr": 2020,
-    "wert": 13.016,
-    "band": 4.566
-   },
-   {
-    "jahr": 2021,
-    "wert": 12.967,
-    "band": 4.609
-   },
-   {
-    "jahr": 2022,
-    "wert": 13.012,
-    "band": 4.664
-   },
-   {
-    "jahr": 2023,
-    "wert": 13.04,
-    "band": 4.714
-   },
-   {
-    "jahr": 2024,
-    "wert": 13.037,
-    "band": 4.764
-   },
-   {
-    "jahr": 2025,
-    "wert": 13.037,
-    "band": 4.813
-   }
-  ]
+  "rStern": null
  }
 }

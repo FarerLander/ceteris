@@ -1,7 +1,7 @@
 {
  "code": "RU",
  "iso3": "RUS",
- "abgerufen": "2026-09-29T14:42:12.363Z",
+ "abgerufen": "2026-09-30T23:30:48.783Z",
  "reihen": {
   "bev": {
    "1995": 148.375787,
@@ -1941,49 +1941,6 @@
    "2023": 97.668407,
    "2024": 98.7116
   },
-  "rendite": {
-   "2000": 35.16333,
-   "2001": 19.38333,
-   "2002": 15.82417,
-   "2003": 9.115,
-   "2004": 8.289166,
-   "2005": 8.1075,
-   "2006": 6.976666,
-   "2007": 6.7175,
-   "2008": 7.523334,
-   "2009": 9.874166,
-   "2010": 7.831666,
-   "2011": 8.060833,
-   "2012": 8.154166,
-   "2013": 7.330833,
-   "2014": 8.464167,
-   "2015": 10.88667,
-   "2016": 10.43833,
-   "2017": 8.9925
-  },
-  "kurzzins": {
-   "2000": 12.825,
-   "2001": 9.983334,
-   "2002": 12.39167,
-   "2003": 8.125,
-   "2004": 7.105,
-   "2005": 5.8375,
-   "2006": 6.035,
-   "2007": 6.660833,
-   "2008": 10.77167,
-   "2009": 13.05,
-   "2010": 5.158333,
-   "2011": 5.491167,
-   "2012": 7.290417,
-   "2013": 7.489417,
-   "2014": 9.435917,
-   "2015": 14.75667,
-   "2016": 11.6025,
-   "2017": 9.120833,
-   "2018": 7.559166,
-   "2019": 7.688334,
-   "2021": 6.41
-  },
   "npl": {
    "2008": 3.81172366116837,
    "2009": 9.58055783170298,
@@ -2135,11 +2092,6 @@
    "2023": 99.6,
    "2024": 100.2,
    "2025": 104.8
-  },
-  "giniOecd": {
-   "2011": 37.6,
-   "2016": 33.1,
-   "2017": 31.7
   }
  },
  "quellen": {
@@ -2200,21 +2152,22 @@
   "ausgaben": "IMF DataMapper exp",
   "inflation": "IMF DataMapper PCPIPCH",
   "privatschuld": "IMF DataMapper PVD_LS",
-  "rendite": "OECD Financial market statistics IRLT",
-  "kurzzins": "OECD Financial market statistics IR3TIB",
   "npl": "World Bank FB.AST.NPER.ZS",
   "bankKapital": "World Bank FB.BNK.CAPA.ZS",
   "bankBilanz": "World Bank GFDD.DI.02",
   "hauspreisReal": "BIS WS_SPP Q.RU.R.628",
   "bankKredit": "BIS WS_TC Q.RU.P.B.M.770.A",
-  "kreditGesamt": "BIS WS_TC Q.RU.P.A.M.770.A",
-  "giniOecd": "OECD Income Distribution Database (Gini verfügbares Einkommen)"
+  "kreditGesamt": "BIS WS_TC Q.RU.P.A.M.770.A"
  },
- "fehlend": [],
+ "fehlend": [
+  "rendite",
+  "kurzzins",
+  "giniOecd"
+ ],
  "konsens": {
   "kurz": "IWF",
   "name": "IMF World Economic Outlook (DataMapper)",
-  "stand": "2026-09-29",
+  "stand": "2026-09-30",
   "url": "https://www.imf.org/external/datamapper",
   "werte": {
    "wachstum": {
