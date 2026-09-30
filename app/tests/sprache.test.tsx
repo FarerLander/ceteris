@@ -2,6 +2,7 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { App } from "../App";
+import { ladeSprache, SPRACH_EINSTELLUNG } from "../sprache";
 import { oeffne } from "./ansicht";
 import en from "../sprachen/en.json";
 import { fmt } from "../../modell/format";
@@ -87,12 +88,28 @@ describe("Sprachen (Spec 12c)", () => {
     setzeSprache("en");
     expect(fmt(1234.5, 1)).toBe("1,234.5");
   });
+  it("Erster Besuch startet auf Englisch, auch mit deutschem Browser; Link und eigene Wahl gehen vor", () => {
+    const vorher = SPRACH_EINSTELLUNG.standard;
+    SPRACH_EINSTELLUNG.standard = "en"; // wie in der veröffentlichten App (die Tests laufen sonst auf Deutsch)
+    try {
+      expect(window.navigator.language).toBe("de-DE");
+      expect(ladeSprache()).toBe("en");
+      window.history.replaceState(null, "", "/?sprache=de");
+      expect(ladeSprache()).toBe("de");
+      window.history.replaceState(null, "", "/");
+      window.localStorage.setItem("wirtschaftssimulator.sprache", "de");
+      expect(ladeSprache()).toBe("de");
+    } finally {
+      SPRACH_EINSTELLUNG.standard = vorher;
+    }
+  });
   it("Schalter in der Seitenleiste wechselt auf Englisch und merkt es sich", () => {
     render(<App />);
     expect(screen.getByText("Basislinie", { selector: ".griff-stand" })).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: /Sprache: Deutsch/ }));
     expect(screen.getByText("Baseline", { selector: ".griff-stand" })).toBeTruthy();
     expect(window.localStorage.getItem("wirtschaftssimulator.sprache")).toBe("en");
+    expect(document.title).toBe("Ceteris – Economy Simulator");
   });
   it("App auf Englisch: in keinem Reiter fehlt eine Übersetzung (DE, IT, CN, RU)", () => {
     const fehlt = new Set<string>();

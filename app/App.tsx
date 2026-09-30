@@ -49,18 +49,25 @@ function ausHash(): { ansicht: Ansicht; fokus: string | null } {
   return { ansicht, fokus: ansicht === "wirkungsnetz" ? bekannt : null };
 }
 
+// Sprache der Seite und Titel im Browser-Tab.
+function seiteIn(s: Sprache): void {
+  if (typeof document === "undefined") return;
+  document.documentElement.lang = s;
+  document.title = s === "de" ? "Ceteris – Wirtschaftssimulator" : "Ceteris – Economy Simulator";
+}
+
 export function App() {
   const [code, setCode] = useState(landAusLink);
   const [spr, setSpr] = useState<Sprache>(() => {
     const s = ladeSprache();
     setzeModellSprache(s);
-    if (typeof document !== "undefined") document.documentElement.lang = s;
+    seiteIn(s);
     return s;
   });
   const setzeSprache = (s: Sprache) => {
     setzeModellSprache(s);
     speichereSprache(s);
-    document.documentElement.lang = s;
+    seiteIn(s);
     setSpr(s);
   };
   const setzeLand = (c: string) => {
