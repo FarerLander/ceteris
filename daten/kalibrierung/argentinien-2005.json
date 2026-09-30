@@ -1,0 +1,148 @@
+{
+  "name": "Argentinien 2005–2023",
+  "vorlage": "IT",
+  "start": 2005,
+  "jahre": 19,
+  "grund": {
+    "regime": "gelenkt"
+  },
+  "werte": {
+    "bev": 38.9,
+    "tfr": 2.3,
+    "lebenserwartung": 75,
+    "inflation": 9.6,
+    "leitzins": 7,
+    "rendite": 9,
+    "effZins": 6,
+    "schuldQuote": 70,
+    "einnahmen": 25,
+    "ausgaben": 24,
+    "alq": 11,
+    "nairu": 8,
+    "exporte": 25,
+    "importe": 19,
+    "investQuote": 19,
+    "produktivitaetsLuecke": 0.35,
+    "tfpTrend": 1.0,
+    "privatschuld": 12,
+    "nfa": 10,
+    "qe": 0,
+    "fondsQuote0": 0
+  },
+  "standards": {
+    "anleihen.auslandsanteil": 0.4,
+    "handel.kapitalOffenheit": 0.6,
+    "geld.inflationsziel": 10,
+    "mig.netto": 0,
+    "demo.geburtenrate": 2.2,
+    "ordnung.rechtsstaat": 40
+  },
+  "stell": {
+    "ordnung.notenbankfinanzierung": [
+      {
+        "ab": 2005,
+        "wert": 0
+      },
+      {
+        "ab": 2009,
+        "wert": 30
+      },
+      {
+        "ab": 2012,
+        "wert": 60
+      },
+      {
+        "ab": 2016,
+        "wert": 20
+      },
+      {
+        "ab": 2019,
+        "wert": 80
+      }
+    ],
+    "ordnung.preiskontrollen": [
+      {
+        "ab": 2005,
+        "wert": 0
+      },
+      {
+        "ab": 2007,
+        "wert": 20
+      },
+      {
+        "ab": 2016,
+        "wert": 0
+      },
+      {
+        "ab": 2020,
+        "wert": 30
+      }
+    ],
+    "handel.kapitalOffenheit": [
+      {
+        "ab": 2005,
+        "wert": 0.6
+      },
+      {
+        "ab": 2011,
+        "wert": 0.1
+      },
+      {
+        "ab": 2016,
+        "wert": 0.9
+      },
+      {
+        "ab": 2019,
+        "wert": 0.1
+      }
+    ],
+    "handel.kursNachfuehrung": [
+      {
+        "ab": 2005,
+        "wert": 1
+      },
+      {
+        "ab": 2011,
+        "wert": 0.4
+      },
+      {
+        "ab": 2016,
+        "wert": 1
+      },
+      {
+        "ab": 2019,
+        "wert": 0.4
+      }
+    ]
+  },
+  "plus": {
+    "staat.uebrige": [
+      {
+        "ab": 2005,
+        "wert": 0
+      },
+      {
+        "ab": 2009,
+        "wert": 4
+      },
+      {
+        "ab": 2013,
+        "wert": 8
+      },
+      {
+        "ab": 2016,
+        "wert": 6
+      },
+      {
+        "ab": 2020,
+        "wert": 8
+      }
+    ]
+  },
+  "quellen": {
+    "Werte 2005": "IWF WEO (nach der Umschuldung 2005)",
+    "Politik": "Notenbankfinanzierung ab 2009 (BCRA-Transfers), Devisenkontrollen „cepo“ 2011–2015 und ab 2019, Macri-Öffnung 2016; Preiskontrollen „Precios Cuidados“",
+    "Ausgaben": "Staatsquote stieg 2005–2015 um rund 15 % BIP (IWF)",
+    "beobachtet": "Schwarzmarkt-Aufschlag (dólar blue) 2013–2015 rund 50–100 %, 2020–2023 rund 100–150 %"
+  }
+}

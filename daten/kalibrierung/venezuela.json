@@ -1,0 +1,57 @@
+{
+  "name": "Venezuela",
+  "vorlage": "RU",
+  "start": 1999,
+  "jahre": 23,
+  "grund": { "regime": "gelenkt" },
+  "werte": {
+    "bev": 23.9, "tfr": 2.8, "lebenserwartung": 72.5,
+    "inflation": 23.6, "leitzins": 30, "rendite": 25, "effZins": 20,
+    "schuldQuote": 30, "einnahmen": 20, "ausgaben": 22.5, "rentenausgaben": 2, "alg": 0.5,
+    "alq": 15, "nairu": 12, "investQuote": 22, "exporte": 20, "importe": 16,
+    "produktivitaetsLuecke": 0.3, "tfpTrend": 0.5, "nfa": 20, "privatschuld": 15, "qe": 0, "fondsQuote0": 0,
+    "rohstoffExporte": 18, "rohstoffStaat": 0.6, "rohstoffFonds0": 1,
+    "rohstoffGewichte": { "oel": 1, "gas": 0, "metalle": 0 },
+    "rohstoffBezug": { "oel": 18, "gas": 35, "metalle": 100 }
+  },
+  "standards": {
+    "ordnung.rechtsstaat": 35, "ordnung.staatsanteil": 20, "ordnung.kreditlenkung": 10,
+    "handel.kapitalOffenheit": 0.6, "geld.inflationsziel": 20, "anleihen.auslandsanteil": 0.5,
+    "mig.netto": 0, "demo.geburtenrate": 2.2, "staat.verteidigung": 1.5, "energie.co2Preis": 0,
+    "rohstoff.fondsAnteil": 0
+  },
+  "stell": {
+    "ordnung.rechtsstaat": [{ "ab": 1999, "wert": 35 }, { "ab": 2003, "wert": 25 }, { "ab": 2008, "wert": 15 }, { "ab": 2013, "wert": 8 }],
+    "ordnung.staatsanteil": [{ "ab": 1999, "wert": 20 }, { "ab": 2007, "wert": 40 }, { "ab": 2010, "wert": 55 }],
+    "ordnung.preiskontrollen": [{ "ab": 1999, "wert": 0 }, { "ab": 2003, "wert": 30 }, { "ab": 2010, "wert": 50 }, { "ab": 2014, "wert": 70 }],
+    "ordnung.notenbankfinanzierung": [{ "ab": 1999, "wert": 0 }, { "ab": 2007, "wert": 20 }, { "ab": 2012, "wert": 50 }, { "ab": 2015, "wert": 100 }],
+    "handel.kapitalOffenheit": [{ "ab": 1999, "wert": 0.6 }, { "ab": 2003, "wert": 0.1 }],
+    "handel.kursNachfuehrung": [{ "ab": 1999, "wert": 1 }, { "ab": 2003, "wert": 0.3 }, { "ab": 2010, "wert": 0.1 }]
+  },
+  "plus": {
+    "staat.uebrige": [{ "ab": 1999, "wert": 0 }, { "ab": 2004, "wert": 6 }, { "ab": 2006, "wert": 12 }, { "ab": 2008, "wert": 16 }, { "ab": 2016, "wert": 10 }]
+  },
+  "welt": {
+    "oel": [
+      { "ab": 1999, "wert": 18 }, { "ab": 2000, "wert": 28 }, { "ab": 2001, "wert": 24 }, { "ab": 2002, "wert": 25 },
+      { "ab": 2003, "wert": 29 }, { "ab": 2004, "wert": 38 }, { "ab": 2005, "wert": 55 }, { "ab": 2006, "wert": 65 },
+      { "ab": 2007, "wert": 72 }, { "ab": 2008, "wert": 97 }, { "ab": 2009, "wert": 62 }, { "ab": 2010, "wert": 80 },
+      { "ab": 2011, "wert": 111 }, { "ab": 2012, "wert": 112 }, { "ab": 2013, "wert": 109 }, { "ab": 2014, "wert": 99 },
+      { "ab": 2015, "wert": 52 }, { "ab": 2016, "wert": 44 }, { "ab": 2017, "wert": 54 }, { "ab": 2018, "wert": 71 },
+      { "ab": 2019, "wert": 64 }, { "ab": 2020, "wert": 42 }, { "ab": 2021, "wert": 71 }
+    ]
+  },
+  "beobachtet": {
+    "inflation": { "2014": 62, "2015": 122, "2016": 255, "2017": 438, "2018": 65374, "2019": 19906, "2020": 2355 },
+    "bipProKopfIndex2013": { "2013": 100, "2016": 72, "2018": 52, "2020": 30 },
+    "bev": { "2015": 30.1, "2020": 28.4 }
+  },
+  "quellen": {
+    "Werte 1999": "IWF WEO (Inflation, Schuld, Haushalt), Weltbank WDI (Bevölkerung, Außenhandel, Investitionen); gerundet",
+    "Ordnung": "Pfade grob nach Corrales/Penfold 2015 und WGI (Rule of Law 1999 rund 35 → 2013 unter 10); Enteignungen 2007–2010; Preis- und Devisenkontrollen ab 2003",
+    "Notenbankfinanzierung": "Hausmann/Rodríguez 2014; BCV-Kredite an PDVSA ab 2007",
+    "Staatsausgaben": "Ausgaben des erweiterten öffentlichen Sektors stiegen 2004–2012 um rund 15 % BIP (IWF Article IV 2012/2013; Hausmann/Rodríguez 2014)",
+    "Ölpreis": "BP Statistical Review, Brent Jahresmittel",
+    "beobachtet": "IWF WEO; Inflation 2018 laut IWF rund 65.000 %; BIP-Einbruch 2013–2020 rund 70–75 % (IWF); Bevölkerung Weltbank (Abwanderung rund 5 Mio. laut UNHCR)"
+  }
+}

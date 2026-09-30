@@ -1,0 +1,292 @@
+{
+  "name": "Japan 1985",
+  "vorlage": "JP",
+  "start": 1985,
+  "jahre": 21,
+  "grund": {
+    "regime": "euro",
+    "rettung": "zoegernd",
+    "banken": "an",
+    "tpi": true
+  },
+  "werte": {
+    "bev": 120.8,
+    "altersanteile": [
+      0.0607,
+      0.0711,
+      0.0849,
+      0.0715,
+      0.0652,
+      0.0644,
+      0.0742,
+      0.0913,
+      0.0746,
+      0.0688,
+      0.0657,
+      0.0582,
+      0.0459,
+      0.0347,
+      0.0296,
+      0.0209,
+      0.0183
+    ],
+    "tfr": 1.76,
+    "lebenserwartung": 77.6,
+    "bip": 347563,
+    "inflation": 2.0,
+    "leitzins": 6.5,
+    "rendite": 6.3,
+    "effZins": 6.8,
+    "schuldQuote": 68.3,
+    "einnahmen": 29.0,
+    "ausgaben": 30.4,
+    "rentenausgaben": 5.0,
+    "alq": 2.6,
+    "nairu": 2.7,
+    "tfpTrend": 1.5,
+    "exporte": 13.3,
+    "importe": 10.3,
+    "investQuote": 32.4,
+    "privatschuld": 162.0,
+    "kreditTrend0": 157.1,
+    "kreditSteigung0": 2.22,
+    "dsrSchwelle": 30.7,
+    "nfa": 10,
+    "qe": 0,
+    "erwerbsquoteTrend": 0,
+    "fondsQuote0": 15,
+    "bankKapital0": 2.7,
+    "npl0": 1.5,
+    "bankBilanz0": 198,
+    "bankKreditAnteil": 0.59,
+    "bankStaatsAnteil": 0.35,
+    "hausVermoegen0": 350,
+    "hausBewertung0": -3.8,
+    "hausTrend0": 12.4,
+    "hausSteigung0": 2.86,
+    "hausWachstum0": 0.44,
+    "eurogewicht": 0
+  },
+  "welt": {
+    "euroLeitzins": [
+      {
+        "ab": 1985,
+        "wert": 6.5
+      },
+      {
+        "ab": 1986,
+        "wert": 5.0
+      },
+      {
+        "ab": 1987,
+        "wert": 3.7
+      },
+      {
+        "ab": 1988,
+        "wert": 3.8
+      },
+      {
+        "ab": 1989,
+        "wert": 5.1
+      },
+      {
+        "ab": 1990,
+        "wert": 7.4
+      },
+      {
+        "ab": 1991,
+        "wert": 7.5
+      },
+      {
+        "ab": 1992,
+        "wert": 4.7
+      },
+      {
+        "ab": 1993,
+        "wert": 3.1
+      },
+      {
+        "ab": 1994,
+        "wert": 2.2
+      },
+      {
+        "ab": 1995,
+        "wert": 1.2
+      },
+      {
+        "ab": 1996,
+        "wert": 0.5
+      },
+      {
+        "ab": 1997,
+        "wert": 0.5
+      },
+      {
+        "ab": 1998,
+        "wert": 0.4
+      },
+      {
+        "ab": 1999,
+        "wert": 0.1
+      },
+      {
+        "ab": 2000,
+        "wert": 0.1
+      },
+      {
+        "ab": 2001,
+        "wert": 0.1
+      },
+      {
+        "ab": 2002,
+        "wert": 0.0
+      },
+      {
+        "ab": 2003,
+        "wert": 0.0
+      },
+      {
+        "ab": 2004,
+        "wert": 0.0
+      },
+      {
+        "ab": 2005,
+        "wert": 0.0
+      }
+    ],
+    "praemieWelt": [
+      {
+        "ab": 1985,
+        "wert": 0.0
+      },
+      {
+        "ab": 1986,
+        "wert": -0.6
+      },
+      {
+        "ab": 1987,
+        "wert": -0.7
+      },
+      {
+        "ab": 1988,
+        "wert": -0.7
+      },
+      {
+        "ab": 1989,
+        "wert": -0.6
+      },
+      {
+        "ab": 1990,
+        "wert": 0.6
+      },
+      {
+        "ab": 1991,
+        "wert": -0.3
+      },
+      {
+        "ab": 1992,
+        "wert": -0.5
+      },
+      {
+        "ab": 1993,
+        "wert": -0.9
+      },
+      {
+        "ab": 1994,
+        "wert": -0.5
+      },
+      {
+        "ab": 1995,
+        "wert": -1.2
+      },
+      {
+        "ab": 1996,
+        "wert": -1.1
+      },
+      {
+        "ab": 1997,
+        "wert": -1.6
+      },
+      {
+        "ab": 1998,
+        "wert": -2.2
+      },
+      {
+        "ab": 1999,
+        "wert": -1.3
+      },
+      {
+        "ab": 2000,
+        "wert": -1.4
+      },
+      {
+        "ab": 2001,
+        "wert": -1.8
+      },
+      {
+        "ab": 2002,
+        "wert": -1.8
+      },
+      {
+        "ab": 2003,
+        "wert": -2.1
+      },
+      {
+        "ab": 2004,
+        "wert": -1.6
+      },
+      {
+        "ab": 2005,
+        "wert": -1.7
+      }
+    ]
+  },
+  "beobachtet": {
+    "hauspreisReal": {
+      "1985": 100.0,
+      "1986": 102.0,
+      "1987": 109.5,
+      "1988": 115.1,
+      "1989": 121.2,
+      "1990": 133.6,
+      "1991": 134.9,
+      "1992": 127.5,
+      "1993": 120.5,
+      "1994": 116.8,
+      "1995": 115.2,
+      "1996": 112.9,
+      "1997": 109.6,
+      "1998": 107.0,
+      "1999": 104.0,
+      "2000": 100.8,
+      "2001": 97.0,
+      "2002": 92.8,
+      "2003": 87.2,
+      "2004": 81.9,
+      "2005": 78.1,
+      "2006": 75.6,
+      "2007": 74.8
+    },
+    "alq": {
+      "1990": 2.1,
+      "2002": 5.4
+    },
+    "schuldQuote": {
+      "1991": 62.4,
+      "2005": 174.3
+    },
+    "krise": {
+      "beginn": 1997,
+      "kostenBip": 8.6,
+      "nplMax": 35.0
+    }
+  },
+  "quellen": {
+    "Werte Startjahr": "Jordà/Schularick/Taylor, Macrohistory Database R6 (daten/kalibrierung/jst-auszug.csv): BIP, Inflation, Kurzfristzins, Rendite, Arbeitslosigkeit, Staatsschuld, Eigenkapitalquote der Banken (lev); Einnahmen und Ausgaben Gesamtstaat: IWF DataMapper (rev, exp); Bevölkerung, Altersaufbau, Geburtenrate, Lebenserwartung, Außenhandel, Investitionen: Weltbank WDI",
+    "Kredit": "BIS Total Credit (WS_TC): Kredit an den privaten nichtfinanziellen Sektor, alle Sektoren und Banken, Jahresende; Trend: einseitiger HP-Filter λ = 1.562,5",
+    "Hauspreis": "BIS Selected residential property prices, real (WS_SPP); Bewertung: OECD Preis-Einkommen-Verhältnis (HPI_YDH) des Startjahres gegen sein Mittel bis zum Startjahr (ohne Wissen aus der Zukunft)",
+    "Bankwerte": "Bilanz: World Bank GFDD.DI.02; faule Kredite, Staatsanleihen bei Banken, Hausvermögen: Größenordnung aus IWF GFSR, Arslanalp/Tsuda, nationalen Vermögensbilanzen; ungeprüft; Hausvermögen (Boden und Gebäude der Haushalte) 1985 rund 350 % BIP (Cabinet Office, National Accounts)",
+    "Krise": "Laeven/Valencia 2018 (IWF WP 18/206), Tabelle der Krisen: Beginn, fiskalische Kosten, Höchststand fauler Kredite, Anstieg der Staatsschuld",
+    "Pfade": "Weltrealzins bzw. Euro-Leitzins: tatsächlicher Kurzfristzins (JST stir), real = minus Inflation des Jahres; tfpTrend, NAIRU, Nettoauslandsvermögen, Rentenausgaben: grobe Handwerte, ungeprüft"
+  }
+}

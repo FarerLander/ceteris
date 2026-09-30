@@ -1,0 +1,60 @@
+Deutsche Probe, Rückblick 2000–2025 fest. Wirksamkeit 89, druckSchwelle Standard, verspaetung Standard
+
+A. Auslöser aus dem Modell-Lauf des Rückblicks
+
+Jahr  Wahl     schwach eng  Druck Schwäche  Druck eng  Regel, falls Punkt  Entscheidungspunkt
+2001  Vorwahl  ja      –        0.14         0.00     macht               
+2002  Wahl     –       –        0.14         0.00     macht               
+2003           ja      –        0.29         0.00     richtung            
+2004  Vorwahl  –       –        0.29         0.00     macht               
+2005  Wahl     –       –        0.29         0.00     macht               
+2006           –       –        0.29         0.00     richtung            
+2007           –       –        0.29         0.00     richtung            
+2008  Vorwahl  ja      –        0.29         0.00     macht               
+2009  Wahl     –       –        0.29         0.00     macht               
+2010           ja      –        0.60         0.06     macht               
+2011           –       –        0.29         0.13     richtung            
+2012  Vorwahl  –       –        0.29         0.11     macht               
+2013  Wahl     –       –        0.29         0.09     macht               
+2014           –       –        0.29         0.06     richtung            
+2015           –       –        0.14         0.03     richtung            
+2016  Vorwahl  –       –        0.14         0.00     macht               
+2017  Wahl     –       –        0.00         0.00     macht               
+2018           –       –        0.00         0.00     richtung            
+2019           –       –        0.00         0.00     richtung            
+2020  Vorwahl  –       –        0.00         0.00     macht               
+2021  Wahl     –       –        0.00         0.00     macht               
+2022           –       –        0.00         0.00     richtung            
+2023           ja      –        0.14         0.00     richtung            
+2024  Vorwahl  ja      –        0.29         0.00     macht               
+2025  Wahl     –       –        0.29         0.00     macht               
+
+
+B. Auslöser Schwäche aus den gemessenen Reihen (Wachstum pro Kopf, Arbeitslosigkeit)
+
+Jahr  Wahl     schwach eng  Druck Schwäche  Druck eng  Regel, falls Punkt  Entscheidungspunkt
+2001  Vorwahl  –       –        0.00         0.00     macht               
+2002  Wahl     –       –        0.00         0.00     macht               
+2003           ja      –        0.14         0.00     richtung            
+2004  Vorwahl  ja      –        0.31         0.00     macht               
+2005  Wahl     ja      –        0.62         0.00     macht               schwaeche→macht | 2005: Regierung stützt die Konjunktur mit Ausgaben
+2006           ja      –        0.83         0.00     richtung            
+2007           ja      –        0.77         0.00     unbequem            Sperrklinke: 0.30 % BIP bleiben
+2008  Vorwahl  –       –        0.71         0.00     macht               
+2009  Wahl     –       –        0.71         0.00     macht               
+2010           ja      –        0.71         0.06     macht               schwaeche→macht | 2010: Regierung stützt die Konjunktur mit Ausgaben
+2011           –       –        0.57         0.13     richtung            
+2012  Vorwahl  –       –        0.43         0.11     macht               Sperrklinke: 0.30 % BIP bleiben
+2013  Wahl     ja      –        0.43         0.09     macht               
+2014           ja      –        0.43         0.06     richtung            schwaeche→richtung | 2014: Regierung legt ein großes Programm auf: höhere Renten und Familienleistungen
+2015           –       –        0.43         0.03     richtung            
+2016  Vorwahl  –       –        0.43         0.00     macht               
+2017  Wahl     –       –        0.29         0.00     macht               
+2018           –       –        0.29         0.00     richtung            
+2019           –       –        0.29         0.00     richtung            
+2020  Vorwahl  –       –        0.14         0.00     macht               
+2021  Wahl     ja      –        0.14         0.00     macht               
+2022           –       –        0.14         0.00     richtung            
+2023           –       –        0.14         0.00     richtung            
+2024  Vorwahl  ja      –        0.29         0.00     macht               
+2025  Wahl     ja      –        0.43         0.00     macht               schwaeche→macht | 2025: Regierung stützt die Konjunktur mit Ausgaben

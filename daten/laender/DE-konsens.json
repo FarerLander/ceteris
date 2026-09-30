@@ -1,0 +1,49 @@
+{
+ "quellen": [
+  {
+   "kurz": "SVR",
+   "name": "Sachverständigenrat, Frühjahrsgutachten 2026",
+   "stand": "2026-05",
+   "url": "https://www.sachverstaendigenrat-wirtschaft.de/en/spring-report-2026.html",
+   "abgrenzung": {
+    "inflation": "Verbraucherpreisindex statt HVPI"
+   },
+   "werte": {
+    "wachstum": {
+     "2026": 0.5,
+     "2027": 0.8
+    },
+    "inflation": {
+     "2026": 3.0,
+     "2027": 2.8
+    }
+   }
+  },
+  {
+   "kurz": "Bundesbank",
+   "name": "Deutsche Bundesbank, Deutschland-Prognose Juni 2026 (BIP kalenderbereinigt)",
+   "stand": "2026-06-12",
+   "url": "https://www.bundesbank.de/de/publikationen/berichte/monatsberichte",
+   "werte": {
+    "wachstum": {
+     "2026": 0.5,
+     "2027": 0.8,
+     "2028": 1.4
+    },
+    "inflation": {
+     "2026": 2.9,
+     "2027": 2.7,
+     "2028": 1.9
+    }
+   }
+  }
+ ],
+ "gruende": {
+  "wachstum": {
+   "tiefer": "das Arbeitsangebot schwächer wächst (Kritikpunkt M24)"
+  },
+  "schuldQuote": {
+   "hoeher": "es schwächer wächst als in der Prognose; ohne Haushaltspläne fehlt zudem die geplante Haushaltspolitik"
+  }
+ }
+}

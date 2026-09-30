@@ -1,0 +1,80 @@
+{
+  "name": "Argentinien 1992–2002",
+  "vorlage": "IT",
+  "start": 1992,
+  "jahre": 11,
+  "grund": {
+    "regime": "hart"
+  },
+  "werte": {
+    "bev": 33.5,
+    "tfr": 2.8,
+    "lebenserwartung": 72,
+    "inflation": 25,
+    "leitzins": 12,
+    "rendite": 12,
+    "effZins": 8,
+    "schuldQuote": 30,
+    "einnahmen": 20,
+    "ausgaben": 21,
+    "alq": 7,
+    "nairu": 8,
+    "exporte": 7,
+    "importe": 7,
+    "investQuote": 17,
+    "produktivitaetsLuecke": 0.35,
+    "tfpTrend": 1.0,
+    "privatschuld": 20,
+    "nfa": -35,
+    "qe": 0,
+    "fondsQuote0": 0,
+    "lbRest": -3
+  },
+  "standards": {
+    "anleihen.auslandsanteil": 0.7,
+    "handel.kapitalOffenheit": 0.9,
+    "mig.netto": 0,
+    "demo.geburtenrate": 2.2,
+    "ordnung.rechtsstaat": 45,
+    "anleihen.schwelle": 35
+  },
+  "plus": {
+    "staat.uebrige": [
+      {
+        "ab": 1992,
+        "wert": 0
+      },
+      {
+        "ab": 1996,
+        "wert": 2
+      },
+      {
+        "ab": 1999,
+        "wert": 3
+      }
+    ]
+  },
+  "schocks": [
+    {
+      "art": "krise",
+      "jahr": 1995,
+      "staerke": 0.7,
+      "dauer": 1
+    },
+    {
+      "art": "handel",
+      "jahr": 1999,
+      "staerke": 1.5,
+      "dauer": 1
+    }
+  ],
+  "quellen": {
+    "Werte 1992": "IWF WEO; Currency Board (Konvertibilität) ab April 1991",
+    "Schocks": "Tequila-Krise 1995; Abwertung Brasiliens 1999 (Hauptabnehmer)",
+    "Haushalt": "Defizite des Gesamtstaats 1996–2001 rund 2–4 % BIP, Schuld 1992 → 2001 rund 30 → 50 % BIP (IWF)",
+    "beobachtet": "Zahlungsausfall Dezember 2001, BIP 1998–2002 rund −20 %",
+    "Schuldenintoleranz": "Reinhart/Rogoff/Savastano 2003: Länder mit Ausfallgeschichte geraten schon bei Schulden um 35 % BIP in Not; Landesschwelle 35 statt 60",
+    "Auslandsschuld": "Nettoauslandsposition 1992 rund −35 % BIP, Leistungsbilanzdefizite 1992–2001 rund 3–4 % BIP (IWF, Lane/Milesi-Ferretti)",
+    "Leistungsbilanz": "Leistungsbilanz 1992–2001 rund −3 bis −4 % BIP, vor allem Zins- und Gewinnabflüsse (IWF); hier als Rest der Leistungsbilanz −3 % BIP"
+  }
+}

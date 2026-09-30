@@ -1,0 +1,73 @@
+
+== 1950–2020: 25 Krisen in 1278 Länderjahren = 1.96 % pro Jahr
+Logit nur Kreditlücke (n=1275): a=-4.337 b=0.1017 (t 4.9); SD Lücke 8.9 Pp.
+   Lücke -5 Pp.: 0.8 % pro Jahr
+   Lücke +0 Pp.: 1.3 % pro Jahr
+   Lücke +5 Pp.: 2.1 % pro Jahr
+   Lücke +10 Pp.: 3.5 % pro Jahr
+   Lücke +20 Pp.: 9.1 % pro Jahr
+Logit Kredit- und Hauspreislücke (n=1174): a=-4.306 Kredit=0.0950 (t 4.4) Haus=0.0144 (t 1.3); SD Hauslücke 16.4
+   Kredit +0 Pp., Haus +0 %: 1.3 % pro Jahr
+   Kredit +10 Pp., Haus +0 %: 3.4 % pro Jahr
+   Kredit +0 Pp., Haus +20 %: 1.8 % pro Jahr
+   Kredit +10 Pp., Haus +20 %: 4.4 % pro Jahr
+   Kredit +20 Pp., Haus +30 %: 12.2 % pro Jahr
+
+== 1970–2020: 25 Krisen in 918 Länderjahren = 2.72 % pro Jahr
+Logit nur Kreditlücke (n=916): a=-3.907 b=0.0937 (t 4.8); SD Lücke 10.0 Pp.
+   Lücke -5 Pp.: 1.2 % pro Jahr
+   Lücke +0 Pp.: 2.0 % pro Jahr
+   Lücke +5 Pp.: 3.1 % pro Jahr
+   Lücke +10 Pp.: 4.9 % pro Jahr
+   Lücke +20 Pp.: 11.6 % pro Jahr
+Logit Kredit- und Hauspreislücke (n=894): a=-4.038 Kredit=0.0773 (t 3.7) Haus=0.0475 (t 2.8); SD Hauslücke 13.7
+   Kredit +0 Pp., Haus +0 %: 1.7 % pro Jahr
+   Kredit +10 Pp., Haus +0 %: 3.7 % pro Jahr
+   Kredit +0 Pp., Haus +20 %: 4.4 % pro Jahr
+   Kredit +10 Pp., Haus +20 %: 9.0 % pro Jahr
+   Kredit +20 Pp., Haus +30 %: 25.6 % pro Jahr
+
+== 1870–2020 ohne Kriegsjahre: 87 Krisen in 2448 Länderjahren = 3.62 % pro Jahr
+Logit nur Kreditlücke (n=2219): a=-3.521 b=0.0697 (t 4.5); SD Lücke 7.6 Pp.
+   Lücke -5 Pp.: 2.0 % pro Jahr
+   Lücke +0 Pp.: 2.9 % pro Jahr
+   Lücke +5 Pp.: 4.0 % pro Jahr
+   Lücke +10 Pp.: 5.6 % pro Jahr
+   Lücke +20 Pp.: 10.6 % pro Jahr
+Logit Kredit- und Hauspreislücke (n=1768): a=-3.705 Kredit=0.0733 (t 4.3) Haus=0.0090 (t 1.2); SD Hauslücke 16.6
+   Kredit +0 Pp., Haus +0 %: 2.4 % pro Jahr
+   Kredit +10 Pp., Haus +0 %: 4.9 % pro Jahr
+   Kredit +0 Pp., Haus +20 %: 2.9 % pro Jahr
+   Kredit +10 Pp., Haus +20 %: 5.8 % pro Jahr
+   Kredit +20 Pp., Haus +30 %: 12.2 % pro Jahr
+
+== Schwere ab 1950: Einbuße über zwei Jahre (Pp. Wachstum pro Kopf, Krisenjahr + Folgejahr, gegen die 10 Jahre davor)
+iso  jahr   einbusse
+IRL  2008 -21.164376
+FIN  1991 -16.537768
+SWE  2008 -12.204683
+ESP  2008 -10.551237
+ITA  2008 -10.537868
+DNK  2008  -9.762863
+DEU  2008  -7.790329
+GBR  1974  -7.621398
+SWE  1991  -7.395312
+FRA  2008  -7.190232
+BEL  2008  -6.889065
+NLD  2008  -6.746244
+GBR  1991  -6.628560
+NOR  1988  -6.408465
+JPN  1997  -6.343159
+CHE  1991  -6.205522
+PRT  2008  -6.190930
+ESP  1977  -6.184573
+CHE  2008  -5.207582
+GBR  2007  -4.450434
+USA  2007  -4.353535
+DNK  1987  -4.011990
+AUS  1989  -3.683661
+ITA  1990  -3.215383
+USA  1984   6.804381
+Quantile 10/25/50/75/90: [-11.5, -7.8, -6.6, -5.2, -3.8]
+2007/2008: -8.7 | übrige: -5.6
+Abstände zwischen Krisen im selben Land (Jahre): [16, 17, 17, 17, 18, 21, 23, 31]

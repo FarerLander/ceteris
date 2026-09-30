@@ -1,0 +1,34 @@
+{
+ "quellen": [
+  {
+   "kurz": "BoJ",
+   "name": "Bank of Japan, Outlook for Economic Activity and Prices (Juli 2026)",
+   "stand": "2026-07-31",
+   "url": "https://www.boj.or.jp/en/mopo/outlook/highlight/ten202607.htm",
+   "abgrenzung": {
+    "wachstum": "Fiskaljahr, Median des Board",
+    "inflation": "Fiskaljahr, Median des Board, ohne frische Lebensmittel"
+   },
+   "werte": {
+    "wachstum": {
+     "2026": 0.6,
+     "2027": 0.8,
+     "2028": 0.8
+    },
+    "inflation": {
+     "2026": 2.5,
+     "2027": 2.4,
+     "2028": 2.0
+    }
+   }
+  }
+ ],
+ "gruende": {
+  "wachstum": {
+   "tiefer": "das Arbeitsangebot schwächer wächst (Kritikpunkt M24)"
+  },
+  "schuldQuote": {
+   "hoeher": "es schwächer wächst als in der Prognose; ohne Haushaltspläne fehlt zudem die geplante Haushaltspolitik"
+  }
+ }
+}

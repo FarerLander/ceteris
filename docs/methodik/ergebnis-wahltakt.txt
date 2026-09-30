@@ -1,0 +1,58 @@
+1. LÄNDER-PANEL: sieben Länder mit Wahltakt, 2001–2024, Ländereffekte
+
+A. Alle Jahre (n = 168, Wahljahre 45)
+  Wahljahr              −0.01 Pp.  (t −0.0)
+  Änderung der Lücke     0.90 Pp.  (t 15.9)
+
+B. Ohne Krisenjahre 2009, 2010, 2020, 2021 (n = 140, Wahljahre 38)
+  Wahljahr              −0.31 Pp.  (t −1.1)
+  Änderung der Lücke     0.66 Pp.  (t 5.3)
+
+C. Mit Vorwahljahr, ohne Krisenjahre (n = 140, Wahljahre 38)
+  Wahljahr              −0.48 Pp.  (t −1.7)
+  Vorwahljahr           −0.46 Pp.  (t −1.6)
+  Änderung der Lücke     0.64 Pp.  (t 5.2)
+
+2. JE LAND, ohne Krisenjahre
+
+DE (n = 20, Wahljahre 4)
+  Wahljahr               0.12 Pp.  (t 0.2)
+  Änderung der Lücke     0.62 Pp.  (t 2.5)
+
+US (n = 20, Wahljahre 5)
+  Wahljahr              −0.19 Pp.  (t −0.2)
+  Änderung der Lücke     1.84 Pp.  (t 2.9)
+
+JP (n = 20, Wahljahre 6)
+  Wahljahr              −0.07 Pp.  (t −0.2)
+  Änderung der Lücke     0.80 Pp.  (t 2.9)
+
+GB (n = 20, Wahljahre 6)
+  Wahljahr              −0.45 Pp.  (t −0.6)
+  Änderung der Lücke     0.70 Pp.  (t 2.0)
+
+FR (n = 20, Wahljahre 5)
+  Wahljahr              −0.25 Pp.  (t −0.6)
+  Änderung der Lücke     0.58 Pp.  (t 2.3)
+
+IT (n = 20, Wahljahre 6)
+  Wahljahr              −0.76 Pp.  (t −1.3)
+  Änderung der Lücke     0.04 Pp.  (t 0.2)
+
+CA (n = 20, Wahljahre 6)
+  Wahljahr               0.20 Pp.  (t 0.5)
+  Änderung der Lücke     1.29 Pp.  (t 5.8)
+
+3. DEUTSCHLAND, Primärsaldo (Saldo plus Zinsen aus dem Rückblick-Lauf des Modells), 2001–2024
+Alle Jahre (n = 24, Wahljahre 6)
+  Wahljahr               0.37 Pp.  (t 0.5)
+  Änderung der Lücke     0.61 Pp.  (t 3.9)
+
+Ohne Krisenjahre (n = 20, Wahljahre 4)
+  Wahljahr              −0.01 Pp.  (t −0.0)
+  Änderung der Lücke     0.57 Pp.  (t 2.2)
+
+4. URTEIL
+Regel: Saldo im Wahljahr schlechter (Vorzeichen negativ) und |t| ≥ 1,5 im Länder-Panel → Standard 0,3 % BIP; sonst 0.
+Alle Jahre: −0.01 Pp., t −0.0 → nicht erfüllt. Ohne Krisenjahre: −0.31 Pp., t −1.1 → nicht erfüllt.
+Standard für politik.wahljahr: 0

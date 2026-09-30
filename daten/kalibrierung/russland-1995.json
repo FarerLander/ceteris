@@ -1,0 +1,122 @@
+{
+  "name": "Russland 1995–2000",
+  "vorlage": "RU",
+  "start": 1995,
+  "jahre": 6,
+  "grund": {
+    "regime": "gelenkt"
+  },
+  "werte": {
+    "bev": 148,
+    "tfr": 1.3,
+    "lebenserwartung": 65,
+    "inflation": 197,
+    "leitzins": 160,
+    "rendite": 150,
+    "effZins": 40,
+    "schuldQuote": 50,
+    "einnahmen": 33,
+    "ausgaben": 40,
+    "alq": 9,
+    "nairu": 8,
+    "investQuote": 22,
+    "exporte": 29,
+    "importe": 26,
+    "produktivitaetsLuecke": 0.35,
+    "privatschuld": 15,
+    "nfa": 10,
+    "qe": 0,
+    "fondsQuote0": 0,
+    "rohstoffExporte": 15,
+    "rohstoffStaat": 0.3,
+    "rohstoffFonds0": 0,
+    "rohstoffBezug": {
+      "oel": 17,
+      "gas": 35,
+      "metalle": 100
+    }
+  },
+  "standards": {
+    "anleihen.auslandsanteil": 0.5,
+    "handel.kapitalOffenheit": 0.7,
+    "geld.inflationsziel": 20,
+    "ordnung.rechtsstaat": 30,
+    "ordnung.staatsanteil": 40,
+    "ordnung.kreditlenkung": 10,
+    "rohstoff.fondsAnteil": 0,
+    "mig.netto": 0
+  },
+  "stell": {
+    "handel.kursNachfuehrung": [
+      {
+        "ab": 1995,
+        "wert": 1
+      },
+      {
+        "ab": 1996,
+        "wert": 0.5
+      }
+    ],
+    "geld.inflationsziel": [
+      {
+        "ab": 1995,
+        "wert": 100
+      },
+      {
+        "ab": 1996,
+        "wert": 30
+      },
+      {
+        "ab": 1997,
+        "wert": 12
+      },
+      {
+        "ab": 1999,
+        "wert": 30
+      }
+    ]
+  },
+  "welt": {
+    "oel": [
+      {
+        "ab": 1995,
+        "wert": 17
+      },
+      {
+        "ab": 1996,
+        "wert": 20
+      },
+      {
+        "ab": 1997,
+        "wert": 19
+      },
+      {
+        "ab": 1998,
+        "wert": 13
+      },
+      {
+        "ab": 1999,
+        "wert": 18
+      },
+      {
+        "ab": 2000,
+        "wert": 28
+      }
+    ]
+  },
+  "schocks": [
+    {
+      "art": "krise",
+      "jahr": 1998,
+      "staerke": 0.5,
+      "dauer": 1
+    }
+  ],
+  "quellen": {
+    "Werte 1995": "IWF, Weltbank; Inflation 1995 197 %",
+    "Währung": "Wechselkurskorridor 1995–1998, dann Freigabe",
+    "Schock": "Asienkrise 1997/98 (Kapitalabzug aus Schwellenländern)",
+    "beobachtet": "GKO-Ausfall und Abwertung August 1998; Kapitalflucht 1990er rund 10–20 Mrd. $ pro Jahr",
+    "Desinflation": "Inflation 1995 197 %, 1996 48 %, 1997 15 %, 1998 28 %, 1999 86 % (IWF); hier über einen Pfad des Inflationsziels (Wechselkursanker 1995–1998)"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "Griechenland",
+  "vorlage": "IT",
+  "start": 2008,
+  "jahre": 8,
+  "grund": {
+    "regime": "euro",
+    "tpi": false
+  },
+  "werte": {
+    "bev": 11.1,
+    "inflation": 4.2,
+    "schuldQuote": 109,
+    "einnahmen": 40.7,
+    "ausgaben": 50.8,
+    "rendite": 4.8,
+    "effZins": 4.5,
+    "alq": 7.8,
+    "nairu": 9,
+    "exporte": 23,
+    "importe": 36,
+    "investQuote": 23,
+    "privatschuld": 110,
+    "nfa": -80,
+    "qe": 0,
+    "fondsQuote0": 0
+  },
+  "standards": {
+    "anleihen.auslandsanteil": 0.75
+  },
+  "schocks": [
+    {
+      "art": "krise",
+      "jahr": 2009,
+      "staerke": 1,
+      "dauer": 1
+    }
+  ],
+  "quellen": {
+    "Werte 2008": "Eurostat, IWF (Defizit 2008 rund 10 % BIP, revidiert)",
+    "beobachtet": "PSI-Schuldenschnitt März 2012 (rund 53 % Nennwert), BIP 2008–2013 rund −25 %, Arbeitslosigkeit 2013 rund 27 %",
+    "Haushalt 2009": "Defizit 2009 15,4 % BIP, Primärdefizit rund 10 % (Eurostat, revidiert); Ausgaben 2009 +5 % BIP gegenüber 2008",
+    "TPI": "kein Schutzprogramm: OMT erst ab September 2012, TPI 2022"
+  },
+  "plus": {
+    "staat.uebrige": [
+      {
+        "ab": 2008,
+        "wert": 0
+      },
+      {
+        "ab": 2009,
+        "wert": 5
+      },
+      {
+        "ab": 2010,
+        "wert": 2
+      },
+      {
+        "ab": 2011,
+        "wert": 0
+      }
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+node_modules
+dist
+.ruff_cache
+__pycache__
+.DS_Store

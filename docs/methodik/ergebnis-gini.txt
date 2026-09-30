@@ -1,0 +1,194 @@
+====================================================================================================
+1. PANEL: OECD IDD gegen Revenue Statistics und SOCX, Länder- und Jahreseffekte
+====================================================================================================
+Beobachtungen mit Gini verfügbar: 1012, mit Gini Markt: 914, Länder: 45
+
+A. Umverteilung (Gini Markt − Gini verfügbar), positiv = gleicht aus
+  abhängig: umverteilung; n = 760, Länder = 36
+  est            0.391  (SE 0.104, t   3.7)
+  sv             0.428  (SE 0.139, t   3.1)
+  mwst          -0.431  (SE 0.176, t  -2.5)
+  vermoegen     -0.138  (SE 0.092, t  -1.5)
+  familie        0.148  (SE 0.181, t   0.8)
+  alter          0.523  (SE 0.112, t   4.7)
+  alg            0.439  (SE 0.367, t   1.2)
+  alq            0.273  (SE 0.063, t   4.3)
+
+B. Gegenprobe: Gini verfügbar direkt, negativ = gleicht aus
+  abhängig: giniVerf; n = 839, Länder = 36
+  est           -0.293  (SE 0.117, t  -2.5)
+  sv            -0.500  (SE 0.145, t  -3.5)
+  mwst           0.385  (SE 0.193, t   2.0)
+  vermoegen      0.112  (SE 0.062, t   1.8)
+  familie       -0.506  (SE 0.286, t  -1.8)
+  alter         -0.081  (SE 0.157, t  -0.5)
+  alg            0.060  (SE 0.271, t   0.2)
+  alq            0.058  (SE 0.038, t   1.5)
+
+C. Gini verfügbar, ohne Kontrolle für Arbeitslosigkeit
+  abhängig: giniVerf; n = 848, Länder = 36
+  est           -0.332  (SE 0.112, t  -3.0)
+  sv            -0.517  (SE 0.160, t  -3.2)
+  mwst           0.381  (SE 0.178, t   2.1)
+  vermoegen      0.110  (SE 0.060, t   1.8)
+  familie       -0.591  (SE 0.301, t  -2.0)
+  alter          0.044  (SE 0.136, t   0.3)
+  alg            0.366  (SE 0.226, t   1.6)
+
+D. Armutsquote (60 % des Medians)
+  abhängig: armut60; n = 808, Länder = 36
+  est           -0.172  (SE 0.107, t  -1.6)
+  sv            -0.182  (SE 0.143, t  -1.3)
+  mwst           0.452  (SE 0.218, t   2.1)
+  vermoegen      0.098  (SE 0.058, t   1.7)
+  familie       -0.574  (SE 0.254, t  -2.3)
+  alter          0.091  (SE 0.121, t   0.8)
+  alg           -0.263  (SE 0.298, t  -0.9)
+  alq           -0.063  (SE 0.038, t  -1.6)
+
+E. Armutsquote (50 % des Medians)
+  abhängig: armut50; n = 839, Länder = 36
+  est           -0.102  (SE 0.081, t  -1.3)
+  sv            -0.058  (SE 0.128, t  -0.5)
+  mwst           0.310  (SE 0.180, t   1.7)
+  vermoegen      0.025  (SE 0.046, t   0.5)
+  familie       -0.398  (SE 0.208, t  -1.9)
+  alter          0.094  (SE 0.112, t   0.8)
+  alg           -0.137  (SE 0.271, t  -0.5)
+  alq           -0.026  (SE 0.044, t  -0.6)
+
+G. Rentenniveau (Altersausgaben je Kopf 65+ in % des BIP pro Kopf) statt Altersausgaben: Gini verfügbar
+  abhängig: giniVerf; n = 811, Länder = 37
+  est           -0.238  (SE 0.127, t  -1.9)
+  sv            -0.382  (SE 0.141, t  -2.7)
+  mwst           0.452  (SE 0.179, t   2.5)
+  familie       -0.472  (SE 0.319, t  -1.5)
+  niveau        -0.038  (SE 0.025, t  -1.5)
+  anteil65      -0.139  (SE 0.132, t  -1.0)
+  alq            0.083  (SE 0.038, t   2.2)
+
+H. Rentenniveau: Armutsquote (60 %), alle
+  abhängig: armut60; n = 811, Länder = 37
+  est           -0.202  (SE 0.109, t  -1.8)
+  sv            -0.212  (SE 0.154, t  -1.4)
+  mwst           0.533  (SE 0.228, t   2.3)
+  familie       -0.571  (SE 0.258, t  -2.2)
+  niveau         0.022  (SE 0.013, t   1.7)
+  anteil65      -0.117  (SE 0.098, t  -1.2)
+  alq           -0.078  (SE 0.037, t  -2.1)
+
+I. Rentenniveau: Armutsquote (60 %) der über 65-Jährigen
+  abhängig: armut60Alte; n = 747, Länder = 37
+  est           -0.043  (SE 0.199, t  -0.2)
+  sv            -1.679  (SE 0.433, t  -3.9)
+  mwst           2.206  (SE 0.397, t   5.6)
+  familie        2.279  (SE 0.907, t   2.5)
+  niveau        -0.268  (SE 0.096, t  -2.8)
+  anteil65      -0.727  (SE 0.419, t  -1.7)
+  alq           -0.855  (SE 0.160, t  -5.3)
+
+J. Rentenniveau: Armutsquote (50 %) der über 65-Jährigen
+  abhängig: armut50Alte; n = 747, Länder = 37
+  est            0.417  (SE 0.252, t   1.7)
+  sv            -1.203  (SE 0.372, t  -3.2)
+  mwst           1.233  (SE 0.565, t   2.2)
+  familie        1.972  (SE 0.876, t   2.3)
+  niveau        -0.185  (SE 0.088, t  -2.1)
+  anteil65      -0.589  (SE 0.370, t  -1.6)
+  alq           -0.728  (SE 0.146, t  -5.0)
+
+F. Nur die sieben OECD-Länder der App: Gini verfügbar
+  abhängig: giniVerf; n = 206, Länder = 7
+  est           -0.314  (SE 0.136, t  -2.3)
+  sv             0.030  (SE 0.252, t   0.1)
+  mwst          -0.721  (SE 0.264, t  -2.7)
+  vermoegen      0.615  (SE 0.319, t   1.9)
+  familie       -0.668  (SE 0.325, t  -2.1)
+  alter          0.080  (SE 0.321, t   0.2)
+  alg            0.094  (SE 0.463, t   0.2)
+  alq           -0.030  (SE 0.064, t  -0.5)
+
+====================================================================================================
+2. QUERSCHNITT: Ländermittel 2012–2023 (neue Einkommensdefinition)
+====================================================================================================
+Mittel über 36 Länder: Gini Markt 47.2, verfügbar 31.7, Umverteilung 15.6 Punkte;
+Geldleistungen 12.1 % BIP, Einkommensteuer 8.3 % BIP, Sozialabgaben 9.1 % BIP.
+
+Umverteilung auf Einkommensteuer und Geldleistungen:
+  abhängig: umverteilung; n = 36; R² = 0.66
+  est            0.148  (SE 0.130, t   1.1)
+  sozialGeld     1.026  (SE 0.140, t   7.3)
+
+Umverteilung auf alle Instrumente:
+  abhängig: umverteilung; n = 36; R² = 0.75
+  est            0.024  (SE 0.154, t   0.2)
+  mwst          -0.388  (SE 0.383, t  -1.0)
+  vermoegen     -0.793  (SE 0.557, t  -1.4)
+  familie        3.420  (SE 0.954, t   3.6)
+  alter          0.934  (SE 0.172, t   5.4)
+  alg            2.521  (SE 0.917, t   2.7)
+
+Gini verfügbar auf alle Instrumente:
+  abhängig: giniVerf; n = 36; R² = 0.46
+  est           -0.286  (SE 0.237, t  -1.2)
+  mwst           0.104  (SE 0.590, t   0.2)
+  vermoegen      0.815  (SE 0.860, t   0.9)
+  familie       -2.904  (SE 1.472, t  -2.0)
+  alter         -0.340  (SE 0.266, t  -1.3)
+  alg           -2.119  (SE 1.414, t  -1.5)
+
+Armut (60 %) auf alle Instrumente:
+  abhängig: armut60; n = 36; R² = 0.44
+  est           -0.189  (SE 0.184, t  -1.0)
+  mwst           0.008  (SE 0.457, t   0.0)
+  vermoegen      0.761  (SE 0.666, t   1.1)
+  familie       -2.192  (SE 1.140, t  -1.9)
+  alter         -0.222  (SE 0.206, t  -1.1)
+  alg           -1.445  (SE 1.096, t  -1.3)
+
+Deutschland, letztes Jahr mit allen Werten:
+             giniMarkt  giniVerf  umverteilung  armut50  armut60   est    sv  mwst  vermoegen  familie  alter
+TIME_PERIOD                                                                                                  
+2021              50.3      31.3          19.1     11.8     17.8  10.3  14.5   7.1        1.2      2.6   10.8
+
+====================================================================================================
+3. PROBE DEUTSCHLAND: Rückblick 2000–2025 mit den vorgeschlagenen Werten
+====================================================================================================
+Vorschlag: {"staat.giniEinkommensteuer": 0.3, "staat.giniKapital": 0.3, "staat.giniMwst": 0.1, "staat.giniTransfers": 0.5, "staat.giniRente": 0.04, "staat.armutTransfers": 0.6, "staat.armutRente": 0.05}
+
+Startwert des Modells 2000: 28.7 (Weltbank). OECD 2000: 26.4. Verglichen wird die Änderung seit 2000.
+
+Jahr  Modell alt  Modell neu   OECD  Weltbank | davon: ESt   MwSt  Familie  Rente
+2000      28.70       28.70   26.4      28.7 |     -0.00   0.00    -0.00  -0.00
+2001      28.48       28.68   27.0      29.9 |      0.19   0.00    -0.00  -0.00
+2002      28.58       28.77   28.0      29.9 |      0.19   0.00    -0.00  -0.00
+2003      28.54       28.73   28.2      29.9 |      0.19   0.00    -0.00  -0.00
+2004      28.46       28.80   28.5      30.1 |      0.34   0.00    -0.00  -0.00
+2005      29.40       29.92   29.7      31.6 |      0.48   0.00    -0.00   0.04
+2006      29.48       30.00   29.0      31.0 |      0.48   0.00    -0.00   0.04
+2007      29.60       30.14   29.5      31.2 |      0.48   0.13    -0.10   0.04
+2008      29.58       29.95   28.5      30.6 |      0.30   0.13    -0.10   0.04
+2009      30.64       31.01   28.8      30.4 |      0.30   0.13    -0.10   0.04
+2010      30.08       30.46   28.6      30.2 |      0.30   0.13    -0.10   0.06
+2011      29.48       29.87   29.0      30.4 |      0.30   0.13    -0.10   0.06
+2012      29.35       29.66   28.9      30.9 |      0.22   0.13    -0.10   0.06
+2013      28.94       29.15   29.2      31.4 |      0.22   0.13    -0.20   0.06
+2014      28.74       28.95   28.9      30.8 |      0.22   0.13    -0.20   0.06
+2015      28.55       28.91   29.3      31.4 |      0.22   0.13    -0.20   0.21
+2016      28.48       28.77   29.4      31.3 |      0.15   0.13    -0.20   0.21
+2017      28.33       28.62   28.9      31.3 |      0.15   0.13    -0.20   0.21
+2018      28.26       28.55   28.9      31.9 |      0.15   0.13    -0.20   0.21
+2019      28.20       28.40   29.6      32.2 |      0.08   0.13    -0.20   0.19
+2020      28.48       28.57   30.3      32.5 |      0.08   0.13    -0.30   0.19
+2021      28.26       28.35   31.3      33.6 |      0.08   0.13    -0.30   0.19
+2022      28.14       28.24   30.9      33.7 |      0.08   0.13    -0.30   0.19
+2023      28.19       28.36   30.7       nan |      0.15   0.13    -0.30   0.19
+2024      27.95       28.12    nan       nan |      0.15   0.13    -0.30   0.19
+2025      28.47       28.64    nan       nan |      0.15   0.13    -0.30   0.19
+
+RMSE des Niveaus (Modell startet auf dem Weltbank-Wert 28,7):
+  gegen Weltbank: alt 2.66, neu 2.47
+  gegen OECD:     alt 1.38, neu 1.42
+RMSE der Änderung seit 2000 (jede Reihe auf ihren eigenen Wert 2000 bezogen):
+  gegen Weltbank: alt 2.66, neu 2.47
+  gegen OECD:     alt 2.84, neu 2.63

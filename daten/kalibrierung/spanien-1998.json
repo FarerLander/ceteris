@@ -1,0 +1,331 @@
+{
+  "name": "Spanien 1998",
+  "vorlage": "IT",
+  "start": 1998,
+  "jahre": 19,
+  "grund": {
+    "regime": "euro",
+    "tpi": false,
+    "banken": "an"
+  },
+  "werte": {
+    "bev": 40.2,
+    "altersanteile": [
+      0.046,
+      0.0507,
+      0.0566,
+      0.0711,
+      0.0842,
+      0.0834,
+      0.0837,
+      0.0772,
+      0.0674,
+      0.0612,
+      0.0587,
+      0.048,
+      0.0516,
+      0.051,
+      0.0423,
+      0.0311,
+      0.0358
+    ],
+    "tfr": 1.13,
+    "lebenserwartung": 78.7,
+    "bip": 555.6,
+    "inflation": 1.8,
+    "leitzins": 4.3,
+    "rendite": 4.8,
+    "effZins": 6.0,
+    "schuldQuote": 62.3,
+    "einnahmen": 38.1,
+    "ausgaben": 41.1,
+    "rentenausgaben": 9.0,
+    "alg": 2.5,
+    "alq": 18.7,
+    "nairu": 15,
+    "tfpTrend": 0.3,
+    "exporte": 26.2,
+    "importe": 26.6,
+    "investQuote": 23.9,
+    "privatschuld": 92.1,
+    "kreditTrend0": 86.5,
+    "kreditSteigung0": -0.16,
+    "dsrSchwelle": 17.2,
+    "nfa": -30,
+    "qe": 0,
+    "eurogewicht": 0.09,
+    "erwerbsquoteTrend": 0,
+    "fondsQuote0": 0,
+    "bankKapital0": 6.2,
+    "npl0": 2.0,
+    "bankBilanz0": 106,
+    "bankKreditAnteil": 0.79,
+    "bankStaatsAnteil": 0.35,
+    "hausVermoegen0": 300,
+    "hausBewertung0": 6.9,
+    "hausTrend0": 9.41,
+    "hausSteigung0": 3.11,
+    "hausWachstum0": 2.72
+  },
+  "stell": {
+    "mig.netto": [
+      {
+        "ab": 1998,
+        "wert": 150
+      },
+      {
+        "ab": 2000,
+        "wert": 400
+      },
+      {
+        "ab": 2002,
+        "wert": 650
+      },
+      {
+        "ab": 2008,
+        "wert": 300
+      },
+      {
+        "ab": 2010,
+        "wert": 0
+      },
+      {
+        "ab": 2014,
+        "wert": 50
+      }
+    ]
+  },
+  "welt": {
+    "euroLeitzins": [
+      {
+        "ab": 1998,
+        "wert": 4.3
+      },
+      {
+        "ab": 1999,
+        "wert": 2.7
+      },
+      {
+        "ab": 2000,
+        "wert": 4.1
+      },
+      {
+        "ab": 2001,
+        "wert": 4.4
+      },
+      {
+        "ab": 2002,
+        "wert": 3.3
+      },
+      {
+        "ab": 2003,
+        "wert": 2.3
+      },
+      {
+        "ab": 2004,
+        "wert": 2.0
+      },
+      {
+        "ab": 2005,
+        "wert": 2.1
+      },
+      {
+        "ab": 2006,
+        "wert": 2.8
+      },
+      {
+        "ab": 2007,
+        "wert": 3.8
+      },
+      {
+        "ab": 2008,
+        "wert": 3.9
+      },
+      {
+        "ab": 2009,
+        "wert": 0.7
+      },
+      {
+        "ab": 2010,
+        "wert": 0.5
+      },
+      {
+        "ab": 2011,
+        "wert": 1.0
+      },
+      {
+        "ab": 2012,
+        "wert": 0.3
+      },
+      {
+        "ab": 2013,
+        "wert": 0.1
+      },
+      {
+        "ab": 2014,
+        "wert": 0.1
+      },
+      {
+        "ab": 2015,
+        "wert": -0.1
+      },
+      {
+        "ab": 2016,
+        "wert": -0.2
+      }
+    ],
+    "praemieWelt": [
+      {
+        "ab": 1998,
+        "wert": 0.0
+      },
+      {
+        "ab": 1999,
+        "wert": 0.7
+      },
+      {
+        "ab": 2000,
+        "wert": 0.8
+      },
+      {
+        "ab": 2001,
+        "wert": 0.2
+      },
+      {
+        "ab": 2002,
+        "wert": 0.7
+      },
+      {
+        "ab": 2003,
+        "wert": 0.5
+      },
+      {
+        "ab": 2004,
+        "wert": 0.6
+      },
+      {
+        "ab": 2005,
+        "wert": -0.1
+      },
+      {
+        "ab": 2006,
+        "wert": -0.1
+      },
+      {
+        "ab": 2007,
+        "wert": -0.1
+      },
+      {
+        "ab": 2008,
+        "wert": -0.4
+      },
+      {
+        "ab": 2009,
+        "wert": 0.5
+      },
+      {
+        "ab": 2010,
+        "wert": 0.1
+      },
+      {
+        "ab": 2011,
+        "wert": -0.3
+      },
+      {
+        "ab": 2012,
+        "wert": -1.1
+      },
+      {
+        "ab": 2013,
+        "wert": -0.9
+      },
+      {
+        "ab": 2014,
+        "wert": -1.3
+      },
+      {
+        "ab": 2015,
+        "wert": -1.9
+      },
+      {
+        "ab": 2016,
+        "wert": -2.2
+      }
+    ],
+    "nachfrage": [
+      {
+        "ab": 1980,
+        "wert": 2.5
+      },
+      {
+        "ab": 2009,
+        "wert": -3
+      },
+      {
+        "ab": 2010,
+        "wert": 4
+      },
+      {
+        "ab": 2011,
+        "wert": 2.5
+      }
+    ]
+  },
+  "schocks": [
+    {
+      "art": "krise",
+      "jahr": 2009,
+      "staerke": 1,
+      "dauer": 1
+    }
+  ],
+  "beobachtet": {
+    "hauspreisReal": {
+      "1998": 100.0,
+      "1999": 107.9,
+      "2000": 113.3,
+      "2001": 120.1,
+      "2002": 134.8,
+      "2003": 153.9,
+      "2004": 175.4,
+      "2005": 193.3,
+      "2006": 206.2,
+      "2007": 220.3,
+      "2008": 208.7,
+      "2009": 195.5,
+      "2010": 188.6,
+      "2011": 168.9,
+      "2012": 140.5,
+      "2013": 125.8,
+      "2014": 126.4,
+      "2015": 131.6,
+      "2016": 138.0,
+      "2017": 143.7,
+      "2018": 150.8,
+      "2019": 157.5,
+      "2020": 161.6
+    },
+    "alq": {
+      "2007": 8.2,
+      "2013": 26.1
+    },
+    "schuldQuote": {
+      "2007": 35.8,
+      "2014": 100.7
+    },
+    "krise": {
+      "beginn": 2008,
+      "kostenBip": 5.4,
+      "nplMax": 9.4
+    }
+  },
+  "quellen": {
+    "Werte Startjahr": "Jordà/Schularick/Taylor, Macrohistory Database R6 (daten/kalibrierung/jst-auszug.csv): BIP, Inflation, Kurzfristzins, Rendite, Arbeitslosigkeit, Staatsschuld, Eigenkapitalquote der Banken (lev); Einnahmen und Ausgaben Gesamtstaat: IWF DataMapper (rev, exp); Bevölkerung, Altersaufbau, Geburtenrate, Lebenserwartung, Außenhandel, Investitionen: Weltbank WDI",
+    "Kredit": "BIS Total Credit (WS_TC): Kredit an den privaten nichtfinanziellen Sektor, alle Sektoren und Banken, Jahresende; Trend: einseitiger HP-Filter λ = 1.562,5",
+    "Hauspreis": "BIS Selected residential property prices, real (WS_SPP); Bewertung: OECD Preis-Einkommen-Verhältnis (HPI_YDH) des Startjahres gegen sein Mittel bis zum Startjahr (ohne Wissen aus der Zukunft)",
+    "Bankwerte": "Bilanz: World Bank GFDD.DI.02; faule Kredite, Staatsanleihen bei Banken, Hausvermögen: Größenordnung aus IWF GFSR, Arslanalp/Tsuda, nationalen Vermögensbilanzen; ungeprüft; Hausvermögen 1998 rund 300 % BIP (Banco de España, Riqueza inmobiliaria de los hogares)",
+    "Krise": "Laeven/Valencia 2018 (IWF WP 18/206), Tabelle der Krisen: Beginn, fiskalische Kosten, Höchststand fauler Kredite, Anstieg der Staatsschuld",
+    "Pfade": "Weltrealzins bzw. Euro-Leitzins: tatsächlicher Kurzfristzins (JST stir), real = minus Inflation des Jahres; tfpTrend, NAIRU, Nettoauslandsvermögen, Rentenausgaben: grobe Handwerte, ungeprüft",
+    "Auslöser": "Finanzkrise als gesetzter Schock im Jahr des Einbruchs (Laeven/Valencia 2018: Beginn 2007 bzw. 2008). Das Modell erzeugt den Boom aus der Geldpolitik, den Wendepunkt aber nicht selbst (Kritikpunkt M31). Geprüft wird, was der Bankbaustein aus dem Auslöser macht."
+  }
+}

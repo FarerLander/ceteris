@@ -1,0 +1,31 @@
+{
+  "name": "UdSSR", "vorlage": "RU", "start": 1950, "jahre": 42,
+  "grund": { "regime": "gelenkt" },
+  "werte": {
+    "bev": 180, "tfr": 2.8, "lebenserwartung": 64, "inflation": 1, "leitzins": 2, "rendite": 3, "effZins": 2,
+    "schuldQuote": 10, "einnahmen": 40, "ausgaben": 40, "investQuote": 22, "alq": 1, "nairu": 1,
+    "produktivitaetsLuecke": 0.3, "tfpTrend": 1.6, "privatschuld": 5, "nfa": 0, "exporte": 5, "importe": 5,
+    "rohstoffExporte": 1, "rohstoffStaat": 1, "rohstoffFonds0": 0,
+    "rohstoffGewichte": { "oel": 0.8, "gas": 0.2, "metalle": 0 }, "rohstoffBezug": { "oel": 20, "gas": 35, "metalle": 100 }
+  },
+  "standards": {
+    "ordnung.rechtsstaat": 20, "ordnung.staatsanteil": 95, "ordnung.kreditlenkung": 40,
+    "handel.kapitalOffenheit": 0, "geld.inflationsziel": 1, "anleihen.auslandsanteil": 0,
+    "mig.netto": 0, "demo.geburtenrate": 2.2, "staat.verteidigung": 8, "energie.co2Preis": 0, "rohstoff.fondsAnteil": 0
+  },
+  "stell": {
+    "ordnung.kreditlenkung": [{ "ab": 1950, "wert": 40 }, { "ab": 1960, "wert": 60 }, { "ab": 1970, "wert": 90 }],
+    "rohstoff.foerderung": [{ "ab": 1950, "wert": 100 }, { "ab": 1965, "wert": 300 }, { "ab": 1975, "wert": 800 }, { "ab": 1985, "wert": 1000 }]
+  },
+  "welt": {
+    "oel": [{ "ab": 1950, "wert": 20 }, { "ab": 1974, "wert": 50 }, { "ab": 1979, "wert": 100 }, { "ab": 1986, "wert": 35 }, { "ab": 1990, "wert": 40 }],
+    "realzins": 2
+  },
+  "beobachtet": { "wachstumProKopf": { "1950er": 4.0, "1960er": 3.5, "1970er": 2.0, "1980er": 0.8 } },
+  "quellen": {
+    "Wachstum": "Easterly/Fischer 1995, „The Soviet Economic Decline“; Maddison Project (BIP pro Kopf)",
+    "Investitionsquote": "Easterly/Fischer 1995: Investitionen stiegen von rund 15 auf über 30 % BIP; hier über wachsende Kreditlenkung",
+    "Öl": "Ölexporte wuchsen nach 1970 stark (Samotlor); Ölpreisverfall 1986; Förderung als Index grob",
+    "Hinweis": "Förderung über 200 liegt außerhalb des Reglerbereichs; im Hintergrund-Fall zulässig"
+  }
+}

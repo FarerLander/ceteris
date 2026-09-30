@@ -1,0 +1,72 @@
+{
+ "quellen": [
+  {
+   "kurz": "CBO",
+   "name": "CBO, The Budget and Economic Outlook: 2026 to 2036 (Wachstum ab 2027 als Mittel 2027–2036 je Jahr eingetragen)",
+   "stand": "2026-02-11",
+   "url": "https://www.cbo.gov/publication/61882",
+   "abgrenzung": {
+    "defizit": "nur Bund, Fiskaljahr",
+    "schuldQuote": "nur Bund, Schuld in Händen der Öffentlichkeit"
+   },
+   "werte": {
+    "wachstum": {
+     "2026": 2.2,
+     "2027": 1.8,
+     "2028": 1.8,
+     "2029": 1.8,
+     "2030": 1.8,
+     "2031": 1.8,
+     "2032": 1.8,
+     "2033": 1.8,
+     "2034": 1.8,
+     "2035": 1.8,
+     "2036": 1.8
+    },
+    "defizit": {
+     "2026": -5.8
+    },
+    "schuldQuote": {
+     "2026": 101,
+     "2036": 120
+    }
+   }
+  },
+  {
+   "kurz": "Fed",
+   "name": "Federal Reserve, Summary of Economic Projections (Median)",
+   "stand": "2026-09-16",
+   "url": "https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm",
+   "abgrenzung": {
+    "wachstum": "4. Quartal zu 4. Quartal",
+    "alq": "4. Quartal",
+    "inflation": "PCE-Preisindex, 4. Quartal zu 4. Quartal"
+   },
+   "werte": {
+    "wachstum": {
+     "2026": 2.3,
+     "2027": 2.4,
+     "2028": 2.2,
+     "2029": 2.1
+    },
+    "alq": {
+     "2026": 4.1,
+     "2027": 4.1,
+     "2028": 4.1,
+     "2029": 4.1
+    },
+    "inflation": {
+     "2026": 3.7,
+     "2027": 2.3,
+     "2028": 2.1,
+     "2029": 2.0
+    }
+   }
+  }
+ ],
+ "gruende": {
+  "defizit": {
+   "tiefer": "es die Zolleinnahmen ab 2025 nicht kennt (Kritikpunkt M23)"
+  }
+ }
+}

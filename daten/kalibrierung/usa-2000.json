@@ -1,0 +1,269 @@
+{
+  "name": "USA 2000",
+  "vorlage": "US",
+  "start": 2000,
+  "jahre": 15,
+  "grund": {
+    "regime": "euro",
+    "banken": "an",
+    "tpi": true
+  },
+  "werte": {
+    "bev": 282.2,
+    "altersanteile": [
+      0.0677,
+      0.0714,
+      0.0726,
+      0.0719,
+      0.0691,
+      0.0692,
+      0.0736,
+      0.0812,
+      0.0805,
+      0.0718,
+      0.0628,
+      0.0483,
+      0.038,
+      0.0335,
+      0.0306,
+      0.0256,
+      0.0322
+    ],
+    "tfr": 2.06,
+    "lebenserwartung": 76.6,
+    "bip": 10251,
+    "inflation": 3.4,
+    "leitzins": 6.2,
+    "rendite": 6.0,
+    "effZins": 6.3,
+    "schuldQuote": 55.6,
+    "einnahmen": 35.4,
+    "ausgaben": 31.7,
+    "rentenausgaben": 5.8,
+    "alq": 4.0,
+    "nairu": 5.0,
+    "tfpTrend": 1.3,
+    "exporte": 10.7,
+    "importe": 14.4,
+    "investQuote": 23.7,
+    "privatschuld": 136.7,
+    "kreditTrend0": 132.4,
+    "kreditSteigung0": 1.37,
+    "dsrSchwelle": 26.1,
+    "nfa": -14,
+    "qe": 5,
+    "erwerbsquoteTrend": 0,
+    "bankKapital0": 7.5,
+    "npl0": 1.1,
+    "bankBilanz0": 55,
+    "bankKreditAnteil": 0.36,
+    "bankStaatsAnteil": 0.05,
+    "hausVermoegen0": 120,
+    "hausBewertung0": -9.6,
+    "hausTrend0": -6.46,
+    "hausSteigung0": 0.76,
+    "hausWachstum0": 5.71,
+    "eurogewicht": 0
+  },
+  "welt": {
+    "euroLeitzins": [
+      {
+        "ab": 2000,
+        "wert": 6.2
+      },
+      {
+        "ab": 2001,
+        "wert": 3.9
+      },
+      {
+        "ab": 2002,
+        "wert": 1.7
+      },
+      {
+        "ab": 2003,
+        "wert": 1.1
+      },
+      {
+        "ab": 2004,
+        "wert": 1.4
+      },
+      {
+        "ab": 2005,
+        "wert": 3.2
+      },
+      {
+        "ab": 2006,
+        "wert": 5.0
+      },
+      {
+        "ab": 2007,
+        "wert": 5.0
+      },
+      {
+        "ab": 2008,
+        "wert": 1.9
+      },
+      {
+        "ab": 2009,
+        "wert": 0.2
+      },
+      {
+        "ab": 2010,
+        "wert": 0.2
+      },
+      {
+        "ab": 2011,
+        "wert": 0.1
+      },
+      {
+        "ab": 2012,
+        "wert": 0.1
+      },
+      {
+        "ab": 2013,
+        "wert": 0.1
+      },
+      {
+        "ab": 2014,
+        "wert": 0.1
+      }
+    ],
+    "praemieWelt": [
+      {
+        "ab": 2000,
+        "wert": 0.0
+      },
+      {
+        "ab": 2001,
+        "wert": 0.1
+      },
+      {
+        "ab": 2002,
+        "wert": 0.8
+      },
+      {
+        "ab": 2003,
+        "wert": 0.5
+      },
+      {
+        "ab": 2004,
+        "wert": 0.7
+      },
+      {
+        "ab": 2005,
+        "wert": -0.2
+      },
+      {
+        "ab": 2006,
+        "wert": -0.6
+      },
+      {
+        "ab": 2007,
+        "wert": -0.8
+      },
+      {
+        "ab": 2008,
+        "wert": -0.2
+      },
+      {
+        "ab": 2009,
+        "wert": 0.2
+      },
+      {
+        "ab": 2010,
+        "wert": 0.2
+      },
+      {
+        "ab": 2011,
+        "wert": -0.2
+      },
+      {
+        "ab": 2012,
+        "wert": -1.2
+      },
+      {
+        "ab": 2013,
+        "wert": -0.6
+      },
+      {
+        "ab": 2014,
+        "wert": -0.4
+      }
+    ],
+    "nachfrage": [
+      {
+        "ab": 1980,
+        "wert": 2.5
+      },
+      {
+        "ab": 2009,
+        "wert": -3
+      },
+      {
+        "ab": 2010,
+        "wert": 4
+      },
+      {
+        "ab": 2011,
+        "wert": 2.5
+      }
+    ]
+  },
+  "schocks": [
+    {
+      "art": "krise",
+      "jahr": 2008,
+      "staerke": 1,
+      "dauer": 1
+    }
+  ],
+  "beobachtet": {
+    "hauspreisReal": {
+      "2000": 100.0,
+      "2001": 105.8,
+      "2002": 112.9,
+      "2003": 121.2,
+      "2004": 134.7,
+      "2005": 151.0,
+      "2006": 154.7,
+      "2007": 141.8,
+      "2008": 116.9,
+      "2009": 106.0,
+      "2010": 102.8,
+      "2011": 96.9,
+      "2012": 99.4,
+      "2013": 107.6,
+      "2014": 112.6,
+      "2015": 118.4,
+      "2016": 123.2,
+      "2017": 127.7,
+      "2018": 131.6,
+      "2019": 134.3,
+      "2020": 141.7,
+      "2021": 155.8,
+      "2022": 162.5
+    },
+    "alq": {
+      "2006": 4.6,
+      "2010": 9.6
+    },
+    "schuldQuote": {
+      "2007": 62.6,
+      "2012": 100.0
+    },
+    "krise": {
+      "beginn": 2007,
+      "kostenBip": 4.5,
+      "nplMax": 5.0
+    }
+  },
+  "quellen": {
+    "Werte Startjahr": "Jordà/Schularick/Taylor, Macrohistory Database R6 (daten/kalibrierung/jst-auszug.csv): BIP, Inflation, Kurzfristzins, Rendite, Arbeitslosigkeit, Staatsschuld, Eigenkapitalquote der Banken (lev); Einnahmen und Ausgaben Gesamtstaat: IWF DataMapper (rev, exp); Bevölkerung, Altersaufbau, Geburtenrate, Lebenserwartung, Außenhandel, Investitionen: Weltbank WDI",
+    "Kredit": "BIS Total Credit (WS_TC): Kredit an den privaten nichtfinanziellen Sektor, alle Sektoren und Banken, Jahresende; Trend: einseitiger HP-Filter λ = 1.562,5",
+    "Hauspreis": "BIS Selected residential property prices, real (WS_SPP); Bewertung: OECD Preis-Einkommen-Verhältnis (HPI_YDH) des Startjahres gegen sein Mittel bis zum Startjahr (ohne Wissen aus der Zukunft)",
+    "Bankwerte": "Bilanz: World Bank GFDD.DI.02; faule Kredite, Staatsanleihen bei Banken, Hausvermögen: Größenordnung aus IWF GFSR, Arslanalp/Tsuda, nationalen Vermögensbilanzen; ungeprüft; Hausvermögen 2000 rund 120 % BIP (Fed Z.1, Immobilien der Haushalte)",
+    "Krise": "Laeven/Valencia 2018 (IWF WP 18/206), Tabelle der Krisen: Beginn, fiskalische Kosten, Höchststand fauler Kredite, Anstieg der Staatsschuld",
+    "Pfade": "Weltrealzins bzw. Euro-Leitzins: tatsächlicher Kurzfristzins (JST stir), real = minus Inflation des Jahres; tfpTrend, NAIRU, Nettoauslandsvermögen, Rentenausgaben: grobe Handwerte, ungeprüft",
+    "Auslöser": "Finanzkrise als gesetzter Schock im Jahr des Einbruchs (Laeven/Valencia 2018: Beginn 2007 bzw. 2008). Das Modell erzeugt den Boom aus der Geldpolitik, den Wendepunkt aber nicht selbst (Kritikpunkt M31). Geprüft wird, was der Bankbaustein aus dem Auslöser macht."
+  }
+}

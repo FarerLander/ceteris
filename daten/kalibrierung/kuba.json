@@ -1,0 +1,120 @@
+{
+  "name": "Kuba",
+  "vorlage": "RU",
+  "start": 1960,
+  "jahre": 61,
+  "grund": {
+    "regime": "gelenkt"
+  },
+  "werte": {
+    "bev": 7,
+    "tfr": 3.5,
+    "lebenserwartung": 64,
+    "inflation": 3,
+    "leitzins": 3,
+    "rendite": 4,
+    "effZins": 3,
+    "schuldQuote": 10,
+    "einnahmen": 40,
+    "ausgaben": 40,
+    "alq": 5,
+    "nairu": 5,
+    "investQuote": 18,
+    "exporte": 20,
+    "importe": 22,
+    "produktivitaetsLuecke": 0.3,
+    "tfpTrend": 0.8,
+    "privatschuld": 5,
+    "nfa": 0,
+    "qe": 0,
+    "fondsQuote0": 0,
+    "rohstoffExporte": 15,
+    "rohstoffStaat": 1,
+    "rohstoffFonds0": 0,
+    "rohstoffGewichte": {
+      "oel": 0,
+      "gas": 0,
+      "metalle": 1
+    },
+    "rohstoffBezug": {
+      "oel": 70,
+      "gas": 35,
+      "metalle": 100
+    }
+  },
+  "standards": {
+    "anleihen.auslandsanteil": 0.2,
+    "handel.kapitalOffenheit": 0.05,
+    "geld.inflationsziel": 3,
+    "ordnung.rechtsstaat": 35,
+    "ordnung.staatsanteil": 20,
+    "mig.netto": 0,
+    "demo.geburtenrate": 2.2,
+    "rohstoff.fondsAnteil": 0
+  },
+  "stell": {
+    "ordnung.staatsanteil": [
+      {
+        "ab": 1960,
+        "wert": 20
+      },
+      {
+        "ab": 1962,
+        "wert": 90
+      },
+      {
+        "ab": 1968,
+        "wert": 98
+      }
+    ],
+    "ordnung.rechtsstaat": [
+      {
+        "ab": 1960,
+        "wert": 35
+      },
+      {
+        "ab": 1962,
+        "wert": 15
+      }
+    ],
+    "ordnung.preiskontrollen": [
+      {
+        "ab": 1960,
+        "wert": 0
+      },
+      {
+        "ab": 1962,
+        "wert": 80
+      }
+    ]
+  },
+  "welt": {
+    "metalle": [
+      {
+        "ab": 1960,
+        "wert": 100
+      },
+      {
+        "ab": 1991,
+        "wert": 35
+      }
+    ]
+  },
+  "schocks": [
+    {
+      "art": "rohstoffsanktion",
+      "jahr": 1991,
+      "staerke": 2,
+      "dauer": 3
+    }
+  ],
+  "quellen": {
+    "Transfers": "Die Sowjetunion kaufte Zucker weit über dem Weltpreis (Subvention grob 15–20 % BIP); hier als Rohstoffexport mit Preisverfall 1991 und Mengeneinbruch",
+    "Ordnung": "Verstaatlichung 1960–1968, Rationierung (libreta) ab 1962",
+    "beobachtet": "BIP 1990 → 1993 rund −35 % („Sonderperiode“), Mesa-Lago 2000; Maddison",
+    "Förderverfall": "abgeschaltet: Die Zuckerernte blieb mit sowjetischen Vorleistungen bis 1990 bei rund 7–8 Mio. t (Mesa-Lago 2000)"
+  },
+  "aus": [
+    "rohstoff.verfall"
+  ]
+}

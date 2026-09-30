@@ -1,0 +1,44 @@
+=== H2: Folgt die Investitionsquote der Produktionslücke? ===
+Abhängig: Investitionsquote minus ihr Trend (Pp. BIP). Modellkanal heute: realer Langfristzins des Vorjahres.
+
+Nur Modellkanal (heute)  (n=1165, Länder=18, R²=0.01)
+  kosten_1      -0.080  (t  -1.4)
+
+Mit Lücke des Jahres  (n=1164, Länder=18, R²=0.22)
+  kosten_1      -0.044  (t  -0.9)
+  luecke         0.519  (t   9.9)
+
+Mit Lücke des Vorjahres  (n=1165, Länder=18, R²=0.13)
+  kosten_1      -0.015  (t  -0.3)
+  luecke_1       0.436  (t   6.4)
+
+Mit beiden  (n=1164, Länder=18, R²=0.22)
+  kosten_1      -0.034  (t  -0.7)
+  luecke         0.459  (t   9.6)
+  luecke_1       0.095  (t   2.7)
+
+Mit Lücke des Jahres, ab 1985  (n=629, Länder=18, R²=0.45)
+  kosten_1      -0.154  (t  -2.0)
+  luecke         0.616  (t  15.9)
+
+Änderung der Quote gegen Änderung der Lücke (Akzelerator im engen Sinn):
+
+Δ Quote auf Δ Lücke  (n=1167, Länder=18, R²=0.19)
+  dLuecke        0.320  (t  16.2)
+
+Δ Quote auf Wachstum  (n=1168, Länder=18, R²=0.13)
+  greal          0.229  (t  11.4)
+
+--- Je Land: Quote minus Trend auf Lücke des Jahres (mit Zins) ---
+  DEU: Lücke  0.571 (t   3.9), Zins  0.163, n=65
+  USA: Lücke  0.272 (t   2.6), Zins  0.035, n=65
+  GBR: Lücke  0.425 (t   3.0), Zins -0.008, n=65
+  FRA: Lücke  0.792 (t   4.8), Zins  0.169, n=65
+  ITA: Lücke  0.360 (t   3.2), Zins -0.150, n=65
+  JPN: Lücke  0.400 (t   2.8), Zins  0.391, n=65
+  CAN: Lücke  0.359 (t   3.9), Zins -0.265, n=65
+  ESP: Lücke  0.559 (t   2.8), Zins  0.016, n=65
+
+--- Rezessionen: Wie stark fällt die Quote? ---
+  Jahre mit BIP pro Kopf unter −1 %: n=88, mittlere Änderung der Quote -1.62 Pp., im Folgejahr dazu: siehe Panel
+  alle übrigen Jahre: mittlere Änderung 0.18 Pp.

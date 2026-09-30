@@ -1,0 +1,8 @@
+{
+  "name": "BRD", "vorlage": "DE", "start": 1950, "jahre": 40,
+  "grund": { "regime": "eigen" },
+  "werte": { "inflation": 1, "leitzins": 3, "rendite": 4, "effZins": 3, "schuldQuote": 10, "tfpTrend": 2.5, "produktivitaetsLuecke": 0.4 },
+  "standards": { "ordnung.rechtsstaat": 80 },
+  "welt": { "realzins": 2 },
+  "quellen": { "Rolle": "Vergleichspfad für die DDR, gleiches Gerüst und gleicher Startwert" }
+}

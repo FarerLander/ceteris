@@ -1,0 +1,268 @@
+{
+  "name": "Kanada 2000",
+  "vorlage": "CA",
+  "start": 2000,
+  "jahre": 16,
+  "grund": {
+    "regime": "euro",
+    "banken": "an",
+    "tpi": true
+  },
+  "werte": {
+    "bev": 30.7,
+    "altersanteile": [
+      0.0585,
+      0.0665,
+      0.0671,
+      0.0683,
+      0.0675,
+      0.0677,
+      0.0741,
+      0.0876,
+      0.0846,
+      0.0753,
+      0.0662,
+      0.0506,
+      0.0407,
+      0.0371,
+      0.0327,
+      0.0261,
+      0.0294
+    ],
+    "tfr": 1.51,
+    "lebenserwartung": 79.2,
+    "bip": 1106,
+    "inflation": 2.7,
+    "leitzins": 5.5,
+    "rendite": 5.9,
+    "effZins": 6.5,
+    "schuldQuote": 82.1,
+    "einnahmen": 44.1,
+    "ausgaben": 41.1,
+    "rentenausgaben": 4.3,
+    "alq": 6.8,
+    "nairu": 7.0,
+    "tfpTrend": 1.0,
+    "exporte": 44.2,
+    "importe": 38.6,
+    "investQuote": 20.6,
+    "privatschuld": 143.9,
+    "kreditTrend0": 151.1,
+    "kreditSteigung0": 2.02,
+    "dsrSchwelle": 26.3,
+    "nfa": -10,
+    "qe": 0,
+    "erwerbsquoteTrend": 0,
+    "fondsQuote0": 5,
+    "bankKapital0": 4.7,
+    "npl0": 1.3,
+    "bankBilanz0": 83,
+    "bankKreditAnteil": 0.4,
+    "bankStaatsAnteil": 0.15,
+    "hausVermoegen0": 130,
+    "hausBewertung0": -4.0,
+    "hausTrend0": 4.69,
+    "hausSteigung0": 0.71,
+    "hausWachstum0": 1.01,
+    "eurogewicht": 0
+  },
+  "welt": {
+    "euroLeitzins": [
+      {
+        "ab": 2000,
+        "wert": 5.5
+      },
+      {
+        "ab": 2001,
+        "wert": 3.8
+      },
+      {
+        "ab": 2002,
+        "wert": 2.6
+      },
+      {
+        "ab": 2003,
+        "wert": 2.9
+      },
+      {
+        "ab": 2004,
+        "wert": 2.2
+      },
+      {
+        "ab": 2005,
+        "wert": 2.7
+      },
+      {
+        "ab": 2006,
+        "wert": 4.0
+      },
+      {
+        "ab": 2007,
+        "wert": 4.2
+      },
+      {
+        "ab": 2008,
+        "wert": 2.4
+      },
+      {
+        "ab": 2009,
+        "wert": 0.3
+      },
+      {
+        "ab": 2010,
+        "wert": 0.6
+      },
+      {
+        "ab": 2011,
+        "wert": 0.9
+      },
+      {
+        "ab": 2012,
+        "wert": 1.0
+      },
+      {
+        "ab": 2013,
+        "wert": 1.0
+      },
+      {
+        "ab": 2014,
+        "wert": 0.9
+      },
+      {
+        "ab": 2015,
+        "wert": 0.5
+      }
+    ],
+    "praemieWelt": [
+      {
+        "ab": 2000,
+        "wert": 0.0
+      },
+      {
+        "ab": 2001,
+        "wert": 0.8
+      },
+      {
+        "ab": 2002,
+        "wert": 1.2
+      },
+      {
+        "ab": 2003,
+        "wert": 0.7
+      },
+      {
+        "ab": 2004,
+        "wert": 0.8
+      },
+      {
+        "ab": 2005,
+        "wert": -0.1
+      },
+      {
+        "ab": 2006,
+        "wert": -0.9
+      },
+      {
+        "ab": 2007,
+        "wert": -0.9
+      },
+      {
+        "ab": 2008,
+        "wert": -0.3
+      },
+      {
+        "ab": 2009,
+        "wert": 0.6
+      },
+      {
+        "ab": 2010,
+        "wert": 0.2
+      },
+      {
+        "ab": 2011,
+        "wert": -0.4
+      },
+      {
+        "ab": 2012,
+        "wert": -1.3
+      },
+      {
+        "ab": 2013,
+        "wert": -0.9
+      },
+      {
+        "ab": 2014,
+        "wert": -1.0
+      },
+      {
+        "ab": 2015,
+        "wert": -1.4
+      }
+    ],
+    "nachfrage": [
+      {
+        "ab": 1980,
+        "wert": 2.5
+      },
+      {
+        "ab": 2009,
+        "wert": -3
+      },
+      {
+        "ab": 2010,
+        "wert": 4
+      },
+      {
+        "ab": 2011,
+        "wert": 2.5
+      }
+    ]
+  },
+  "beobachtet": {
+    "hauspreisReal": {
+      "2000": 100.0,
+      "2001": 102.0,
+      "2002": 110.0,
+      "2003": 117.4,
+      "2004": 125.9,
+      "2005": 135.3,
+      "2006": 148.3,
+      "2007": 160.8,
+      "2008": 160.8,
+      "2009": 155.8,
+      "2010": 166.0,
+      "2011": 170.3,
+      "2012": 175.7,
+      "2013": 177.6,
+      "2014": 183.7,
+      "2015": 196.0,
+      "2016": 222.3,
+      "2017": 253.5,
+      "2018": 256.4,
+      "2019": 253.2,
+      "2020": 267.2,
+      "2021": 291.1,
+      "2022": 297.3
+    },
+    "alq": {
+      "2007": 6.0,
+      "2009": 8.3
+    },
+    "schuldQuote": {
+      "2007": 66.5,
+      "2014": 85.6
+    },
+    "krise": {
+      "beginn": null,
+      "kostenBip": 0
+    }
+  },
+  "quellen": {
+    "Werte Startjahr": "Jordà/Schularick/Taylor, Macrohistory Database R6 (daten/kalibrierung/jst-auszug.csv): BIP, Inflation, Kurzfristzins, Rendite, Arbeitslosigkeit, Staatsschuld, Eigenkapitalquote der Banken (lev); Einnahmen und Ausgaben Gesamtstaat: IWF DataMapper (rev, exp); Bevölkerung, Altersaufbau, Geburtenrate, Lebenserwartung, Außenhandel, Investitionen: Weltbank WDI",
+    "Kredit": "BIS Total Credit (WS_TC): Kredit an den privaten nichtfinanziellen Sektor, alle Sektoren und Banken, Jahresende; Trend: einseitiger HP-Filter λ = 1.562,5",
+    "Hauspreis": "BIS Selected residential property prices, real (WS_SPP); Bewertung: OECD Preis-Einkommen-Verhältnis (HPI_YDH) des Startjahres gegen sein Mittel bis zum Startjahr (ohne Wissen aus der Zukunft)",
+    "Bankwerte": "Bilanz: World Bank GFDD.DI.02; faule Kredite, Staatsanleihen bei Banken, Hausvermögen: Größenordnung aus IWF GFSR, Arslanalp/Tsuda, nationalen Vermögensbilanzen; ungeprüft; Hausvermögen 2000 rund 130 % BIP (Statistics Canada, National Balance Sheet)",
+    "Krise": "Laeven/Valencia 2018 (IWF WP 18/206), Tabelle der Krisen: Beginn, fiskalische Kosten, Höchststand fauler Kredite, Anstieg der Staatsschuld",
+    "Pfade": "Weltrealzins bzw. Euro-Leitzins: tatsächlicher Kurzfristzins (JST stir), real = minus Inflation des Jahres; tfpTrend, NAIRU, Nettoauslandsvermögen, Rentenausgaben: grobe Handwerte, ungeprüft"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "name": "DDR",
+  "vorlage": "DE",
+  "start": 1950,
+  "jahre": 40,
+  "grund": {
+    "regime": "gelenkt"
+  },
+  "werte": {
+    "inflation": 1,
+    "leitzins": 3,
+    "rendite": 4,
+    "effZins": 3,
+    "schuldQuote": 10,
+    "tfpTrend": 2.5,
+    "produktivitaetsLuecke": 0.4
+  },
+  "standards": {
+    "handel.kapitalOffenheit": 0.1,
+    "geld.inflationsziel": 1,
+    "anleihen.auslandsanteil": 0.1,
+    "ordnung.rechtsstaat": 80
+  },
+  "stell": {
+    "ordnung.rechtsstaat": [
+      {
+        "ab": 1950,
+        "wert": 80
+      },
+      {
+        "ab": 1952,
+        "wert": 20
+      }
+    ],
+    "ordnung.staatsanteil": [
+      {
+        "ab": 1950,
+        "wert": 5
+      },
+      {
+        "ab": 1952,
+        "wert": 60
+      },
+      {
+        "ab": 1960,
+        "wert": 90
+      },
+      {
+        "ab": 1972,
+        "wert": 98
+      }
+    ],
+    "ordnung.kreditlenkung": [
+      {
+        "ab": 1950,
+        "wert": 0
+      },
+      {
+        "ab": 1952,
+        "wert": 80
+      }
+    ]
+  },
+  "aus": [
+    "ordnung.abwanderung"
+  ],
+  "welt": {
+    "realzins": 2
+  },
+  "quellen": {
+    "Ausgangspunkt": "BRD und DDR mit gleichem Gerüst (Deutschland) und gleicher Produktivität 1950; Unterschied nur die Ordnung",
+    "Ordnung": "Bodenreform und Verstaatlichung ab 1945/1952, Kombinate 1972 (Staatsanteil nahe 100 %); Rechtsstaat grob",
+    "Abwanderung": "abgeschaltet: rund 2,7 Mio. Menschen verließen die DDR bis 1961, danach die Mauer; das Modell kennt keine Grenzschließung",
+    "beobachtet": "Ritschl 1995; Maddison: Produktivität der DDR 1989 rund 30–50 % der BRD"
+  }
+}

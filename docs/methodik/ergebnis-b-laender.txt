@@ -1,0 +1,10 @@
+Land  Steigung (Pp. Quote je % Lücke)  t     n   | Rezessionsjahre: mittlere Änderung der Quote
+DE      0.73                             6.9  26   | -1.27 Pp. in 2 Jahren
+US      0.52                             4.4  25   | -1.75 Pp. in 2 Jahren
+JP      0.70                             3.8  25   | -1.38 Pp. in 4 Jahren
+GB      0.26                             4.0  26   | -1.52 Pp. in 2 Jahren
+FR      0.23                             1.9  26   | -1.49 Pp. in 2 Jahren
+IT      0.50                             3.6  26   | -1.41 Pp. in 5 Jahren
+CA      0.28                             1.8  26   | -1.24 Pp. in 2 Jahren
+CN      0.82                             2.8  25   |   nan Pp. in 0 Jahren
+RU      0.25                             3.0  26   | -2.44 Pp. in 6 Jahren
