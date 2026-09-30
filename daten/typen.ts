@@ -11,6 +11,7 @@ export interface AutoDatei {
   quellen: Record<string, string>;
   fehlend: string[];
   konsens?: KonsensQuelle; // IWF-Prognosen, getrennt von den Ist-Reihen (Spec 12a)
+  behalten?: string[]; // 12b: Abruf gescheitert, alter Stand übernommen (Reihe oder konsens.<Größe>)
 }
 
 export interface HandDatei {

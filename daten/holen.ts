@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
@@ -14,6 +14,7 @@ import {
   BIS_BANKEN, bisJahresende, bisJahresmittel, WELTBANK_BANKEN,
   OECD_GINI_QUELLE, parseOecdGini,
 } from "./parser";
+import { behalteAlte } from "./behalten";
 import { schreibeSchaetzung } from "./schaetze";
 import { ergaenzeBanken, ergaenzeKurzzins } from "./schaetzung/datei";
 import type { AutoDatei, Reihe } from "./typen";
@@ -252,9 +253,13 @@ async function main() {
     if (konsens) datei.konsens = konsens;
   }
   mkdirSync(ORDNER, { recursive: true });
-  writeFileSync(pfad, JSON.stringify(datei, null, 1) + "\n");
+  // Gescheiterte Abrufe: alter Stand bleibt (12b).
+  const alt = existsSync(pfad) ? (JSON.parse(readFileSync(pfad, "utf-8")) as AutoDatei) : null;
+  const fertig = behalteAlte(alt, datei);
+  if (fertig.behalten) console.warn(`${code}: Abruf gescheitert, alter Stand bleibt: ${fertig.behalten.join(", ")}`);
+  writeFileSync(pfad, JSON.stringify(fertig, null, 1) + "\n");
   console.log(
-    `${pfad}: ${Object.keys(datei.reihen).length} Reihen, fehlend: ${datei.fehlend.join(", ") || "keine"}`,
+    `${pfad}: ${Object.keys(fertig.reihen).length} Reihen, fehlend: ${fertig.fehlend.join(", ") || "keine"}`,
   );
   console.log(schreibeSchaetzung(code));
 }
