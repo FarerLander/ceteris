@@ -3,7 +3,10 @@ import { SPRACHEN, type Sprache } from "../modell/sprache";
 const SCHLUESSEL = "wirtschaftssimulator.sprache";
 const gueltig = (s: string | null): s is Sprache => !!s && (SPRACHEN as string[]).includes(s);
 
-// Reihenfolge: Link (?sprache=en), Browser-Speicher, Sprache des Browsers, sonst Englisch.
+// Sprache beim ersten Besuch: Englisch, auch bei deutschem Browser. Die Tests setzen Deutsch.
+export const SPRACH_EINSTELLUNG: { standard: Sprache } = { standard: "en" };
+
+// Reihenfolge: Link (?sprache=de), eigene Wahl im Browser-Speicher, sonst der Standard.
 export function ladeSprache(): Sprache {
   if (typeof window === "undefined") return "de";
   const ausLink = new URLSearchParams(window.location.search).get("sprache");
@@ -12,9 +15,9 @@ export function ladeSprache(): Sprache {
     const m = window.localStorage.getItem(SCHLUESSEL);
     if (gueltig(m)) return m;
   } catch {
-    // Speicher gesperrt: weiter mit der Browsersprache.
+    // Speicher gesperrt: weiter mit dem Standard.
   }
-  return (navigator.language ?? "").toLowerCase().startsWith("de") ? "de" : "en";
+  return SPRACH_EINSTELLUNG.standard;
 }
 
 export function speichereSprache(s: Sprache): void {
