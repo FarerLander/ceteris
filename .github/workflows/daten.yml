@@ -41,6 +41,8 @@ jobs:
         id: tests
         if: steps.bericht.outputs.aenderung == 'ja'
         continue-on-error: true
+        env:
+          NO_COLOR: "1"
         # pipefail: sonst meldet tee Erfolg, auch wenn Tests rot sind.
         run: set -o pipefail; npm test 2>&1 | tee test.log
       - name: Pull Request anlegen
@@ -60,7 +62,7 @@ jobs:
             if [ "$ERGEBNIS" = "success" ]; then echo "**Tests: grün.** Nach Durchsicht mergen."; else echo "**Tests: ROT. Nicht mergen.** Die neuen Daten verschieben das Modell; erst prüfen und anpassen."; fi
             echo
             echo '```'
-            grep -E "Test Files|Tests |FAIL|×" test.log | head -40
+            sed 's/\x1b\[[0-9;]*m//g' test.log | grep -E "Test Files|Tests |FAIL|×" | head -40
             echo '```'
             echo
             cat bericht.md

@@ -24,6 +24,8 @@ const zahl = (x: number) =>
   });
 
 const abschnitte: string[] = [];
+// Gescheiterte Abrufe (alter Stand bleibt) sind ein Hinweis, keine Änderung.
+const hinweise: string[] = [];
 for (const code of Object.keys(LAENDER)) {
   const pfad = `daten/laender/${code}.json`;
   const altText = imRepo(pfad);
@@ -50,6 +52,7 @@ for (const code of Object.keys(LAENDER)) {
     if (a.datenstand !== n.datenstand)
       zeilen.push(`Datenstand ${a.datenstand} → ${n.datenstand}`);
   }
+  if (neu.behalten?.length) hinweise.push(`${code}: ${neu.behalten.join(", ")}`);
   if (zeilen.length)
     abschnitte.push(`### ${code}\n\n${zeilen.map((z) => `- ${z}`).join("\n")}`);
 }
@@ -60,6 +63,8 @@ console.log(
     ? `## Geänderte Daten\n\n${abschnitte.join("\n\n")}`
     : "Keine Änderungen an den Daten.",
 );
+if (hinweise.length)
+  console.log(`\n## Abruf gescheitert, alter Stand bleibt\n\n${hinweise.map((h) => `- ${h}`).join("\n")}`);
 if (process.env.GITHUB_OUTPUT)
   appendFileSync(
     process.env.GITHUB_OUTPUT,
