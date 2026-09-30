@@ -1,0 +1,70 @@
+# Daten-Knopf (12b): holt neue Daten, eicht den Haushaltsplan neu, testet und legt einen Pull Request an.
+# Anstoß: „Run workflow“ auf github.com unter Actions → Daten, dazu halbjährlich am 1. Mai und 1. November
+# (kurz nach den IWF-Prognosen im April und Oktober).
+# Ohne Änderung kein Pull Request. Gemergt wird nur von Hand; rote Tests stehen im Pull Request.
+name: Daten
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 5 1 5,11 *"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: daten
+  cancel-in-progress: false
+
+jobs:
+  aktualisieren:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Daten holen (alle Länder)
+        run: for c in DE US JP GB FR IT CA CN RU; do npx tsx daten/holen.ts "$c"; done
+      - name: Haushaltsplan neu eichen
+        run: npx tsx scripts/haushaltsplan-eichung.ts
+      - name: Referenz des Neutralitätstests neu ziehen
+        run: npx tsx scripts/abzug.ts > modell/tests/abzug.json
+      - name: Bericht
+        id: bericht
+        run: npx tsx scripts/daten-bericht.ts > bericht.md && cat bericht.md
+      - name: Tests
+        id: tests
+        if: steps.bericht.outputs.aenderung == 'ja'
+        continue-on-error: true
+        # pipefail: sonst meldet tee Erfolg, auch wenn Tests rot sind.
+        run: set -o pipefail; npm test 2>&1 | tee test.log
+      - name: Pull Request anlegen
+        if: steps.bericht.outputs.aenderung == 'ja'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ERGEBNIS: ${{ steps.tests.outcome }}
+        run: |
+          zweig="daten/$(date -u +%Y-%m-%d-%H%M)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$zweig"
+          git add daten/laender modell/tests/abzug.json
+          git commit -m "Daten aktualisiert ($(date -u +%Y-%m-%d))"
+          git push origin "$zweig"
+          {
+            if [ "$ERGEBNIS" = "success" ]; then echo "**Tests: grün.** Nach Durchsicht mergen."; else echo "**Tests: ROT. Nicht mergen.** Die neuen Daten verschieben das Modell; erst prüfen und anpassen."; fi
+            echo
+            echo '```'
+            grep -E "Test Files|Tests |FAIL|×" test.log | head -40
+            echo '```'
+            echo
+            cat bericht.md
+            echo
+            echo "Neu gezogen: Haushaltsplan (Eichung auf den IWF-Saldo) und Referenz des Neutralitätstests."
+          } > pr.md
+          gh pr create --base main --head "$zweig" --title "Daten aktualisiert ($(date -u +%Y-%m-%d))" --body-file pr.md
