@@ -4,7 +4,7 @@ import { basisSzenario, rechne, rechneZufall } from "../rechne";
 import type { Schock, Szenario } from "../typen";
 import { LAENDER } from "../../app/land";
 import { VERZEICHNIS, eintrag } from "../verzeichnis";
-import { faecher, krisenRisiko, LAEUFE, naechsterLauf, neueSammlung, zieher, zufallsLauf } from "../zufall";
+import { faecher, krisenRisiko, LAEUFE, naechsterLauf, neueSammlung, zieher, ziehungen, zufallsLauf } from "../zufall";
 import { BANKWERTE, testland } from "./testland";
 
 // Spec 13.4: Zufallsschocks und Unsicherheitsbänder. Die Hauptlinie bleibt ohne Zufall.
@@ -55,8 +55,8 @@ describe("Verzeichnis", () => {
     expect(eintrag("zufall.pandemie").standard).toBe(2);
     expect(eintrag("zufall.proxy").standard).toBe(1.5);
     const abschaltbar = VERZEICHNIS.filter((e) => e.baustein === "zufall" && e.umstritten).map((e) => e.id);
-    expect(abschaltbar).toEqual(["zufall.kriseBasis", "zufall.kriseKredit", "zufall.kriseHaus", "zufall.oel", "zufall.pandemie", "zufall.proxy", "zufall.energieImport", "zufall.konjunktur"]);
-    expect(VERZEICHNIS.filter((e) => e.baustein === "zufall")).toHaveLength(11);
+    expect(abschaltbar).toEqual(["zufall.kriseBasis", "zufall.kriseKredit", "zufall.kriseHaus", "zufall.oel", "zufall.pandemie", "zufall.proxy", "zufall.energieImport", "zufall.spannen", "zufall.konjunktur"]);
+    expect(VERZEICHNIS.filter((e) => e.baustein === "zufall")).toHaveLength(12);
   });
 });
 
@@ -154,7 +154,7 @@ describe("Zufallsläufe", () => {
   it("abgeschaltete Art kommt nicht vor; alles aus: der Lauf ist die Hauptlinie", () => {
     const ohne = sz({ aus: ["zufall.pandemie"] });
     for (let nr = 0; nr < 100; nr++) expect(schocksIm(ohne, nr).some((s) => s.art === "pandemie")).toBe(false);
-    const aus = ["zufall.kriseBasis", "zufall.oel", "zufall.pandemie", "zufall.proxy", "zufall.konjunktur"];
+    const aus = ["zufall.kriseBasis", "zufall.oel", "zufall.pandemie", "zufall.proxy", "zufall.konjunktur", "zufall.spannen"];
     expect(zufallsLauf(land, sz({ aus }), 1, 3)).toEqual(rechne(land, sz({ aus })));
   });
 
@@ -279,14 +279,15 @@ describe("Hauptlinie im Band der Zufallsläufe (Staatsschuld 2050)", () => {
     const fa = faecher(sm);
     return { linie: rechne(l, sz0)[t].schuldQuote, p10: fa.band.schuldQuote.p10[t], p90: fa.band.schuldQuote.p90[t] };
   };
-  for (const code of ["DE", "US", "JP", "IT", "CA", "CN", "RU"])
+  for (const code of ["DE", "US", "JP", "FR", "IT", "CA", "CN", "RU"])
     it(`${code}: im Band`, () => {
       const x = lage(code);
       expect(x.linie).toBeGreaterThanOrEqual(x.p10);
       expect(x.linie).toBeLessThanOrEqual(x.p90);
     });
-  // Seit dem gleitenden Investitionsanker liegt Deutschland im Band, Großbritannien darunter (M29, Punkt 7).
-  for (const code of ["GB", "FR"])
+  // Seit dem gleitenden Investitionsanker liegt Deutschland im Band, Großbritannien darunter (M29, Punkt 7);
+  // Frankreich liegt im Band, seit auch die Wirkstärken und der Produktivitätstrend streuen (U2).
+  for (const code of ["GB"])
     it.fails(`${code}: bekannte Lücke (M29): Die Linie liegt unter dem Band`, () => {
       const x = lage(code);
       expect(x.linie).toBeGreaterThanOrEqual(x.p10);
@@ -341,5 +342,42 @@ describe("Fächer", () => {
   it("mittlere Zahl großer Zufallsschocks: rund einer je zehn Jahre", () => {
     expect(f.schocksJeLauf).toBeGreaterThan(3);
     expect(f.schocksJeLauf).toBeLessThan(7);
+  });
+});
+
+describe("Wirkstärken streuen in den Zufallsläufen (U2)", () => {
+  const mitSpanne = VERZEICHNIS.filter((e) => e.spanne);
+  it("Spannen stehen im Verzeichnis und enthalten den Standard", () => {
+    expect(mitSpanne.length).toBeGreaterThanOrEqual(10);
+    expect(eintrag("wachstum.multiplikator").spanne).toEqual([0.6, 1]);
+    for (const e of mitSpanne) {
+      expect(e.spanne![0], e.id).toBeLessThanOrEqual(e.standard);
+      expect(e.spanne![1], e.id).toBeGreaterThanOrEqual(e.standard);
+    }
+  });
+  it("gezogene Werte liegen in der Spanne, gleiche Saat und Nummer ziehen gleich, auch in einem anderen Szenario", () => {
+    const a = ziehungen(land, sz(), 1, 7);
+    const b = ziehungen(land, sz({ stell: { "steuer.mwst": 0.25 } }), 1, 7);
+    expect(a).toEqual(b);
+    expect(ziehungen(land, sz(), 1, 8)).not.toEqual(a);
+    for (const e of mitSpanne) {
+      expect(a[e.id], e.id).toBeGreaterThanOrEqual(e.spanne![0]);
+      expect(a[e.id], e.id).toBeLessThanOrEqual(e.spanne![1]);
+    }
+  });
+  it("vom Nutzer abgeschaltete Wirkstärke wird nicht gezogen, die übrigen ziehen dasselbe", () => {
+    const a = ziehungen(land, sz(), 1, 3);
+    const b = ziehungen(land, sz({ aus: ["wachstum.multiplikator"] }), 1, 3);
+    expect(b["wachstum.multiplikator"]).toBeUndefined();
+    expect({ ...b, "wachstum.multiplikator": a["wachstum.multiplikator"] }).toEqual(a);
+  });
+  it("Spannen aus: keine Ziehung, der Lauf rechnet wie ohne Streuung", () => {
+    expect(ziehungen(land, sz({ aus: ["zufall.spannen"] }), 1, 3)).toEqual({});
+    const ohne = zufallsLauf(land, sz({ aus: ["zufall.spannen"] }), 1, 3);
+    expect(rechneZufall(land, sz({ aus: ["zufall.spannen"] }), zieher(land, sz({ aus: ["zufall.spannen"] }), 1, 3))).toEqual(ohne);
+    expect(zufallsLauf(land, sz(), 1, 3)).not.toEqual(ohne);
+  });
+  it("die Hauptlinie zieht nichts", () => {
+    expect(rechne(land, sz())).toEqual(rechne(land, sz({ aus: ["zufall.spannen"] })));
   });
 });

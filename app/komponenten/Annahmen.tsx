@@ -97,6 +97,9 @@ function PolitikRegeln({ sim }: { sim: Sim }) {
   );
 }
 
+// Wirkstärke ohne überflüssige Nachkommanullen (0,800 → 0,8; 0,000 → 0).
+const zahl = (x: number) => fmt(x, 3).replace(/0+$/, "").replace(/[,.]$/, "");
+
 const BELEG = {
   lehrbuch: "Lehrbuch",
   studie: "Studie",
@@ -281,7 +284,15 @@ export function Annahmen({ sim }: { sim: Sim }) {
                         )}
                       </td>
                       <td>
-                        {fmt(wert(e.id), 3).replace(/[,.]?0+$/, "")} {vEinheit(e)}
+                        {zahl(wert(e.id))} {vEinheit(e)}
+                        {e.spanne && (
+                          <>
+                            <br />
+                            <small>
+                              {t("Spanne")} {zahl(e.spanne[0])}–{zahl(e.spanne[1])}
+                            </small>
+                          </>
+                        )}
                       </td>
                       <td>{e.quelle}</td>
                       <td>{e.beleg ? t(BELEG[e.beleg]) : ""}</td>
