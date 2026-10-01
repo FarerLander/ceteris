@@ -160,6 +160,9 @@ function ziehe(
   const zufall = generator(
     Math.imul(saat, 0x27d4eb2f) ^ Math.imul(nr + 1, 0x165667b1),
   );
+  // Der Trend zuerst: Eine neue Spanne im Verzeichnis verschiebt so nicht seine Ziehung.
+  const n = normal(zufall(), zufall());
+  const trend = land.schaetzung?.werte.find((w) => w.groesse === "tfpTrend");
   const werte: Record<string, number> = {};
   for (const e of VERZEICHNIS) {
     if (!e.spanne) continue;
@@ -170,8 +173,6 @@ function ziehe(
     const oben = mitte + anteil * (Math.max(e.spanne[1], mitte) - mitte);
     werte[e.id] = dreieck(u, unten, mitte, oben);
   }
-  const n = normal(zufall(), zufall());
-  const trend = land.schaetzung?.werte.find((w) => w.groesse === "tfpTrend");
   if (!trend?.gueltig) return { werte };
   return {
     werte,

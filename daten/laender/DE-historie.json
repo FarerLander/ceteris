@@ -967,6 +967,7 @@
     }
   ],
   "quellen": {
+    "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2000 in % BIP (kgov_rppp / GDP_rppp)",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2000 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Bundestagswahl 1998, Legislatur 4 Jahre (die vorgezogene Wahl 2005 kennt der feste Takt nicht)",
     "standards": "Steuersätze und Rentenparameter 2000: BMF, DRV (aus Fachwissen, ungeprüft)",
     "werte": "Startwerte 2000: Destatis VGR, Bundesbank, AG Energiebilanzen (aus Fachwissen, ungeprüft); Staatsausgaben 2000 ohne UMTS-Erlöse (rund 2,5 % BIP, in der Statistik als Minderausgabe gebucht)",
