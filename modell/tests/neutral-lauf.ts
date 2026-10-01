@@ -8,7 +8,7 @@ import type { Landesdaten, Zustand } from "../typen";
 // 13.5 Teil B: Akzelerator (aus = 0). Die Zinswirkung auf Investitionen ist von 0,6 auf 0,15 gesenkt;
 // mit dem alten Wert rechnet die Mechanik bitgenau wie vorher. Öffentliche Investitionen: ohne Änderung
 // am Hebel wirkt nichts.
-// Kleinpunkte: Investitionsanker gleitet (aus = Startquote).
+// Oktober 2026: Investitionsanker gleitet (aus = Startquote).
 // 13.1: Mechanik mit Handwerten. 13.10: Politik fest. 13.6: Banken aus. M29: Haushaltsplan aus.
 export const NEU_AUS = ["wachstum.kreditAsymmetrie", "wachstum.akzelerator", "wachstum.investAnpassung"];
 export const ALTE_WERTE = { "wachstum.investElastizitaet": 0.6 };
