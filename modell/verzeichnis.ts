@@ -2207,7 +2207,7 @@ stell(
   "Straßen, Schienen, Netze, Schulen und andere Bauten des Staates, vor Abschreibungen. Der heutige Wert steckt in „Übrige Staatsausgaben“; hier zählt die Änderung.",
   "den öffentlichen Kapitalstock und damit die Produktivität, kurzfristig auch die Nachfrage",
 );
-wirk("staat.oeffKapital", "staat", "Öffentlicher Kapitalstock → Produktivität", "Elastizität", 0.1, "Bom/Ligthart 2014 (Meta-Analyse, 578 Schätzungen: 0,08 kurzfristig bis 0,12 langfristig; Spanne 0,05–0,17); Aschauer 1989 lag mit 0,39 weit darüber", "studie", "Ein Prozent mehr öffentlicher Kapitalstock hebt die Produktivität um so viel Prozent. Gerechnet wird nur die Abweichung vom Pfad mit heutiger Investition.", U(0));
+wirk("staat.oeffKapital", "staat", "Öffentlicher Kapitalstock → Produktivität", "Elastizität", 0.1, "Bom/Ligthart 2014 (Meta-Analyse, 578 Schätzungen: 0,08 kurzfristig bis 0,12 langfristig; Spanne 0,05–0,17); Aschauer 1989 lag mit 0,39 weit darüber", "studie", "Ein Prozent mehr öffentlicher Kapitalstock hebt die Produktivität um so viel Prozent. Gerechnet wird nur die Abweichung vom Pfad mit heutiger Investition, bezogen auf den gemessenen Bestand des Landes (IWF): Wo er klein ist, bringt ein Euro mehr.", U(0));
 wirk("staat.oeffAbschreibung", "staat", "Abschreibung des öffentlichen Kapitalstocks", "Anteil pro Jahr", 0.045, "Kamps 2006; IWF Investment and Capital Stock Dataset (2,5 bis 4,5 %); Eurostat: Abschreibungen des deutschen Staates rund 2,4 % BIP auf rund 50 % BIP Bestand", "studie", "Wer nicht investiert, verliert jedes Jahr diesen Teil des Bestands.");
 
 // ---------- Zufallsschocks (Spec 13.4) ----------

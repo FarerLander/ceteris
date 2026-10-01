@@ -51,6 +51,7 @@
   },
   "werte": {
     "kapitalkoeffizient": 2.8,
+    "oeffKapitalQuote": 63,
     "tfpTrend": 0.67,
     "lohnquote": 0.48,
     "nairu": 3.0,
@@ -113,6 +114,7 @@
     "hausBewertung0": 0
   },
   "quellen": {
+    "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Präsidentschaftswahl; kein Wahljahr-Effekt (Gewicht 0), letzte Wahl 2024, Legislatur 6 Jahre",
     "standards": "Steuersätze gesetzlich (Einkommen 13 %, MwSt. 20 %); Rente: Anhebung bis 2028 (Männer 65, Frauen 60), Mittel 63; Rentenniveau und Lohnersatz auf die Untergrenze des Verzeichnisses gesetzt; Gesundheit (rund 3,5 % BIP) auf die Untergrenze; Verteidigung SIPRI 2024; Rendite Ersatz: OFZ 10 Jahre 2025 rund 15 %; ungeprüft",
     "ordnung.rechtsstaat": "Weltbank WGI Rule of Law Score 2025 (GOV_WGI_RL.SC), gerundet",
@@ -134,6 +136,6 @@
     "bankBilanz0": "World Bank GFDD.DI.02, letzter Wert beim Abruf 30.09.2026 (Ersatz)",
     "bankKreditAnteil": "BIS Total Credit: Bankkredit / Kredit aller Sektoren an den privaten nichtfinanziellen Sektor, Ende 2025 (Ersatz)",
     "hausBewertung0": "Kein OECD-Preis-Einkommen-Verhältnis; 0 gesetzt (keine belegte Über- oder Unterbewertung), siehe Hinweis in quellen.md",
-    "staat.investitionen": "IWF, Größenordnung; ungeprüft"
+    "staat.investitionen": "IWF, Größenordnung; gegen IWF ICSD geprüft: Ø 2010–2019 3,1"
   }
 }

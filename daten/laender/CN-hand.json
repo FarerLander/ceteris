@@ -51,6 +51,7 @@
   },
   "werte": {
     "kapitalkoeffizient": 3.2,
+    "oeffKapitalQuote": 62,
     "tfpTrend": 2.55,
     "lohnquote": 0.52,
     "nairu": 4.8,
@@ -106,6 +107,7 @@
     "hausBewertung0": 0
   },
   "quellen": {
+    "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp); der IWF zählt Staatsbetriebe mit (Bestand 167 % BIP bei 16,2 % Investition), umgerechnet im Verhältnis der Investitionen auf 6 % BIP: 167 × 6 / 16,2",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Parteitag; kein Wahljahr-Effekt (Gewicht 0), letzte Wahl 2022, Legislatur 5 Jahre",
     "standards": "Steuersätze effektiv (IWF Article IV China 2025, OECD Revenue Statistics Asia), Rente: Anhebung 2025 schrittweise (Männer 63, Frauen 55/58), Mittel rund 60; Gesundheit (rund 3 % BIP) und Familie auf die Untergrenze des Verzeichnisses gesetzt; Nettozuwanderung leicht negativ, auf 0 gesetzt; ungeprüft",
     "ordnung.rechtsstaat": "Weltbank WGI Rule of Law Score 2025 (GOV_WGI_RL.SC), gerundet",

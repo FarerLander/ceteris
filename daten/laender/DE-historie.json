@@ -32,6 +32,7 @@
   "werte": {
     "gini": 26.4,
     "kapitalkoeffizient": 3.0,
+    "oeffKapitalQuote": 56,
     "tfpTrend": 0.3,
     "lohnquote": 0.56,
     "nairu": 7.5,

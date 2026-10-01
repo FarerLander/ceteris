@@ -47,6 +47,7 @@
   },
   "werte": {
     "kapitalkoeffizient": 3.2,
+    "oeffKapitalQuote": 69,
     "tfpTrend": 0.5,
     "lohnquote": 0.58,
     "nairu": 7.0,
@@ -101,6 +102,7 @@
     "hausBewertung0": 7
   },
   "quellen": {
+    "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Präsidentschaftswahl, letzte Wahl 2022, Legislatur 5 Jahre",
     "standards": "DGFiP, OECD Taxing Wages, COR (Rentenniveau), NATO, INSEE; ungeprüft",
     "werte": "INSEE, Banque de France, Agence France Trésor, RTE Bilan électrique, Eurostat; ungeprüft",

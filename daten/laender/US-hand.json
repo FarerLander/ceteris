@@ -39,6 +39,7 @@
   },
   "werte": {
     "kapitalkoeffizient": 2.75,
+    "oeffKapitalQuote": 59,
     "tfpTrend": 1.0,
     "lohnquote": 0.53,
     "nairu": 4.2,
@@ -92,6 +93,7 @@
     "hausBewertung0": 13
   },
   "quellen": {
+    "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Präsidentschaftswahl, letzte Wahl 2024, Legislatur 4 Jahre",
     "ordnung.rechtsstaat": "Weltbank WGI Rule of Law Score 2025 (GOV_WGI_RL.SC), gerundet",
     "standards": "IRS/SSA/CBO, OECD Taxing Wages, NATO; Zölle 2025 effektiv rund 10 % (Yale Budget Lab); ungeprüft",
@@ -104,6 +106,6 @@
     "bankBilanz0": "World Bank GFDD.DI.02, letzter Wert beim Abruf 30.09.2026 (Ersatz)",
     "bankKreditAnteil": "BIS Total Credit: Bankkredit / Kredit aller Sektoren an den privaten nichtfinanziellen Sektor, Ende 2025 (Ersatz)",
     "hausBewertung0": "OECD Analytical house prices indicators, Preis-Einkommen-Verhältnis gegen das langjährige Mittel, 2025 (Ersatz)",
-    "staat.investitionen": "OECD/BEA, Bruttoanlageinvestitionen des Staates, Größenordnung; ungeprüft"
+    "staat.investitionen": "OECD/BEA, Bruttoanlageinvestitionen des Staates, Größenordnung; gegen IWF ICSD geprüft: Ø 2010–2019 3,6"
   }
 }
