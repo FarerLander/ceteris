@@ -20,6 +20,10 @@ export function wirkstaerke(id: string, land: Landesdaten): number {
   return standardWert(id, land);
 }
 
+// Nettoimport von Energie, bei dem ein Energieschock den Nachfrageschaden aus der Schocktabelle kostet
+// (Deutschland 2023, Weltbank EG.IMP.CONS.ZS).
+export const ENERGIE_IMPORT_BEZUG = 70.5;
+
 export function baueKontext(
   land: Landesdaten,
   sz: Szenario,
@@ -70,6 +74,15 @@ export function baueKontext(
       return p === undefined ? WELT_STANDARD[id] : pfadWert(p, jahr);
     },
     // Schocks vor dem Startjahr gehören zur Vergangenheit und werden ignoriert.
-    schock: schockWirkung(sz.schocks.filter((x) => x.jahr >= start), jahr),
+    schock: schockWirkung(sz.schocks.filter((x) => x.jahr >= start), jahr, energieFaktor(land, sz)),
   };
+}
+
+// Förderländer verlieren durch teure Energie keine Nachfrage; ihr Erlös läuft über den Rohstoffsektor (M36).
+function energieFaktor(land: Landesdaten, sz: Szenario): number {
+  const netto = land.start.energieNettoImport;
+  if (netto === undefined) return 1;
+  const id = "zufall.energieImport";
+  const staerke = sz.aus.includes(id) ? (eintrag(id).neutral ?? 0) : standardWert(id, land);
+  return 1 + staerke * (Math.max(0, netto) / ENERGIE_IMPORT_BEZUG - 1);
 }

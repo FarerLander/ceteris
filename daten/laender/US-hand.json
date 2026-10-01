@@ -40,6 +40,7 @@
   "werte": {
     "kapitalkoeffizient": 2.75,
     "oeffKapitalQuote": 59,
+    "energieNettoImport": -9,
     "tfpTrend": 1.0,
     "lohnquote": 0.53,
     "nairu": 4.2,
@@ -94,6 +95,7 @@
   },
   "quellen": {
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
+    "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Präsidentschaftswahl, letzte Wahl 2024, Legislatur 4 Jahre",
     "ordnung.rechtsstaat": "Weltbank WGI Rule of Law Score 2025 (GOV_WGI_RL.SC), gerundet",
     "standards": "IRS/SSA/CBO, OECD Taxing Wages, NATO; Zölle 2025 effektiv rund 10 % (Yale Budget Lab); ungeprüft",

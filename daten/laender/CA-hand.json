@@ -47,6 +47,7 @@
   "werte": {
     "kapitalkoeffizient": 3.0,
     "oeffKapitalQuote": 58,
+    "energieNettoImport": -89.6,
     "tfpTrend": 0.7,
     "lohnquote": 0.52,
     "nairu": 6.0,
@@ -102,6 +103,7 @@
   },
   "quellen": {
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
+    "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Unterhauswahl (fester Termin), letzte Wahl 2025, Legislatur 4 Jahre",
     "standards": "CRA, OECD Taxing Wages, ESDC (OAS/CPP), NATO, IRCC Levels Plan 2025–2027; CO₂-Preis nur Industrie (OBPS) nach Wegfall der Verbraucherabgabe 2025, anteilig; ungeprüft; Sozialabgaben auf Verzeichnisgrenze 0,2 gesetzt (tatsächlich rund 0,12), Bemessungsgrundlage 40 → 24, damit das Aufkommen gleich bleibt",
     "werte": "Statistics Canada, Bank of Canada, Finance Canada Fiscal Reference Tables, CER Energy Futures, IIP; ungeprüft",

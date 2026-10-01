@@ -55,8 +55,8 @@ describe("Verzeichnis", () => {
     expect(eintrag("zufall.pandemie").standard).toBe(2);
     expect(eintrag("zufall.proxy").standard).toBe(1.5);
     const abschaltbar = VERZEICHNIS.filter((e) => e.baustein === "zufall" && e.umstritten).map((e) => e.id);
-    expect(abschaltbar).toEqual(["zufall.kriseBasis", "zufall.kriseKredit", "zufall.kriseHaus", "zufall.oel", "zufall.pandemie", "zufall.proxy", "zufall.konjunktur"]);
-    expect(VERZEICHNIS.filter((e) => e.baustein === "zufall")).toHaveLength(10);
+    expect(abschaltbar).toEqual(["zufall.kriseBasis", "zufall.kriseKredit", "zufall.kriseHaus", "zufall.oel", "zufall.pandemie", "zufall.proxy", "zufall.energieImport", "zufall.konjunktur"]);
+    expect(VERZEICHNIS.filter((e) => e.baustein === "zufall")).toHaveLength(11);
   });
 });
 

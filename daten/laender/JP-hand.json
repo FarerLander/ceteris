@@ -47,6 +47,7 @@
   "werte": {
     "kapitalkoeffizient": 3.5,
     "oeffKapitalQuote": 121,
+    "energieNettoImport": 87.3,
     "tfpTrend": 0.4,
     "lohnquote": 0.5,
     "nairu": 2.6,
@@ -104,6 +105,7 @@
   },
   "quellen": {
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
+    "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Unterhauswahl (Höchstdauer), letzte Wahl 2024, Legislatur 4 Jahre",
     "standards": "MOF Japan, MHLW (Rentenniveau Modellhaushalt), OECD Taxing Wages, SIPRI; ungeprüft",
     "werte": "Cabinet Office, BoJ Flow of Funds (JGB-Bestand der BoJ), METI Energiebilanz, MOF NIIP; ungeprüft. erwerbsquoteTrend 0,4 Pp. pro Jahr für 10 Jahre: Erwerbsquote 15–64 stieg 2013–2023 um rund 0,6 Pp. pro Jahr (Labour Force Survey), gebremst fortgeschrieben; bildet auch die wachsende Arbeit über 65 grob ab; ungeprüft",

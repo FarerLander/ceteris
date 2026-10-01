@@ -5,14 +5,16 @@ import type { Schock, SchockArt, SchockKanal, SchockWirkung } from "./typen";
 // inflation Pp., luecke % BIP, gA Anteil Produktivitätswachstum, alq Pp., ausgaben % BIP,
 // beschaeftigte Mio., flucht 1 = Flucht in sichere Häfen, aufschlag Pp., krise 1/0,
 // zuwanderung Mio. Flüchtlinge, export Anteil der Exporte, rohstoff Anteil der Rohstoffexporte.
+// energieLuecke: Der Nachfrageschaden kommt vom teuren Energieimport und skaliert mit dem Nettoimport des Landes.
 export const SCHOCKS: Record<
   SchockArt,
-  { name: string; txt: string; wirkung: Partial<Record<SchockKanal, number[]>> }
+  { name: string; txt: string; wirkung: Partial<Record<SchockKanal, number[]>>; energieLuecke?: true }
 > = {
   oel: {
     name: "Ölpreisschock",
     txt: "Öl und Gas werden für zwei Jahre deutlich teurer.",
     wirkung: { energie: [70, 30], inflation: [2.5, 0.8], luecke: [-1, -0.5] },
+    energieLuecke: true,
   },
   krise: {
     name: "Finanzkrise",
@@ -46,6 +48,7 @@ export const SCHOCKS: Record<
       ausgaben: [2.1, 2.1, 1.8, 1, 1],
       zuwanderung: [0.9],
     },
+    energieLuecke: true,
   },
   krieg: {
     name: "Krieg mit Beteiligung",
@@ -77,6 +80,7 @@ export const SCHOCKS: Record<
       inflation: [3, 1.5, 0.5],
       luecke: [-1.5, -0.5],
     },
+    energieLuecke: true,
   },
   rohstoffsanktion: {
     name: "Sanktionen gegen Rohstoffexporte",
@@ -105,17 +109,19 @@ export function leereWirkung(): SchockWirkung {
   return Object.fromEntries(KANAELE.map((k) => [k, 0])) as SchockWirkung;
 }
 
-export function schockWirkung(schocks: Schock[], jahr: number): SchockWirkung {
+// energieFaktor: Nachfrageschaden der Energieschocks relativ zu einem Land wie Deutschland (M36).
+export function schockWirkung(schocks: Schock[], jahr: number, energieFaktor = 1): SchockWirkung {
   const w = leereWirkung();
   for (const s of schocks) {
     const seit = jahr - s.jahr;
     if (seit < 0) continue;
     const idx = Math.floor(seit / Math.max(0.25, s.dauer));
     const def = SCHOCKS[s.art].wirkung;
+    const faktor = SCHOCKS[s.art].energieLuecke ? energieFaktor : 1;
     for (const kanal of KANAELE) {
       const reihe = def[kanal];
       if (!reihe || idx >= reihe.length) continue;
-      w[kanal] += kanal === "krise" ? reihe[idx] : reihe[idx] * s.staerke;
+      w[kanal] += kanal === "krise" ? reihe[idx] : reihe[idx] * s.staerke * (kanal === "luecke" ? faktor : 1);
     }
   }
   w.krise = w.krise > 0 ? 1 : 0;

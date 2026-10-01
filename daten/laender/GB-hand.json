@@ -47,6 +47,7 @@
   "werte": {
     "kapitalkoeffizient": 3.0,
     "oeffKapitalQuote": 44,
+    "energieNettoImport": 44,
     "tfpTrend": 0.7,
     "lohnquote": 0.55,
     "nairu": 4.3,
@@ -101,6 +102,7 @@
   },
   "quellen": {
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
+    "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Unterhauswahl (Höchstdauer), letzte Wahl 2024, Legislatur 5 Jahre",
     "standards": "HMRC, OECD Taxing Wages, NATO, ONS; Rentenniveau auf Verzeichnisgrenze 35 gesetzt (OECD-Ersatzquote gesetzlich rund 28 %); ungeprüft",
     "werte": "ONS, Bank of England (APF, Bank Rate), OBR, DESNZ Energy Trends, ONS Pink Book; ungeprüft",
