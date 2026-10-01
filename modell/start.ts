@@ -268,6 +268,7 @@ export function startzustand(
     schuldNom: (s.schuldQuote / 100) * s.bip,
     schuldQuote: s.schuldQuote,
     fondsQuote: s.fondsQuote0 ?? 0,
+    rentnerQuoteAb: teile.rentner / beschaeftigte,
     beitragsAufschlag: 0,
     konsolidierung: 0,
     diskret: 0,

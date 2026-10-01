@@ -39,11 +39,18 @@ export const staat: Baustein = (alt, neu, k) => {
   // Ein vorhandener Reservefonds zählt als bereits geschaffter Teil des Umstiegs.
   const vorlauf = (s.fondsQuote0 ?? 0) / (k.p("rente.deckungJahre") * s.rentenausgaben);
   const kapWirksam = kap * Math.min(1, k.t / k.p("rente.umstiegJahre") + vorlauf);
+  // Rentenanpassung nach heutigem Recht (M1): Steigt die Zahl der Rentner je Beschäftigten, sinkt das
+  // Leistungsniveau (Nachhaltigkeitsfaktor, Preisindexierung, beitragsbezogene Konten, Makro-Slide). Bis zum
+  // Jahr, ab dem sie greift, wandert der Bezug mit (Haltelinie).
+  const rq = neu.rentner / Math.max(0.1, neu.beschaeftigte);
+  neu.rentnerQuoteAb = k.jahr <= (s.renteAnpassungAb ?? k.start) ? rq : alt.rentnerQuoteAb;
+  const anpassung = (rq / neu.rentnerQuoteAb) ** -k.p("rente.anpassung");
   const renteGesamt =
     ((neu.rentner * (k.w("rente.niveau") / 100) * s.lohnquote) /
       Math.max(0.1, neu.beschaeftigte)) *
     100 *
-    k.c.rentenFaktor;
+    k.c.rentenFaktor *
+    anpassung;
   const einzahlung =
     kap *
     k.p("rente.beitragsanteil") *

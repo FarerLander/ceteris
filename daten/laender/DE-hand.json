@@ -9,12 +9,14 @@
     "tpi": false
   },
   "standards": {
+    "rente.anpassung": 0.82,
     "ordnung.rechtsstaat": 85,
     "staat.investitionen": 3.3
   },
   "werte": {
     "kapitalkoeffizient": 3.0,
     "oeffKapitalQuote": 44,
+    "renteAnpassungAb": 2031,
     "energieNettoImport": 70.5,
     "tfpTrend": 0.4,
     "lohnquote": 0.53,
@@ -71,6 +73,8 @@
     "hausBewertung0": -13
   },
   "quellen": {
+    "renteAnpassungAb": "Haltelinie: Rentenniveau mindestens 48 % bis 2031 (Rentenpaket 2025); danach wirkt der Nachhaltigkeitsfaktor",
+    "rente.anpassung": "Geeicht am EU Ageing Report 2024 (Rentenausgaben 2025–2070, Grundszenario, Rechtsstand ohne Haltelinie nach 2025); Fehler 0,6 %. Die Haltelinie 48 % bis 2031 (Rentenpaket 2025) kommt dazu",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Bundestagswahl, letzte Wahl 2025, Legislatur 4 Jahre",
     "kapitalkoeffizient": "Destatis VGR, Nettoanlagevermögen zu Wiederbeschaffungspreisen / BIP",
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",

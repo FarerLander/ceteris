@@ -13,6 +13,7 @@
     "kurs": 1.5
   },
   "standards": {
+    "rente.anpassung": 0.57,
     "steuer.einkommen": 0.2,
     "steuer.sozialabgaben": 0.2,
     "steuer.mwst": 0.12,
@@ -102,6 +103,7 @@
     "hausBewertung0": 50
   },
   "quellen": {
+    "rente.anpassung": "Geeicht an OECD Pensions at a Glance 2023, Tabelle 8.4 (Chief Actuary); Fehler 2,0 %",
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
     "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Unterhauswahl (fester Termin), letzte Wahl 2025, Legislatur 4 Jahre",

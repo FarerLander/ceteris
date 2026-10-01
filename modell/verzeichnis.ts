@@ -1308,6 +1308,7 @@ L.push({ id: "rente.beitragsAutomatik", art: "stellschraube", baustein: "staat",
   standard: 1, bereich: [0, 1], schritt: 1, quelle: "SGB VI § 158 (Beitragssatz folgt dem Finanzbedarf)",
   erklaerung: "Heutige Rechtslage: Steigen die Rentenausgaben, steigt der Beitragssatz mit. Aus: Der Anstieg landet im Staatsdefizit.",
   kanal: "höhere Beiträge statt höherer Schulden, dafür teurere Arbeit", optionen: ["Aus", "An"] });
+wirk("rente.anpassung", "staat", "Rentenanpassung nach heutigem Recht", "Elastizität", 0, "je Land geeicht an den amtlichen Projektionen der Rentenausgaben bis 2050 (EU Ageing Report 2024; OECD Pensions at a Glance 2023, Tabelle 8.4)", "kalibriert", "Steigt die Zahl der Rentner je Beschäftigten um 1 %, sinkt das Rentenniveau um so viel Prozent. Steht für alles, was das heutige Recht dagegen tut: Nachhaltigkeitsfaktor (Deutschland), beitragsbezogene Konten und Rentenalter an der Lebenserwartung (Italien), Preisindexierung (Frankreich), Makro-Slide (Japan). Aus: Das Niveau bleibt, wie eingestellt.", U(0));
 wirk("rente.beitragsDeckung", "staat", "Anteil des Rentenanstiegs, den Beiträge decken", "Anteil", 0.75, "Deutsche Rentenversicherung: Bundeszuschuss trägt rund ein Viertel", "studie", "");
 wirk("wachstum.abgabenElastizitaet", "wachstum", "Abgaben senken Erwerbsbeteiligung", "Anteil je Anteil", 0.2, "OECD Taxing Wages; Meghir/Phillips 2010", "studie", "", U(0));
 wirk(
