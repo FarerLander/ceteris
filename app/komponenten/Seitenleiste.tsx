@@ -12,8 +12,8 @@ import { t, tk, type Sprache } from "../../modell/sprache";
 import { stellschrauben } from "../../modell/verzeichnis";
 import type { BausteinId, Grundeinstellungen } from "../../modell/typen";
 import type { Sim } from "../simulation";
-import { useRef, useState, type ReactNode } from "react";
-import { Aenderung, useBlatt } from "./Blatt";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Aenderung, type Stufe, useBlatt } from "./Blatt";
 import { FarbmodusKnopf, SprachKnopf, stand } from "./Anzeige";
 import { Regler } from "./Regler";
 import { Szenarien } from "./Szenarien";
@@ -222,6 +222,26 @@ function Blattleiste({ sim, setzeLand, zeigeWirkung, setzeSprache }: Teil & { se
   const b = useBlatt();
   const seiten = useRef<HTMLDivElement>(null);
   const [aktiv, setAktiv] = useState(0);
+  // Die Tour öffnet das Blatt ganz auf einer Seite und stellt danach die Stufe von vorher wieder her (−1).
+  const stufeVorTour = useRef<Stufe | null>(null);
+  const stufeJetzt = useRef(b.stufe);
+  stufeJetzt.current = b.stufe;
+  useEffect(() => {
+    const hoere = (ev: Event) => {
+      const i = (ev as CustomEvent<number>).detail;
+      if (i < 0) {
+        if (stufeVorTour.current) b.setStufe(stufeVorTour.current);
+        stufeVorTour.current = null;
+        return;
+      }
+      stufeVorTour.current ??= stufeJetzt.current;
+      b.setStufe("voll");
+      setAktiv(i);
+      seiten.current?.scrollTo?.({ left: i * seiten.current.clientWidth });
+    };
+    window.addEventListener("ceteris-blatt", hoere);
+    return () => window.removeEventListener("ceteris-blatt", hoere);
+  }, []);
   const geheZu = (i: number) => {
     const el = seiten.current;
     if (el) el.scrollTo?.({ left: i * el.clientWidth, behavior: "smooth" });
@@ -334,9 +354,9 @@ function Inhalt({
       {seite(
         0,
         <>
-          <section>
+          <section data-tour="grund">
             <h3 className="group-title">{t("Grundeinstellungen")}</h3>
-            <div className="field">
+            <div className="field" data-tour="land">
               <label htmlFor="land">
                 {t("Land")}{" "}
                 <span
@@ -440,7 +460,7 @@ function Inhalt({
           </section>
 
           {anzeige && (
-            <section>
+            <section data-tour="anzeige">
               <h3 className="group-title">{t("Anzeige")}</h3>
               <div className="anzeige-knoepfe">{anzeige}</div>
             </section>
@@ -450,7 +470,7 @@ function Inhalt({
 
       {seite(
         1,
-        <section>
+        <section data-tour="hauptregler">
           <h3 className="group-title">{t("Hauptregler")}</h3>
           {alle
             .filter((e) => e.haupt)
@@ -462,7 +482,7 @@ function Inhalt({
 
       {seite(
         2,
-        <details className="more" open={blatt || undefined}>
+        <details className="more" open={blatt || undefined} data-tour="alle">
           <summary>{t("Alle Stellschrauben")}</summary>
           {BLOECKE.map(([b, titel]) => (
             <details className="block" key={b}>
@@ -531,9 +551,11 @@ function Inhalt({
       {seite(
         3,
         <>
-          <Szenarien sim={sim} />
+          <div data-tour="szenarien">
+            <Szenarien sim={sim} />
+          </div>
 
-          <button className="reset" type="button" onClick={sim.zuruecksetzen}>
+          <button className="reset" type="button" onClick={sim.zuruecksetzen} data-tour="zurueck">
             {t("Zurück zur Basislinie")}
           </button>
         </>,

@@ -129,7 +129,7 @@ export function Wetterband({ sim }: { sim: Sim }) {
             ))}
           </div>
           {politik.length > 0 && (
-            <div className="politik-row" aria-label={t("Eingriffe der Regierung")}>
+            <div className="politik-row" aria-label={t("Eingriffe der Regierung")} data-tour="entscheidungen">
               {politik.map((e) => {
                 const key = punktKey(e);
                 const umgeschaltet = e.art === "entscheidung" && e.motiv !== e.vorwahl;
@@ -227,7 +227,7 @@ export function Wetterband({ sim }: { sim: Sim }) {
       <p className="hinweis">
         {t("Boom, Rezession, Stagflation und Deflation entstehen vor allem durch Schocks und starke Eingriffe.")}
       </p>
-      <div className="shock-actions">
+      <div className="shock-actions" data-tour="schocks">
         {(Object.keys(SCHOCKS) as SchockArt[]).map((art) => (
           <button
             key={art}

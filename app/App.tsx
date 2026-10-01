@@ -1,4 +1,4 @@
-import { useRef, useState, type TouchEvent } from "react";
+import { useEffect, useRef, useState, type TouchEvent } from "react";
 import {
   darfWischen,
   ladeEingeklappt,
@@ -23,6 +23,12 @@ import { LAENDER, landAusLink } from "./land";
 import type { Landesdaten } from "../modell/typen";
 import { useSimulation } from "./simulation";
 import { Symbole } from "./Symbole";
+import { Einladung, Rueckfrage } from "./tour/Einladung";
+import { ladeTour, speichereTour } from "./tour/speicher";
+import { startTour, Tour, useTourStart } from "./tour/Tour";
+import type { Szenario } from "../modell/typen";
+import type { KapitelId, TourUi } from "./tour/typen";
+import { kodiere } from "../modell/szenario-code";
 import {
   setzeSprache as setzeModellSprache,
   t,
@@ -84,6 +90,8 @@ export function App() {
     );
     setCode(c);
   };
+  // Stand der Tour über den Neuaufbau hinweg (Sprachwechsel im letzten Schritt).
+  const tourStand = useRef<TourStand>({ laufend: null, letzter: false, vorher: null });
   // Neuaufbau bei Land- oder Sprachwechsel; das Szenario steht in der Adresse und bleibt.
   return (
     <Ansichten
@@ -91,18 +99,28 @@ export function App() {
       land={LAENDER[code]}
       setzeLand={setzeLand}
       setzeSprache={setzeSprache}
+      tourStand={tourStand}
     />
   );
+}
+
+// Laufende Tour, ob ihr letzter Schritt erreicht ist, und der Stand vor ihrem Start (Szenario als Link-Code).
+interface TourStand {
+  laufend: KapitelId | null;
+  letzter: boolean;
+  vorher: { code: string; land: string; idx: number; sz: Szenario } | null;
 }
 
 function Ansichten({
   land,
   setzeLand,
   setzeSprache,
+  tourStand,
 }: {
   land: Landesdaten;
   setzeLand(code: string): void;
   setzeSprache(s: Sprache): void;
+  tourStand: { current: TourStand };
 }) {
   const handy = useHandy();
   // Auf dem Smartphone passt ein langer Zeitraum schlecht ins Diagramm: ohne Link bis 2050.
@@ -130,12 +148,94 @@ function Ansichten({
     speichereEingeklappt(zu);
     setEingeklappt(zu);
   };
-  // Smartphone: Wischen nach links oder rechts wechselt den Reiter.
+  // Hilfe-Modus: Die Tour darf Reiter wechseln und die Seitenleiste öffnen; was sie geöffnet hat, schließt sie wieder.
+  const [tour, setTour] = useTourStart();
+  const tourOeffnete = useRef(false);
+  // Smartphone: Das Blatt merkt sich seine Stufe vor der Tour und kehrt beim Schließen dorthin zurück.
+  const tourUi: TourUi = {
+    setzeAnsicht: setze,
+    setzeFokus,
+    oeffneSeitenleiste(seite = 0) {
+      if (handy) {
+        // Seite nach oben: Das Blatt liegt fest über ihr, die Hervorhebung im Dokument; so decken sich beide.
+        window.scrollTo?.({ top: 0 });
+        window.dispatchEvent(new CustomEvent("ceteris-blatt", { detail: seite }));
+      }
+      else if (eingeklappt) {
+        tourOeffnete.current = true;
+        setEingeklappt(false);
+      }
+    },
+    schliesseSeitenleiste() {
+      if (handy) return void window.dispatchEvent(new CustomEvent("ceteris-blatt", { detail: -1 }));
+      if (!tourOeffnete.current) return;
+      tourOeffnete.current = false;
+      setEingeklappt(true);
+    },
+  };
+  // Einladung beim ersten Besuch, nicht bei einem geteilten Szenario-Link.
+  const [einladen, setEinladen] = useState(
+    () => !ladeTour().gesehen && !new URLSearchParams(window.location.search).has("s"),
+  );
+  const gesehen = () => {
+    speichereTour({ ...ladeTour(), gesehen: true });
+    setEinladen(false);
+  };
+  // Stand beim Start der Tour; hat die Tour das Szenario verändert, fragt sie am Ende nach. Hat sie nur das Jahr
+  // geändert, kehrt sie still zum alten Jahr zurück.
+  const [rueckfrage, setRueckfrage] = useState(false);
+  const ts = tourStand.current;
+  if (tour && ts.laufend !== tour.id) {
+    // Neues Kapitel; eine offene Rückfrage gilt dann als „So lassen“.
+    if (!ts.laufend) ts.vorher = { code: kodiere(sim.szWirksam), land: land.code, idx: sim.idx, sz: sim.sz };
+    ts.laufend = tour.id;
+    ts.letzter = false;
+  }
+  useEffect(() => {
+    if (tour && rueckfrage) setRueckfrage(false);
+  }, [tour]);
+  const erledige = (id: KapitelId) => {
+    const stand = ladeTour();
+    speichereTour({ gesehen: true, erledigt: stand.erledigt.includes(id) ? stand.erledigt : [...stand.erledigt, id] });
+  };
+  const abschluss = (fertig: boolean, id: KapitelId) => {
+    if (fertig) erledige(id);
+    else speichereTour({ ...ladeTour(), gesehen: true });
+    const v = ts.vorher;
+    ts.laufend = null;
+    ts.letzter = false;
+    if (v && v.land === land.code && v.code !== kodiere(sim.szWirksam)) setRueckfrage(true);
+    else {
+      if (v && v.land === land.code && v.idx !== sim.idx) sim.setIdx(v.idx);
+      ts.vorher = null;
+    }
+  };
+  const tourEnde = (fertig: boolean) => {
+    tourUi.schliesseSeitenleiste();
+    setEinladen(false);
+    if (tour) abschluss(fertig, tour.id);
+    setTour(null);
+    document.querySelector<HTMLElement>(".tour-menue-knopf")?.focus();
+  };
+  // Neuaufbau mitten in der Tour (Land- oder Sprachwechsel): Tour sauber abschließen.
+  useEffect(() => {
+    if (ts.laufend && !tour) abschluss(ts.letzter, ts.laufend);
+  }, []);
+  const rueckfrageEnde = (zurueck: boolean) => {
+    const v = ts.vorher;
+    if (zurueck && v) {
+      sim.ladeSzenario(v.sz);
+      sim.setIdx(v.idx);
+    }
+    ts.vorher = null;
+    setRueckfrage(false);
+  };
+  // Smartphone: Wischen nach links oder rechts wechselt den Reiter (nicht während der Tour).
   const wisch = useRef<{ x: number; y: number } | null>(null);
   const wischStart = (ev: TouchEvent) => {
     const p = ev.touches[0];
     wisch.current =
-      handy && ev.touches.length === 1 && darfWischen(ev.target)
+      handy && !tour && ev.touches.length === 1 && darfWischen(ev.target)
         ? { x: p.clientX, y: p.clientY }
         : null;
   };
@@ -167,37 +267,58 @@ function Ansichten({
         />
         <main className="main" onTouchStart={wischStart} onTouchEnd={wischEnde}>
           <Kopfleiste ansicht={ansicht} setze={setze} verfuegbar={VERFUEGBAR} />
+          {einladen && !tour && (
+            <Einladung
+              los={() => {
+                gesehen();
+                startTour("erkundung");
+              }}
+              spaeter={gesehen}
+            />
+          )}
           {/* Abschnitte tragen Anker für die Chips der Kopfleiste. */}
           {(ansicht === "uebersicht" || ansicht === "vergleich") && (
-            <div className="abschnitt" id="abschnitt-lage">
+            <div className="abschnitt" id="abschnitt-lage" data-tour="lage">
               <Wetterband sim={sim} />
             </div>
           )}
           {ansicht === "uebersicht" && (
             <>
-              <div className="abschnitt" id="abschnitt-zahlen">
+              <div className="abschnitt" id="abschnitt-zahlen" data-tour="kennzahlen">
                 <Kacheln sim={sim} />
               </div>
-              <div className="abschnitt" id="abschnitt-diagramm">
+              <div className="abschnitt" id="abschnitt-diagramm" data-tour="diagramm">
                 <Detaildiagramm sim={sim} />
               </div>
-              <div className="abschnitt" id="abschnitt-warnlampen">
+              <div className="abschnitt" id="abschnitt-warnlampen" data-tour="warnlampen">
                 <Warnlampen sim={sim} />
               </div>
-              <div className="abschnitt" id="abschnitt-erzaehlung">
+              <div className="abschnitt" id="abschnitt-erzaehlung" data-tour="erzaehlung">
                 <ErzaehlungKarte sim={sim} />
               </div>
-              <div className="abschnitt" id="abschnitt-wege">
+              <div className="abschnitt" id="abschnitt-wege" data-tour="wege">
                 <Wege sim={sim} />
               </div>
             </>
           )}
-          {ansicht === "vergleich" && <Vergleich sim={sim} />}
+          {ansicht === "vergleich" && (
+            <div data-tour="vergleich">
+              <Vergleich sim={sim} />
+            </div>
+          )}
           {ansicht === "wirkungsnetz" && (
             <Wirkungsnetz sim={sim} fokus={fokus} setzeFokus={setzeFokus} />
           )}
-          {ansicht === "rueckblick" && <Rueckblick landCode={land.code} />}
-          {ansicht === "annahmen" && <Annahmen sim={sim} />}
+          {ansicht === "rueckblick" && (
+            <div data-tour="rueckblick">
+              <Rueckblick landCode={land.code} />
+            </div>
+          )}
+          {ansicht === "annahmen" && (
+            <div data-tour="annahmen">
+              <Annahmen sim={sim} />
+            </div>
+          )}
           <p className="foot">
             {t(
               "Datenstand {jahr}. Quellen und Annahmen im Reiter „Annahmen“ und in docs/quellen.md.",
@@ -206,6 +327,18 @@ function Ansichten({
           </p>
         </main>
       </div>
+      {tour && (
+        <Tour
+          key={tour.id}
+          sim={sim}
+          ui={tourUi}
+          kapitel={tour}
+          handy={handy}
+          ende={tourEnde}
+          letzterErreicht={() => (ts.letzter = true)}
+        />
+      )}
+      {rueckfrage && <Rueckfrage zurueck={() => rueckfrageEnde(true)} lassen={() => rueckfrageEnde(false)} />}
     </>
   );
 }
