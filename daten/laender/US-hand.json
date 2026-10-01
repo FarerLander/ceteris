@@ -6,7 +6,8 @@
   "grund": { "regime": "welt", "rentensystem": "umlage", "tpi": false },
   "waehrung": { "symbol": "$", "kurs": 1.08 },
   "standards": {
-    "rente.anpassung": 0.62,
+    "rente.anpassung": 0.24,
+    "rente.indexierung": 0.27,
     "steuer.einkommen": 0.16,
     "steuer.sozialabgaben": 0.153,
     "steuer.mwst": 0.07,
@@ -95,7 +96,8 @@
     "hausBewertung0": 13
   },
   "quellen": {
-    "rente.anpassung": "Geeicht an OECD Pensions at a Glance 2023, Tabelle 8.4 (Social Security Trustees, Leistungen nach heutigem Plan); Fehler 1,5 %",
+    "rente.anpassung": "Geeicht zusammen mit der Indexierung an OECD Pensions at a Glance 2023, Tabelle 8.4 (Social Security Trustees, Leistungen nach heutigem Plan); Fehler 1,1 %",
+    "rente.indexierung": "siehe rente.anpassung",
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
     "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Präsidentschaftswahl, letzte Wahl 2024, Legislatur 4 Jahre",

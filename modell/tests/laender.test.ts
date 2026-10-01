@@ -146,7 +146,7 @@ describe("Update 2 rechnet plausibel", () => {
     // 13.5 Teil A: mit abgeschalteter Asymmetrie des Kreditimpulses. 13.6: Banken aus.
     // 13.5 Teil B: Akzelerator aus, Zinswirkung auf Investitionen wie vorher (0,6). Investitionsanker fest.
     const de = { ...de0, standards: { ...de0.standards, "wachstum.investElastizitaet": 0.6 } };
-    const v = rechne(de, { ...basisSzenario(de, 51), aus: ["wachstum.kreditAsymmetrie", "wachstum.akzelerator", "wachstum.investAnpassung", "rente.anpassung"], grund: { ...de.grund, politik: "fest", banken: "aus" } });
+    const v = rechne(de, { ...basisSzenario(de, 51), aus: ["wachstum.kreditAsymmetrie", "wachstum.akzelerator", "wachstum.investAnpassung", "rente.anpassung", "rente.indexierung"], grund: { ...de.grund, politik: "fest", banken: "aus" } });
     expect(v[50].schuldQuote).toBeCloseTo(DE_SCHULD_2075, 6);
   });
 });

@@ -14,7 +14,8 @@
     "kurs": 1
   },
   "standards": {
-    "rente.anpassung": 1.13,
+    "rente.anpassung": 0.8,
+    "rente.indexierung": 0.34,
     "steuer.einkommen": 0.14,
     "steuer.sozialabgaben": 0.45,
     "steuer.mwst": 0.2,
@@ -104,7 +105,8 @@
     "hausBewertung0": 7
   },
   "quellen": {
-    "rente.anpassung": "Geeicht am EU Ageing Report 2024 (Rentenausgaben 2025–2070, Grundszenario); Fehler 1,4 %",
+    "rente.anpassung": "Geeicht zusammen mit der Indexierung am EU Ageing Report 2024 (Rentenausgaben 2025–2070, Grundszenario); Fehler 0,8 %",
+    "rente.indexierung": "siehe rente.anpassung",
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
     "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Präsidentschaftswahl, letzte Wahl 2022, Legislatur 5 Jahre",

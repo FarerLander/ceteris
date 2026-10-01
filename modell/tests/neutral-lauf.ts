@@ -10,7 +10,7 @@ import type { Landesdaten, Zustand } from "../typen";
 // am Hebel wirkt nichts.
 // Oktober 2026: Investitionsanker gleitet (aus = Startquote); Rentenanpassung nach Landesrecht (aus = festes Niveau).
 // 13.1: Mechanik mit Handwerten. 13.10: Politik fest. 13.6: Banken aus. M29: Haushaltsplan aus.
-export const NEU_AUS = ["wachstum.kreditAsymmetrie", "wachstum.akzelerator", "wachstum.investAnpassung", "rente.anpassung"];
+export const NEU_AUS = ["wachstum.kreditAsymmetrie", "wachstum.akzelerator", "wachstum.investAnpassung", "rente.anpassung", "rente.indexierung"];
 export const ALTE_WERTE = { "wachstum.investElastizitaet": 0.6 };
 
 export function neutralLauf(land0: Landesdaten): Zustand[] {

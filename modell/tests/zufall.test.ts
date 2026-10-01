@@ -279,16 +279,15 @@ describe("Hauptlinie im Band der Zufallsläufe (Staatsschuld 2050)", () => {
     const fa = faecher(sm);
     return { linie: rechne(l, sz0)[t].schuldQuote, p10: fa.band.schuldQuote.p10[t], p90: fa.band.schuldQuote.p90[t] };
   };
-  for (const code of ["DE", "US", "JP", "IT", "CA", "CN", "RU"])
+  for (const code of ["DE", "US", "JP", "FR", "IT", "CA", "CN", "RU"])
     it(`${code}: im Band`, () => {
       const x = lage(code);
       expect(x.linie).toBeGreaterThanOrEqual(x.p10);
       expect(x.linie).toBeLessThanOrEqual(x.p90);
     });
-  // Großbritannien und Frankreich: Die Linie liegt am unteren Rand des Bandes (M29, Punkt 7). Im Band nur,
-  // weil der Produktivitätstrend streut (U2); ohne diese Streuung lägen beide darunter. Grenzfall: höchstens
-  // 3 Pp. unter dem Band, aber nicht in seiner Mitte.
-  for (const code of ["GB", "FR"])
+  // Großbritannien: Die Linie liegt am unteren Rand des Bandes (M29, Punkt 7). Grenzfall: höchstens 3 Pp. unter
+  // dem Band, aber nicht in seiner Mitte. Frankreich liegt seit der Rentenanpassung (M1) im Band.
+  for (const code of ["GB"])
     it(`${code}: Linie am unteren Rand des Bandes (Grenzfall, M29)`, () => {
       const x = lage(code);
       expect(x.linie).toBeGreaterThanOrEqual(x.p10 - 3);

@@ -13,7 +13,8 @@
     "kurs": 160
   },
   "standards": {
-    "rente.anpassung": 0.85,
+    "rente.anpassung": 0.9,
+    "rente.indexierung": -0.07,
     "steuer.einkommen": 0.12,
     "steuer.sozialabgaben": 0.3,
     "steuer.mwst": 0.1,
@@ -105,7 +106,8 @@
     "hausBewertung0": -12
   },
   "quellen": {
-    "rente.anpassung": "Geeicht an OECD Pensions at a Glance 2023, Tabelle 8.4 (Projektion des Gesundheitsministeriums, Makro-Slide); Fehler 3,4 %",
+    "rente.anpassung": "Geeicht zusammen mit der Indexierung an OECD Pensions at a Glance 2023, Tabelle 8.4 (Kabinettsamt, Finanz- und Gesundheitsministerium: „Looking ahead to 2040“, Makro-Slide); Fehler 3,6 %",
+    "rente.indexierung": "siehe rente.anpassung",
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
     "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Unterhauswahl (Höchstdauer), letzte Wahl 2024, Legislatur 4 Jahre",

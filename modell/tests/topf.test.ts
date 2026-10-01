@@ -34,7 +34,7 @@ describe("Warnlampe Spielraum", () => {
     const l = LAENDER.IT;
     // Prüft die Lampe: Mit reagierender Politik spart Italien vorher (13.10), deshalb hier fest; ohne
     // Rentenanpassung nach Landesrecht, sonst bleibt der Spielraum über 10 %.
-    const sz = { ...basisSzenario(l, 51), aus: ["rente.anpassung"], grund: { ...l.grund, politik: "fest" as const } };
+    const sz = { ...basisSzenario(l, 51), aus: ["rente.anpassung", "rente.indexierung"], grund: { ...l.grund, politik: "fest" as const } };
     const verlauf = rechne(l, sz);
     const erstes = verlauf.find((z) => z.spielraum < 10);
     expect(erstes).toBeDefined();

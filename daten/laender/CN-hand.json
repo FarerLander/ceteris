@@ -15,6 +15,7 @@
   },
   "standards": {
     "rente.anpassung": 0,
+    "rente.indexierung": 0,
     "steuer.einkommen": 0.05,
     "steuer.sozialabgaben": 0.2,
     "steuer.mwst": 0.09,
@@ -110,6 +111,7 @@
   },
   "quellen": {
     "rente.anpassung": "Keine amtliche Projektion in den genutzten Quellen; 0 = Niveau bleibt (Anhebung des Rentenalters ab 2025 nicht abgebildet)",
+    "rente.indexierung": "siehe rente.anpassung",
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp); der IWF zählt Staatsbetriebe mit (Bestand 167 % BIP bei 16,2 % Investition), umgerechnet im Verhältnis der Investitionen auf 6 % BIP: 167 × 6 / 16,2",
     "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Parteitag; kein Wahljahr-Effekt (Gewicht 0), letzte Wahl 2022, Legislatur 5 Jahre",

@@ -3,6 +3,7 @@
   "politik": { "wirksamkeit": 89, "legislatur": 4, "letzteWahl": 1998, "takt": 1 },
   "standards": {
     "rente.anpassung": 0,
+    "rente.indexierung": 0,
     "steuer.einkommen": 0.21,
     "steuer.sozialabgaben": 0.41,
     "steuer.mwst": 0.16,

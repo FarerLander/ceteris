@@ -42,7 +42,7 @@ describe("bewertePakete: Reihung", () => {
   // Gleitender Investitionsanker: vorher DE gruendungen, arbeit, fachkraefte; US gruendungen, energie, fachkraefte.
   // Rentenanpassung nach Landesrecht: vorher DE gruendungen, fachkraefte, arbeit; IT gruendungen, fachkraefte, arbeit.
   it.each([
-    ["DE", ["gruendungen", "familie", "arbeit"]],
+    ["DE", ["gruendungen", "arbeit", "fachkraefte"]],
     ["US", ["gruendungen", "arbeit", "energie"]],
     ["IT", ["gruendungen", "fachkraefte", "energie"]],
   ])("ohne Maß wie bisher: %s", (code, ids) => {

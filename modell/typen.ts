@@ -163,7 +163,6 @@ export interface Startwerte {
   staatsanteil?: number; // % der Wirtschaftsleistung aus Staatsbetrieben
   rohstoffExporte?: number; // % BIP
   energieNettoImport?: number; // % des Energieverbrauchs, negativ: Exporteur (fehlt: wie Deutschland)
-  renteAnpassungAb?: number; // Jahr, ab dem die Rentenanpassung greift (fehlt: Startjahr)
   oeffKapitalQuote?: number; // % BIP, gemessener öffentlicher Kapitalstock (fehlt: aus der Investition)
   rohstoffStaat?: number; // Anteil des Staates an den Rohstofferlösen, 0–1
   rohstoffFonds0?: number; // % BIP Stabilisierungsfonds im Startjahr
@@ -371,7 +370,6 @@ export interface Zustand {
   schuldNom: number;
   schuldQuote: number;
   fondsQuote: number;
-  rentnerQuoteAb: number; // Rentner je Beschäftigte, ab der die Rentenanpassung zählt (M1)
   armut: number;
   gini: number;
   topfZins: number; // % der Einnahmen für Zinsen
@@ -435,6 +433,7 @@ export interface Konstanten {
   userCost0: number;
   umbau0: number;
   rentenFaktor: number;
+  altenquote0: number; // Rentner ab dem gesetzlichen Rentenalter je Erwerbsperson bei struktureller Arbeitslosigkeit, Startjahr (M1)
   algFaktor: number;
   lnLuecke0: number;
   dsr0: number;
