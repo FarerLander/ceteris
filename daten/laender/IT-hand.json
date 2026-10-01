@@ -14,6 +14,8 @@
     "kurs": 1
   },
   "standards": {
+    "rente.anpassung": 0.9,
+    "rente.indexierung": 1,
     "steuer.einkommen": 0.2,
     "steuer.sozialabgaben": 0.4,
     "steuer.mwst": 0.22,
@@ -104,6 +106,8 @@
     "hausBewertung0": -10
   },
   "quellen": {
+    "rente.anpassung": "Geeicht zusammen mit der Indexierung am EU Ageing Report 2024 (Rentenausgaben 2025–2070, Grundszenario); Fehler 7 %: Den Anstieg bis 2040 und den Rückgang danach (Übergang auf beitragsbezogene Konten, Rentenalter an der Lebenserwartung) bilden zwei feste Werte nicht ab",
+    "rente.indexierung": "siehe rente.anpassung",
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
     "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Parlamentswahl, letzte Wahl 2022, Legislatur 5 Jahre",

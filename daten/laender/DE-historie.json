@@ -2,6 +2,8 @@
   "start": 2000,
   "politik": { "wirksamkeit": 89, "legislatur": 4, "letzteWahl": 1998, "takt": 1 },
   "standards": {
+    "rente.anpassung": 0,
+    "rente.indexierung": 0,
     "steuer.einkommen": 0.21,
     "steuer.sozialabgaben": 0.41,
     "steuer.mwst": 0.16,
@@ -967,6 +969,7 @@
     }
   ],
   "quellen": {
+    "rente.anpassung": "0: Der Pfad des Rentenniveaus 2000–2025 enthält den Nachhaltigkeitsfaktor schon",
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2000 in % BIP (kgov_rppp / GDP_rppp)",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2000 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Bundestagswahl 1998, Legislatur 4 Jahre (die vorgezogene Wahl 2005 kennt der feste Takt nicht)",
     "standards": "Steuersätze und Rentenparameter 2000: BMF, DRV (aus Fachwissen, ungeprüft)",

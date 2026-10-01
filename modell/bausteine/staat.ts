@@ -1,3 +1,4 @@
+import { teileAuf } from "../alter";
 import { clamp } from "../mathe";
 import { planWert } from "../haushaltsplan";
 import { politikAn } from "../politik-modus";
@@ -39,11 +40,24 @@ export const staat: Baustein = (alt, neu, k) => {
   // Ein vorhandener Reservefonds zählt als bereits geschaffter Teil des Umstiegs.
   const vorlauf = (s.fondsQuote0 ?? 0) / (k.p("rente.deckungJahre") * s.rentenausgaben);
   const kapWirksam = kap * Math.min(1, k.t / k.p("rente.umstiegJahre") + vorlauf);
+  // Rentenanpassung nach heutigem Recht (M1), zwei Kanäle: (1) Steigt die Zahl der Rentner je Beitragszahler, sinkt
+  // das Niveau (Nachhaltigkeitsfaktor, Makro-Slide). Gezählt werden Rentner ab dem gesetzlichen Rentenalter des Landes,
+  // nicht ab dem eingestellten, und Erwerbspersonen bei struktureller Arbeitslosigkeit, ohne Konjunktur: Ein höheres
+  // Rentenalter, mehr Zuwanderung und eine Krise wirken auf die Ausgaben wie ohne Anpassung, nur gedämpft.
+  // (2) Das Niveau bleibt jedes Jahr um einen Teil des Trendwachstums der Löhne zurück (Preisindexierung); negativ:
+  // es steigt schneller (Triple Lock).
+  const rentnerGesetz = teileAuf(neu.alter, k.basis("rente.alter")).rentner;
+  const zahlerTrend = Math.max(0.1, neu.erwerbspersonen * (1 - neu.nairuEff / 100));
+  const lohnTrend = s.tfpTrend / 100 / (1 - k.p("wachstum.alpha"));
+  const anpassung =
+    (rentnerGesetz / zahlerTrend / k.c.altenquote0) ** -k.p("rente.anpassung") *
+    (1 - k.p("rente.indexierung") * lohnTrend) ** k.t;
   const renteGesamt =
     ((neu.rentner * (k.w("rente.niveau") / 100) * s.lohnquote) /
       Math.max(0.1, neu.beschaeftigte)) *
     100 *
-    k.c.rentenFaktor;
+    k.c.rentenFaktor *
+    anpassung;
   const einzahlung =
     kap *
     k.p("rente.beitragsanteil") *

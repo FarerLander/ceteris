@@ -149,6 +149,7 @@ export function startzustand(
     userCost0: s.rendite - s.inflation + delta * 100,
     umbau0,
     rentenFaktor: s.rentenausgaben / rentenBasis,
+    altenquote0: teile.rentner / Math.max(0.1, erwerbspersonen * (1 - s.nairu / 100)),
     algFaktor: s.alg / algBasis,
     lnLuecke0: Math.log(grenze / A),
     dsr0,

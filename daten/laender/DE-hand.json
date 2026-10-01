@@ -9,6 +9,8 @@
     "tpi": false
   },
   "standards": {
+    "rente.anpassung": 0.79,
+    "rente.indexierung": 0.05,
     "ordnung.rechtsstaat": 85,
     "staat.investitionen": 3.3
   },
@@ -71,6 +73,8 @@
     "hausBewertung0": -13
   },
   "quellen": {
+    "rente.anpassung": "Geeicht zusammen mit der Indexierung am EU Ageing Report 2024 (Rentenausgaben 2025–2070, Grundszenario); Fehler 0,5 %",
+    "rente.indexierung": "siehe rente.anpassung",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Bundestagswahl, letzte Wahl 2025, Legislatur 4 Jahre",
     "kapitalkoeffizient": "Destatis VGR, Nettoanlagevermögen zu Wiederbeschaffungspreisen / BIP",
     "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",

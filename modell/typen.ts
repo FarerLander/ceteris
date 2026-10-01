@@ -433,6 +433,7 @@ export interface Konstanten {
   userCost0: number;
   umbau0: number;
   rentenFaktor: number;
+  altenquote0: number; // Rentner ab dem gesetzlichen Rentenalter je Erwerbsperson bei struktureller Arbeitslosigkeit, Startjahr (M1)
   algFaktor: number;
   lnLuecke0: number;
   dsr0: number;

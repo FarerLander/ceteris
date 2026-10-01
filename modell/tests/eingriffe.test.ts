@@ -344,8 +344,8 @@ describe("W1: Änderungen kehren ihr Vorzeichen nie um", () => {
 describe("konsolidiere: Faktor und Sperrklinke", () => {
   const BEREICHE = ["staat.uebrige", "energie.industrieSubvention", "rente.niveau", "staat.gesundheit", "staat.familie", "staat.verteidigung", "innov.bildung"];
   function fall(code: string, t: number, stell: Record<string, Pfad> = {}) {
-    // Gemessen vor dem gleitenden Investitionsanker.
-    const x = lage(LAENDER[code], t, {}, [], stell, ["wachstum.investAnpassung"]);
+    // Gemessen vor dem gleitenden Investitionsanker und der Rentenanpassung nach Landesrecht.
+    const x = lage(LAENDER[code], t, {}, [], stell, ["wachstum.investAnpassung", "rente.anpassung", "rente.indexierung"]);
     const stand = neuerStand();
     for (const id of BEREICHE) stand.kuerzBasis[id] = x.w(id);
     return { ...x, stand };
@@ -381,8 +381,9 @@ describe("konsolidiere: Faktor und Sperrklinke", () => {
 });
 
 describe("engSchritt", () => {
+  // Gemessen vor der Rentenanpassung nach Landesrecht: Mit ihr ist der Haushalt der USA 2065 nicht eng.
   const eng = (land: Landesdaten, stell: Record<string, Pfad> = {}) => {
-    const x = lage(land, 40, {}, [], stell);
+    const x = lage(land, 40, {}, [], stell, ["rente.anpassung", "rente.indexierung"]);
     return { ...x, stand: neuerStand() };
   };
   const US = LAENDER.US;

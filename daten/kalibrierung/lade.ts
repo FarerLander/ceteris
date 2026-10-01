@@ -32,8 +32,10 @@ export function baueFall(f: Fall): { land: Landesdaten; sz: Szenario } {
     konsens: undefined,
     hinweis: undefined,
     grund: { ...v.grund, ...f.grund },
+    // Die Rentenanpassung der Vorlage ist heutiges Recht; ein Fall aus der Vergangenheit rechnet ohne sie,
+    // solange er keine eigene hat.
     start: { ...v.start, ...f.werte } as Startwerte,
-    standards: { ...v.standards, ...f.standards },
+    standards: { ...v.standards, "rente.anpassung": 0, "rente.indexierung": 0, ...f.standards },
   };
   land.standards = kalibriereStandards(land);
   const stell: Record<string, Pfad> = { ...f.stell };
