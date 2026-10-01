@@ -1844,7 +1844,7 @@
 
 /* Hilfe-Modus: geführte Tour */
 .tour-licht {
-  position: fixed;
+  position: absolute;
   z-index: 900;
   border: 3px solid var(--accent);
   border-radius: 16px;
@@ -1985,4 +1985,8 @@
 .tour-menue button:hover,
 .tour-menue button:focus-visible {
   background: var(--line);
+}
+/* Ziele der Tour nicht unter der festen Kopfleiste verstecken. */
+[data-tour] {
+  scroll-margin-top: 76px;
 }

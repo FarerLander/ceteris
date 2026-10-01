@@ -66,6 +66,8 @@ export function Tour({
   const [nr, setNr] = useState(() => kapitel.schritte.findIndex(passt));
   const [erledigt, setErledigt] = useState(false);
   const [rect, setRect] = useState<DOMRect | null>(null);
+  // Ziel gefunden; bis dahin bleibt die Sprechblase weg.
+  const [gefunden, setGefunden] = useState(false);
   const start = useRef<Momentaufnahme>(momentaufnahme(sim));
   const schritt: Schritt | undefined = kapitel.schritte[nr];
 
@@ -91,21 +93,33 @@ export function Tour({
     start.current = momentaufnahme(sim);
     setErledigt(false);
     setRect(null);
+    setGefunden(!schritt.ziel);
     let el: HTMLElement | null = null;
     const miss = () => el && setRect(el.getBoundingClientRect());
-    const id = window.requestAnimationFrame(() => {
+    // Nach einem Reiterwechsel ist das Ziel erst nach dem nächsten Zeichnen da: bis zu einer Sekunde warten,
+    // erst dann gilt der Schritt als nicht anwendbar.
+    let versuche = 0;
+    let id = 0;
+    const suche = () => {
       el = zielVon(schritt);
-      if (schritt.ziel && !el) return weiter();
-      el?.scrollIntoView?.({
-        block: "center",
-        behavior: ruhig() ? "auto" : "smooth",
-      });
+      if (schritt.ziel && !el) {
+        if (++versuche > 20) return weiter();
+        id = window.setTimeout(suche, 50);
+        return;
+      }
+      setGefunden(true);
+      // Smartphone: Ziel nach oben, damit die Karte unten es nicht verdeckt.
+      el?.scrollIntoView?.({ block: handy ? "start" : "center", behavior: ruhig() ? "auto" : "smooth" });
       miss();
-    });
+    };
+    suche();
     window.addEventListener("scroll", miss, true);
     window.addEventListener("resize", miss);
+    // Sanftes Scrollen meldet nicht überall jedes Ereignis: zusätzlich regelmäßig nachmessen.
+    const takt = window.setInterval(miss, 250);
     return () => {
-      window.cancelAnimationFrame(id);
+      window.clearInterval(takt);
+      window.clearTimeout(id);
       window.removeEventListener("scroll", miss, true);
       window.removeEventListener("resize", miss);
     };
@@ -151,7 +165,7 @@ export function Tour({
     return () => window.removeEventListener("keydown", taste);
   });
 
-  if (!schritt) return null;
+  if (!schritt || (schritt.ziel && !gefunden)) return null;
   const vormachen = () => {
     const r = schritt.vormachen?.(sim, ui);
     // Als Ereignis, nicht .click(): Die Bausteine des Wirkungsnetzes sind SVG-Elemente.
@@ -185,9 +199,11 @@ export function Tour({
         <div
           className="tour-licht"
           aria-hidden="true"
+          // Im Dokument verankert, nicht am Bildschirm: Auf dem Smartphone verschiebt sich „fixed“ gegen den
+          // sichtbaren Ausschnitt, und so scrollt die Hervorhebung von selbst mit.
           style={{
-            top: rect.top - pad,
-            left: rect.left - pad,
+            top: rect.top + window.scrollY - pad,
+            left: rect.left + window.scrollX - pad,
             width: rect.width + 2 * pad,
             height: rect.height + 2 * pad,
           }}

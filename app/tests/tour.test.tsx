@@ -83,7 +83,11 @@ describe("Tour: Erste Erkundung", () => {
     starte(k);
     await waitFor(() => expect(blase()).not.toBeNull());
     weiter();
-    await waitFor(() => expect(within(blase()!).getByText("Dritter Schritt")).toBeTruthy());
+    // Die Tour wartet bis zu einer Sekunde auf ein verzögert gezeichnetes Ziel, dann überspringt sie.
+    // Während sie sucht, steht der Text des unsichtbaren Schritts nicht da.
+    await new Promise((r) => setTimeout(r, 300));
+    expect(screen.queryByText("Unsichtbar")).toBeNull();
+    await waitFor(() => expect(within(blase()!).getByText("Dritter Schritt")).toBeTruthy(), { timeout: 3000 });
     expect(screen.queryByText("Unsichtbar")).toBeNull();
   });
 });
@@ -233,9 +237,11 @@ describe("Tour: weitere Kapitel", () => {
     await waitFor(() => expect(blase()).not.toBeNull());
     expect(document.querySelector('[data-tour="vergleich"]')).not.toBeNull();
     weiter();
-    await waitFor(() => expect(document.querySelector('[data-tour="rueckblick"]')).not.toBeNull());
+    await waitFor(() => expect(within(blase()!).getByText("2 von 3")).toBeTruthy());
+    expect(document.querySelector('[data-tour="rueckblick"]')).not.toBeNull();
     weiter();
-    await waitFor(() => expect(document.querySelector('[data-tour="annahmen"]')).not.toBeNull());
+    await waitFor(() => expect(within(blase()!).getByText("3 von 3")).toBeTruthy());
+    expect(document.querySelector('[data-tour="annahmen"]')).not.toBeNull();
   }, 15000);
 
   it("Menü zeigt alle vier Kapitel", () => {
@@ -244,5 +250,34 @@ describe("Tour: weitere Kapitel", () => {
     expect(within(screen.getByRole("menu", { name: "Tour und Hilfe" })).getAllByRole("menuitem").map((m) => m.textContent?.trim().slice(2))).toEqual([
       "Erste Erkundung", "Wirkungsnetz: Warum passiert das?", "Selbst einstellen", "Vergleichen und prüfen",
     ]);
+  });
+});
+
+describe("Tour: Ziel erscheint verzögert", () => {
+  it("wartet kurz auf ein Ziel, das erst nach dem Reiterwechsel gezeichnet wird, statt den Schritt zu überspringen", async () => {
+    let spaet: HTMLElement | null = null;
+    const k: Kapitel = { id: "erkundung", titel: "Test", schritte: [
+      { id: "a", ziel: null, text: "Erster Schritt" },
+      {
+        id: "b",
+        ziel: "kommt-spaeter",
+        text: "Verzögertes Ziel",
+        vorbereiten: () => {
+          window.setTimeout(() => {
+            spaet = document.createElement("div");
+            spaet.setAttribute("data-tour", "kommt-spaeter");
+            document.body.appendChild(spaet);
+          }, 150);
+        },
+      },
+      { id: "c", ziel: null, text: "Dritter Schritt" },
+    ] };
+    render(<App />);
+    starte(k);
+    await waitFor(() => expect(blase()).not.toBeNull());
+    weiter();
+    await new Promise((r) => setTimeout(r, 400));
+    expect(within(blase()!).getByText("Verzögertes Ziel")).toBeTruthy();
+    spaet!.remove();
   });
 });
