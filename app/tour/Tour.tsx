@@ -114,11 +114,8 @@ export function Tour({
   // Aufgabe am Zustand der Simulation.
   useEffect(() => {
     const a = schritt?.aufgabe;
-    if (
-      a?.art === "sim" &&
-      !erledigt &&
-      a.erledigt(start.current, momentaufnahme(sim))
-    )
+    if (erledigt || !a) return;
+    if (a.art === "sim" ? a.erledigt(start.current, momentaufnahme(sim)) : a.art === "pruefe" && a.erledigt())
       setErledigt(true);
   });
 
@@ -157,8 +154,8 @@ export function Tour({
   if (!schritt) return null;
   const vormachen = () => {
     const r = schritt.vormachen?.(sim, ui);
-    if (r && "klick" in r)
-      document.querySelector<HTMLElement>(r.klick)?.click();
+    // Als Ereignis, nicht .click(): Die Bausteine des Wirkungsnetzes sind SVG-Elemente.
+    if (r && "klick" in r) document.querySelector(r.klick)?.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   };
   const letzter = !naechster({ kapitel, nr }, passt);
 
@@ -173,14 +170,13 @@ export function Tour({
         rect.left + rect.width / 2 - BREITE / 2,
       ),
     );
+    // Großes Ziel ohne Platz darüber und darunter: unten rechts im Bild.
     stil =
       rect.bottom + 230 < window.innerHeight
         ? { top: rect.bottom + 12, left: links }
-        : {
-            top: Math.max(12, rect.top - 12),
-            left: links,
-            transform: "translateY(-100%)",
-          };
+        : rect.top > 242
+          ? { top: rect.top - 12, left: links, transform: "translateY(-100%)" }
+          : { bottom: 16, right: 16 };
   }
   const pad = 6;
   return createPortal(

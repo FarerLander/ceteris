@@ -1692,5 +1692,21 @@
   "So lassen": "Keep it",
   "Zurück zu deinem Stand vorher": "Back to where you were",
   "Tour und Hilfe": "Tour and help",
-  "erledigt": "done"
+  "erledigt": "done",
+  "Wirkungsnetz: Warum passiert das?": "Effect network: why does this happen?",
+  "Selbst einstellen": "Adjust it yourself",
+  "Vergleichen und prüfen": "Compare and check",
+  "Die Landkarte zeigt die zehn Bausteine des Modells in der Reihenfolge, in der es jedes Jahr rechnet: von der Bevölkerung über Wachstum und Staat bis zu Handel und Banken.": "The map shows the model's ten modules in the order in which it computes them every year: from population through growth and the state to trade and banks.",
+  "Wähle hier die Stellschraube „Rentenalter“. Dann leuchtet ihr Weg auf: was im ersten Jahr wirkt, was nach zwei bis drei und was nach vier bis zehn Jahren.": "Choose the lever “Retirement age” here. Its path then lights up: what acts in the first year, what after two to three and what after four to ten years.",
+  "Tippe einen Baustein an. Du siehst, was er ausrechnet und von welchen Bausteinen er seine Eingänge bekommt.": "Tap a module. You see what it computes and which modules it receives its inputs from.",
+  "Jeder Regler in der Seitenleiste führt mit einem Klick hierher: So siehst du zu jeder Stellschraube, worüber sie wirkt.": "Every slider in the sidebar leads here with one click: this way you can see for every lever how it takes effect.",
+  "Die Hauptregler sind die wichtigsten Stellschrauben. Erhöhe das Rentenalter um zwei Jahre und schau, wie sich die Kennzahlen ändern.": "The main sliders are the most important levers. Raise the retirement age by two years and watch how the key figures change.",
+  "Unter „Alle Stellschrauben“ liegen über hundert Regler, nach Bereichen sortiert: Steuern, Renten, Energie, Migration und mehr. Hier lohnt es sich, mitzudenken.": "“All levers” holds more than a hundred sliders, sorted by area: taxes, pensions, energy, migration and more. Here it pays to think along.",
+  "Die Grundeinstellungen sind die großen Weichen: welche Währung das Land hat, wie die Renten finanziert werden und ob die Regierung auf Krisen von selbst reagiert.": "The basic settings are the big switches: which currency the country has, how pensions are financed and whether the government reacts to crises on its own.",
+  "Die Zeichen über dem Wetterband sind Entscheidungen der Regierung. Öffne eine: Du siehst, welche Möglichkeiten sie hatte, und kannst auf eine andere umschalten.": "The symbols above the weather band are government decisions. Open one: you see which options it had and can switch to another.",
+  "Ein Szenario kannst du unter einem Namen speichern oder als Link teilen: Wer den Link öffnet, sieht genau deinen Stand.": "You can save a scenario under a name or share it as a link: whoever opens the link sees exactly your state.",
+  "„Zurück zur Basislinie“ nimmt alle Änderungen auf einmal zurück.": "“Back to baseline” undoes all changes at once.",
+  "Im Vergleich steht dein Szenario neben der Basislinie oder einem gespeicherten Szenario, der Unterschied farbig.": "The comparison puts your scenario next to the baseline or a saved scenario, with the difference in colour.",
+  "Der Rückblick prüft das Modell an der Wirklichkeit: Wie gut hätte es die Jahre 2000 bis 2025 getroffen, wenn man es damals gestartet hätte?": "The backtest tests the model against reality: how well would it have predicted 2000 to 2025 had it been started back then?",
+  "Unter Annahmen stehen Quellen, Wirkstärken und Kritikpunkte. Umstrittene Wirkstärken kannst du einzeln abschalten. Hier zeigt das Modell ehrlich seine Grenzen.": "Assumptions lists sources, effect sizes and criticisms. You can switch off disputed effect sizes one by one. This is where the model honestly shows its limits."
 }

@@ -81,6 +81,7 @@ function Landkarte({
             role="button"
             tabIndex={0}
             aria-label={t("Baustein {name}", { name: bName(b) })}
+            data-baustein={b}
             aria-pressed={gewaehlt === b}
             className="netz-baustein"
             onClick={() => waehle(b)}
@@ -225,7 +226,7 @@ export function Wirkungsnetz({
     : [];
   return (
     <>
-      <section className="card" aria-label={t("Landkarte der Bausteine")}>
+      <section className="card" aria-label={t("Landkarte der Bausteine")} data-tour="netz-karte">
         <h2>{t("Landkarte der Bausteine")}</h2>
         <p className="lead">
           {t("Die zehn Bausteine in der Reihenfolge, in der das Modell jedes Jahr rechnet. Ein Pfeil heißt: Der Baustein am Ende liest eine Größe, die der am Anfang schreibt. Gestrichelt: erst im Folgejahr. Ermittelt aus einer echten Rechnung, nicht von Hand gezeichnet.")}
@@ -269,7 +270,7 @@ export function Wirkungsnetz({
           </div>
         )}
       </section>
-      <section className="card" aria-label={t("Weg einer Stellschraube")}>
+      <section className="card" aria-label={t("Weg einer Stellschraube")} data-tour="netz-weg">
         <h2>{t("Weg einer Stellschraube")}</h2>
         <div className="field">
           <label htmlFor="netz-fokus">{t("Stellschraube")}</label>

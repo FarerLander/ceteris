@@ -184,3 +184,65 @@ describe("Tour: Einladung, Menü, eigener Stand", () => {
     }
   }, 15000);
 });
+
+describe("Tour: weitere Kapitel", () => {
+  // Läuft ein Kapitel mit Weiter und „Zeig’s mir“ durch; gibt die gezeigten Schrittzahlen zurück.
+  async function durch(): Promise<string[]> {
+    await waitFor(() => expect(blase()).not.toBeNull());
+    const gesehen: string[] = [];
+    for (let i = 0; i < 12 && blase(); i++) {
+      const b = within(blase()!);
+      gesehen.push(b.getByText(/^\d+ von \d+$/).textContent!);
+      fireEvent.click(b.queryByRole("button", { name: "Fertig" }) ?? b.queryByRole("button", { name: "Weiter" }) ?? b.getByRole("button", { name: "Zeig’s mir" }));
+      await act(async () => { await new Promise((r) => setTimeout(r, 0)); });
+    }
+    await waitFor(() => expect(blase()).toBeNull());
+    return gesehen;
+  }
+
+  it.each(["DE", "US"])("%s: Wirkungsnetz läuft durch; „Zeig’s mir“ wählt das Rentenalter", async (land) => {
+    window.history.replaceState(null, "", land === "DE" ? "/" : `/?l=${land}`);
+    render(<App />);
+    starte("wirkungsnetz");
+    await waitFor(() => expect(screen.getByRole("region", { name: "Landkarte der Bausteine" })).toBeTruthy());
+    await durch();
+    expect(window.location.hash).toContain(":rente.alter");
+  }, 15000);
+
+  it.each(["DE", "US"])("%s: Selbst einstellen läuft durch und erhöht das Rentenalter", async (land) => {
+    window.history.replaceState(null, "", land === "DE" ? "/" : `/?l=${land}`);
+    render(<App />);
+    starte("einstellen");
+    const gesehen = await durch();
+    expect(screen.getByRole("dialog", { name: "Tour beendet" })).toBeTruthy();
+    // Mit reagierender Politik hat Deutschland Entscheidungspunkte: Der §-Schritt kommt vor.
+    if (land === "DE") expect(gesehen).toContain("4 von 6");
+  }, 15000);
+
+  it("Selbst einstellen: Ohne Entscheidungen der Regierung (Politik fest) entfällt der §-Schritt", async () => {
+    render(<App />);
+    fireEvent.click(screen.getByLabelText("Fest"));
+    starte("einstellen");
+    const gesehen = await durch();
+    expect(gesehen).not.toContain("4 von 6");
+  }, 15000);
+
+  it("Vergleichen und prüfen öffnet Vergleich, Rückblick und Annahmen", async () => {
+    render(<App />);
+    starte("pruefen");
+    await waitFor(() => expect(blase()).not.toBeNull());
+    expect(document.querySelector('[data-tour="vergleich"]')).not.toBeNull();
+    weiter();
+    await waitFor(() => expect(document.querySelector('[data-tour="rueckblick"]')).not.toBeNull());
+    weiter();
+    await waitFor(() => expect(document.querySelector('[data-tour="annahmen"]')).not.toBeNull());
+  }, 15000);
+
+  it("Menü zeigt alle vier Kapitel", () => {
+    render(<App />);
+    fireEvent.click(screen.getByRole("button", { name: "Tour und Hilfe" }));
+    expect(within(screen.getByRole("menu", { name: "Tour und Hilfe" })).getAllByRole("menuitem").map((m) => m.textContent?.trim().slice(2))).toEqual([
+      "Erste Erkundung", "Wirkungsnetz: Warum passiert das?", "Selbst einstellen", "Vergleichen und prüfen",
+    ]);
+  });
+});

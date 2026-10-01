@@ -1,3 +1,4 @@
+import { standardWert } from "../../modell/kontext";
 import type { ReihenId } from "../../modell/reihen";
 import type { Kapitel } from "./typen";
 
@@ -79,4 +80,113 @@ const erkundung: Kapitel = {
   ],
 };
 
-export const KAPITEL: Kapitel[] = [erkundung];
+const wirkungsnetz: Kapitel = {
+  id: "wirkungsnetz",
+  titel: "Wirkungsnetz: Warum passiert das?",
+  schritte: [
+    {
+      id: "karte",
+      ziel: "netz-karte",
+      vorbereiten: (ui) => ui.setzeAnsicht("wirkungsnetz"),
+      text: "Die Landkarte zeigt die zehn Bausteine des Modells in der Reihenfolge, in der es jedes Jahr rechnet: von der Bevölkerung über Wachstum und Staat bis zu Handel und Banken.",
+    },
+    {
+      id: "weg",
+      ziel: "netz-weg",
+      vorbereiten: (ui) => ui.setzeAnsicht("wirkungsnetz"),
+      text: "Wähle hier die Stellschraube „Rentenalter“. Dann leuchtet ihr Weg auf: was im ersten Jahr wirkt, was nach zwei bis drei und was nach vier bis zehn Jahren.",
+      aufgabe: { art: "pruefe", erledigt: () => window.location.hash.includes(":rente.alter") },
+      vormachen: (_sim, ui) => ui.setzeFokus("rente.alter"),
+    },
+    {
+      id: "baustein",
+      ziel: "netz-karte",
+      vorbereiten: (ui) => ui.setzeAnsicht("wirkungsnetz"),
+      text: "Tippe einen Baustein an. Du siehst, was er ausrechnet und von welchen Bausteinen er seine Eingänge bekommt.",
+      aufgabe: { art: "klick", innerhalb: ".netz-baustein" },
+      vormachen: () => ({ klick: '[data-baustein="staat"]' }),
+    },
+    {
+      id: "regler",
+      ziel: "hauptregler",
+      seitenleiste: 1,
+      text: "Jeder Regler in der Seitenleiste führt mit einem Klick hierher: So siehst du zu jeder Stellschraube, worüber sie wirkt.",
+    },
+  ],
+};
+
+const einstellen: Kapitel = {
+  id: "einstellen",
+  titel: "Selbst einstellen",
+  schritte: [
+    {
+      id: "hauptregler",
+      ziel: "hauptregler",
+      seitenleiste: 1,
+      vorbereiten: (ui) => ui.setzeAnsicht("uebersicht"),
+      text: "Die Hauptregler sind die wichtigsten Stellschrauben. Erhöhe das Rentenalter um zwei Jahre und schau, wie sich die Kennzahlen ändern.",
+      aufgabe: { art: "sim", erledigt: (a, b) => b.stell["rente.alter"] !== a.stell["rente.alter"] },
+      vormachen: (sim) => sim.setzeStell("rente.alter", standardWert("rente.alter", sim.land) + 2),
+    },
+    {
+      id: "alle",
+      ziel: "alle",
+      seitenleiste: 2,
+      text: "Unter „Alle Stellschrauben“ liegen über hundert Regler, nach Bereichen sortiert: Steuern, Renten, Energie, Migration und mehr. Hier lohnt es sich, mitzudenken.",
+    },
+    {
+      id: "grund",
+      ziel: "grund",
+      seitenleiste: 0,
+      text: "Die Grundeinstellungen sind die großen Weichen: welche Währung das Land hat, wie die Renten finanziert werden und ob die Regierung auf Krisen von selbst reagiert.",
+    },
+    {
+      id: "entscheidungen",
+      ziel: "entscheidungen",
+      vorbereiten: (ui) => ui.setzeAnsicht("uebersicht"),
+      nurWenn: (sim) => sim.verlauf.some((z) => z.politik.length > 0),
+      text: "Die Zeichen über dem Wetterband sind Entscheidungen der Regierung. Öffne eine: Du siehst, welche Möglichkeiten sie hatte, und kannst auf eine andere umschalten.",
+      aufgabe: { art: "klick", innerhalb: "button" },
+      vormachen: () => ({ klick: '[data-tour="entscheidungen"] button' }),
+    },
+    {
+      id: "szenarien",
+      ziel: "szenarien",
+      seitenleiste: 3,
+      text: "Ein Szenario kannst du unter einem Namen speichern oder als Link teilen: Wer den Link öffnet, sieht genau deinen Stand.",
+    },
+    {
+      id: "zurueck",
+      ziel: "zurueck",
+      seitenleiste: 3,
+      text: "„Zurück zur Basislinie“ nimmt alle Änderungen auf einmal zurück.",
+    },
+  ],
+};
+
+const pruefen: Kapitel = {
+  id: "pruefen",
+  titel: "Vergleichen und prüfen",
+  schritte: [
+    {
+      id: "vergleich",
+      ziel: "vergleich",
+      vorbereiten: (ui) => ui.setzeAnsicht("vergleich"),
+      text: "Im Vergleich steht dein Szenario neben der Basislinie oder einem gespeicherten Szenario, der Unterschied farbig.",
+    },
+    {
+      id: "rueckblick",
+      ziel: "rueckblick",
+      vorbereiten: (ui) => ui.setzeAnsicht("rueckblick"),
+      text: "Der Rückblick prüft das Modell an der Wirklichkeit: Wie gut hätte es die Jahre 2000 bis 2025 getroffen, wenn man es damals gestartet hätte?",
+    },
+    {
+      id: "annahmen",
+      ziel: "annahmen",
+      vorbereiten: (ui) => ui.setzeAnsicht("annahmen"),
+      text: "Unter Annahmen stehen Quellen, Wirkstärken und Kritikpunkte. Umstrittene Wirkstärken kannst du einzeln abschalten. Hier zeigt das Modell ehrlich seine Grenzen.",
+    },
+  ],
+};
+
+export const KAPITEL: Kapitel[] = [erkundung, wirkungsnetz, einstellen, pruefen];

@@ -28,7 +28,8 @@ export interface Schritt {
   text: string; // deutscher Text, übersetzt über t()
   aufgabe?:
     | { art: "sim"; erledigt(start: Momentaufnahme, jetzt: Momentaufnahme): boolean }
-    | { art: "klick"; innerhalb: string }; // Selektor relativ zum Ziel
+    | { art: "klick"; innerhalb: string } // Selektor relativ zum Ziel
+    | { art: "pruefe"; erledigt(): boolean }; // Zustand außerhalb der Simulation (etwa die Adresse)
   // Führt die Aufgabe aus; gibt einen Selektor zurück, wenn ein Element geklickt werden soll.
   vormachen?(sim: Sim, ui: TourUi): void | { klick: string };
   vorbereiten?(ui: TourUi): void;

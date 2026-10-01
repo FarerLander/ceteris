@@ -346,7 +346,7 @@ function Inhalt({
       {seite(
         0,
         <>
-          <section>
+          <section data-tour="grund">
             <h3 className="group-title">{t("Grundeinstellungen")}</h3>
             <div className="field" data-tour="land">
               <label htmlFor="land">
@@ -462,7 +462,7 @@ function Inhalt({
 
       {seite(
         1,
-        <section>
+        <section data-tour="hauptregler">
           <h3 className="group-title">{t("Hauptregler")}</h3>
           {alle
             .filter((e) => e.haupt)
@@ -474,7 +474,7 @@ function Inhalt({
 
       {seite(
         2,
-        <details className="more" open={blatt || undefined}>
+        <details className="more" open={blatt || undefined} data-tour="alle">
           <summary>{t("Alle Stellschrauben")}</summary>
           {BLOECKE.map(([b, titel]) => (
             <details className="block" key={b}>
@@ -543,9 +543,11 @@ function Inhalt({
       {seite(
         3,
         <>
-          <Szenarien sim={sim} />
+          <div data-tour="szenarien">
+            <Szenarien sim={sim} />
+          </div>
 
-          <button className="reset" type="button" onClick={sim.zuruecksetzen}>
+          <button className="reset" type="button" onClick={sim.zuruecksetzen} data-tour="zurueck">
             {t("Zurück zur Basislinie")}
           </button>
         </>,

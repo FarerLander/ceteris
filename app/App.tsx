@@ -261,12 +261,24 @@ function Ansichten({
               </div>
             </>
           )}
-          {ansicht === "vergleich" && <Vergleich sim={sim} />}
+          {ansicht === "vergleich" && (
+            <div data-tour="vergleich">
+              <Vergleich sim={sim} />
+            </div>
+          )}
           {ansicht === "wirkungsnetz" && (
             <Wirkungsnetz sim={sim} fokus={fokus} setzeFokus={setzeFokus} />
           )}
-          {ansicht === "rueckblick" && <Rueckblick landCode={land.code} />}
-          {ansicht === "annahmen" && <Annahmen sim={sim} />}
+          {ansicht === "rueckblick" && (
+            <div data-tour="rueckblick">
+              <Rueckblick landCode={land.code} />
+            </div>
+          )}
+          {ansicht === "annahmen" && (
+            <div data-tour="annahmen">
+              <Annahmen sim={sim} />
+            </div>
+          )}
           <p className="foot">
             {t(
               "Datenstand {jahr}. Quellen und Annahmen im Reiter „Annahmen“ und in docs/quellen.md.",
