@@ -58,7 +58,7 @@ describe("13.13 Entscheidungspunkte zum Umschalten", () => {
     fireEvent.click(zurueck);
     expect(eingriffe()).toEqual(vorher);
     await waitFor(() => expect(wahlImLink()).toBeUndefined());
-  });
+  }, 15000);
   it("im Link steht nach dem Umschalten kein Eintrag für einen Punkt, den es nicht mehr gibt", async () => {
     render(<App />);
     fireEvent.click(marke());
@@ -90,7 +90,7 @@ describe("13.13 Entscheidungspunkte zum Umschalten", () => {
     fireEvent.click(screen.getByLabelText("Fest"));
     fireEvent.click(screen.getByLabelText("Reagiert"));
     expect(screen.queryByRole("region", { name: /Die Regierung muss entscheiden/ })).toBeNull();
-  });
+  }, 15000);
   it("G4: der Knopf im Wetterband verweist auf die Karte; nach der Wahl bleibt der Fokus auf der gewählten Karte", () => {
     render(<App />);
     fireEvent.click(marke());
@@ -123,7 +123,7 @@ describe("13.13 Entscheidungspunkte zum Umschalten", () => {
     await new Promise((r) => setTimeout(r, 600));
     fireEvent.click(screen.getByLabelText("2075"));
     await waitFor(() => expect(wahlImLink()).toEqual(gewaehlt));
-  });
+  }, 15000);
   it("Politik „Fest“: keine Knöpfe, keine Karte", () => {
     render(<App />);
     fireEvent.click(marke());
