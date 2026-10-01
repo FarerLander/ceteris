@@ -158,6 +158,8 @@ export function startzustand(
     eq0: s.erwerbsquote,
     y0: s.bip,
     lb0,
+    // Quote, die den Kapitalkoeffizienten des Startjahres hält, wenn die Produktivität im Trend wächst (M34).
+    investAnker: (delta + s.tfpTrend / 100 / (1 - alpha)) * s.kapitalkoeffizient * 100,
     // Bestand, den die heutige Investition bei Trendwachstum hält.
     oeffKapital0: Math.max(1, k.basis("staat.investitionen") / Math.max(0.01, k.p("staat.oeffAbschreibung") + s.tfpTrend / 100)),
     bankVerlust0: bank && bilanz0 > 0 ? verlust0 / bilanz0 : 0,

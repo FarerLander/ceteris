@@ -529,9 +529,9 @@ describe("Bankbilanz im Lauf", () => {
     expect(aus[3].bankKapital).toBeCloseTo(ohne[3].bankKapital, 9);
   });
 
-  it("China mit Kreditlenkung 70: Staatsbanken-Verluste laufen weiter über die verdeckte Schuld", () => {
+  it("China mit Kreditlenkung 90: Staatsbanken-Verluste laufen weiter über die verdeckte Schuld", () => {
     const CN = LAENDER.CN;
-    const sz = { ...basisSzenario(CN, 51), stell: { "ordnung.kreditlenkung": 70 } };
+    const sz = { ...basisSzenario(CN, 51), stell: { "ordnung.kreditlenkung": 90 } };
     const an = rechne(CN, { ...sz, grund: { ...CN.grund, banken: "an" } });
     const aus = rechne(CN, { ...sz, grund: { ...CN.grund, banken: "aus" } });
     expect(an.some((z) => z.uebernahme > 0)).toBe(true);

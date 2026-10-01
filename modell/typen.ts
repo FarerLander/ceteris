@@ -440,6 +440,7 @@ export interface Konstanten {
   eq0: number;
   y0: number;
   lb0: number;
+  investAnker: number; // % BIP, Investitionsquote, die den Kapitalkoeffizienten des Startjahres bei Trendwachstum hält
   oeffKapital0: number; // % BIP, öffentlicher Kapitalstock im Startjahr (Investition ÷ (Abschreibung + Trendwachstum))
   // Spec 13.6 (ohne Bankdaten 0)
   bankVerlust0: number; // Abschreibung je Bilanz im ruhigen Startjahr; der Gewinn deckt sie

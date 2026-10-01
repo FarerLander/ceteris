@@ -843,6 +843,17 @@ wirk(
   U(0),
 );
 wirk(
+  "wachstum.investAnpassung",
+  "wachstum",
+  "Investitionen kehren zum Normalwert zurück",
+  "Anteil pro Jahr",
+  0.1,
+  "Eigene Schätzung auf der Macrohistory-Datenbank: 18 Länder 1955–2019, Länder-Fixeffekte, 0,107 (Standardfehler 0,013); 1986–2019 0,099",
+  "studie",
+  "Die Investitionsquote nähert sich jedes Jahr um diesen Teil des Abstands der Quote, die den Kapitalstock im Verhältnis zum BIP hält (Abschreibung plus Trendwachstum mal Kapitalkoeffizient). Aus: Sie bleibt für immer bei der Quote des Startjahres.",
+  U(0),
+);
+wirk(
   "wachstum.akzelerator",
   "wachstum",
   "Auslastung → Investitionen (Akzelerator)",

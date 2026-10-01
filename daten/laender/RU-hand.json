@@ -51,7 +51,7 @@
   },
   "werte": {
     "kapitalkoeffizient": 2.8,
-    "tfpTrend": 0.55,
+    "tfpTrend": 0.67,
     "lohnquote": 0.48,
     "nairu": 3.0,
     "erwerbsquote": 0.75,
@@ -124,7 +124,7 @@
     "werte": "Mix Ember 2024; ungeprüft",
     "waehrung": "Bank of Russia, Mittelkurs 2025 gerundet (EZB veröffentlicht seit 2022 keinen Rubelkurs)",
     "geld.inflationsziel": "Bank of Russia: Inflationsziel 4 %",
-    "tfpTrend": "Kalibriert gegen IWF WEO 2026–2031 (Ø 1,0 %)",
+    "tfpTrend": "Kalibriert gegen IWF WEO 2026–2031 (Ø 1,0 %); nach dem gleitenden Investitionsanker neu geeicht (0,55 → 0,67)",
     "rohstoff.fondsAnteil": "Haushaltsregel Russlands: Öl- und Gaseinnahmen über dem Basispreis gehen in den Nationalen Wohlfahrtsfonds",
     "ersatz.rendite": "OFZ 10 Jahre: 2025 rund 15 % bei Leitzins 17–21 % (Kriegsinversion); Ersatz 12 %, damit die Laufzeitprämie bei rund 1 Pp. liegt statt dauerhaft auf Kriegsniveau",
     "bankStaatsAnteil": "Anteil der Staatsschuld bei heimischen Banken, Größenordnung nach IWF, Arslanalp/Tsuda (Investorenbasis der Staatsschuld); ungeprüft",

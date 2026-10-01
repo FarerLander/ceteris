@@ -86,9 +86,9 @@ describe("13.13 Politik fest", () => {
     const ohne = rechne(DE, { ...sz, grund: { ...DE.grund, politik: undefined } });
     expect(ohne[30].schuldQuote).toBe(rechne(DE, { ...sz, grund: { ...DE.grund, politik: "reagiert" } })[30].schuldQuote);
   });
-  // Gemessen vor der Einführung der Entscheidungspunkte: Testland, fest, 31 Jahre.
+  // Gemessen vor der Einführung der Entscheidungspunkte: Testland, fest, 31 Jahre, Investitionsanker fest.
   it("Testland rechnet fest bitgenau wie vor 13.13", () => {
-    const v = rechne(LAHM, fest(lahm(LAHM)));
+    const v = rechne(LAHM, fest(lahm(LAHM, undefined, { aus: ["wachstum.investAnpassung"] })));
     expect([v[30].schuldQuote, v[30].bipProKopf, v[15].alq, v[30].gini]).toEqual(FEST_VORHER);
   });
 });

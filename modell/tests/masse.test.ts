@@ -39,9 +39,10 @@ describe("bewertePakete: Reihung", () => {
   // Vor 13.13 (main, 30.09.2026): DE gruendungen, fachkraefte, energie; IT gruendungen, energie, familie.
   // Nach der Prüfung (K1: neuer Punkt je Legislatur bei anhaltender Enge) tauschen in Italien die ersten zwei.
   // M29 (Haushaltsplan bis 2031): vorher US gruendungen, arbeit, energie; IT fachkraefte, gruendungen, energie.
+  // Gleitender Investitionsanker: vorher DE gruendungen, arbeit, fachkraefte; US gruendungen, energie, fachkraefte.
   it.each([
-    ["DE", ["gruendungen", "arbeit", "fachkraefte"]],
-    ["US", ["gruendungen", "energie", "fachkraefte"]],
+    ["DE", ["gruendungen", "fachkraefte", "arbeit"]],
+    ["US", ["gruendungen", "arbeit", "energie"]],
     ["IT", ["gruendungen", "fachkraefte", "arbeit"]],
   ])("ohne Maß wie bisher: %s", (code, ids) => {
     const l = LAENDER[code];

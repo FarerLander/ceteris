@@ -279,13 +279,14 @@ describe("Hauptlinie im Band der Zufallsläufe (Staatsschuld 2050)", () => {
     const fa = faecher(sm);
     return { linie: rechne(l, sz0)[t].schuldQuote, p10: fa.band.schuldQuote.p10[t], p90: fa.band.schuldQuote.p90[t] };
   };
-  for (const code of ["US", "JP", "GB", "IT", "CA", "CN", "RU"])
+  for (const code of ["DE", "US", "JP", "IT", "CA", "CN", "RU"])
     it(`${code}: im Band`, () => {
       const x = lage(code);
       expect(x.linie).toBeGreaterThanOrEqual(x.p10);
       expect(x.linie).toBeLessThanOrEqual(x.p90);
     });
-  for (const code of ["DE", "FR"])
+  // Seit dem gleitenden Investitionsanker liegt Deutschland im Band, Großbritannien darunter (M29, Punkt 7).
+  for (const code of ["GB", "FR"])
     it.fails(`${code}: bekannte Lücke (M29): Die Linie liegt unter dem Band`, () => {
       const x = lage(code);
       expect(x.linie).toBeGreaterThanOrEqual(x.p10);

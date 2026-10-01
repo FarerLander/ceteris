@@ -77,8 +77,12 @@ export const wachstum: Baustein = (alt, neu, k) => {
   // Realzins nach unten begrenzt: bei Hyperinflation hinkt die Rendite den Erwartungen weit hinterher.
   const kapitalkosten =
     Math.max(-10, alt.rendite - alt.inflErw) + delta * 100 + keil + neu.investAufschlag;
+  // Der Anker gleitet von der Startquote zu der Quote, die den Kapitalstock hält (M34): Ein Startjahr mit
+  // ungewöhnlich hoher oder niedriger Investition prägt nicht mehr den ganzen Lauf.
+  const anker =
+    k.c.investAnker + (k.land.start.investQuote - k.c.investAnker) * (1 - k.p("wachstum.investAnpassung")) ** k.t;
   neu.investQuote = clamp(
-    k.land.start.investQuote -
+    anker -
       k.p("wachstum.investElastizitaet") * (kapitalkosten - k.c.userCost0) +
       k.p("wachstum.akzelerator") * alt.luecke * 100 +
       0.5 * (neu.umbauInvest - k.c.umbau0) -
