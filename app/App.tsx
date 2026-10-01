@@ -23,6 +23,8 @@ import { LAENDER, landAusLink } from "./land";
 import type { Landesdaten } from "../modell/typen";
 import { useSimulation } from "./simulation";
 import { Symbole } from "./Symbole";
+import { Tour, useTourStart } from "./tour/Tour";
+import type { TourUi } from "./tour/typen";
 import {
   setzeSprache as setzeModellSprache,
   t,
@@ -130,12 +132,38 @@ function Ansichten({
     speichereEingeklappt(zu);
     setEingeklappt(zu);
   };
-  // Smartphone: Wischen nach links oder rechts wechselt den Reiter.
+  // Hilfe-Modus: Die Tour darf Reiter wechseln und die Seitenleiste öffnen; was sie geöffnet hat, schließt sie wieder.
+  const [tour, setTour] = useTourStart();
+  const tourOeffnete = useRef(false);
+  const tourUi: TourUi = {
+    setzeAnsicht: setze,
+    setzeFokus,
+    oeffneSeitenleiste(seite = 0) {
+      if (handy) {
+        tourOeffnete.current = true;
+        window.dispatchEvent(new CustomEvent("ceteris-blatt", { detail: seite }));
+      } else if (eingeklappt) {
+        tourOeffnete.current = true;
+        setEingeklappt(false);
+      }
+    },
+    schliesseSeitenleiste() {
+      if (!tourOeffnete.current) return;
+      tourOeffnete.current = false;
+      if (handy) window.dispatchEvent(new CustomEvent("ceteris-blatt", { detail: -1 }));
+      else setEingeklappt(true);
+    },
+  };
+  const tourEnde = () => {
+    tourUi.schliesseSeitenleiste();
+    setTour(null);
+  };
+  // Smartphone: Wischen nach links oder rechts wechselt den Reiter (nicht während der Tour).
   const wisch = useRef<{ x: number; y: number } | null>(null);
   const wischStart = (ev: TouchEvent) => {
     const p = ev.touches[0];
     wisch.current =
-      handy && ev.touches.length === 1 && darfWischen(ev.target)
+      handy && !tour && ev.touches.length === 1 && darfWischen(ev.target)
         ? { x: p.clientX, y: p.clientY }
         : null;
   };
@@ -169,25 +197,25 @@ function Ansichten({
           <Kopfleiste ansicht={ansicht} setze={setze} verfuegbar={VERFUEGBAR} />
           {/* Abschnitte tragen Anker für die Chips der Kopfleiste. */}
           {(ansicht === "uebersicht" || ansicht === "vergleich") && (
-            <div className="abschnitt" id="abschnitt-lage">
+            <div className="abschnitt" id="abschnitt-lage" data-tour="lage">
               <Wetterband sim={sim} />
             </div>
           )}
           {ansicht === "uebersicht" && (
             <>
-              <div className="abschnitt" id="abschnitt-zahlen">
+              <div className="abschnitt" id="abschnitt-zahlen" data-tour="kennzahlen">
                 <Kacheln sim={sim} />
               </div>
-              <div className="abschnitt" id="abschnitt-diagramm">
+              <div className="abschnitt" id="abschnitt-diagramm" data-tour="diagramm">
                 <Detaildiagramm sim={sim} />
               </div>
-              <div className="abschnitt" id="abschnitt-warnlampen">
+              <div className="abschnitt" id="abschnitt-warnlampen" data-tour="warnlampen">
                 <Warnlampen sim={sim} />
               </div>
-              <div className="abschnitt" id="abschnitt-erzaehlung">
+              <div className="abschnitt" id="abschnitt-erzaehlung" data-tour="erzaehlung">
                 <ErzaehlungKarte sim={sim} />
               </div>
-              <div className="abschnitt" id="abschnitt-wege">
+              <div className="abschnitt" id="abschnitt-wege" data-tour="wege">
                 <Wege sim={sim} />
               </div>
             </>
@@ -206,6 +234,7 @@ function Ansichten({
           </p>
         </main>
       </div>
+      {tour && <Tour sim={sim} ui={tourUi} kapitel={tour} handy={handy} ende={tourEnde} />}
     </>
   );
 }

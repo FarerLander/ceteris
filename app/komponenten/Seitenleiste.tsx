@@ -12,7 +12,7 @@ import { t, tk, type Sprache } from "../../modell/sprache";
 import { stellschrauben } from "../../modell/verzeichnis";
 import type { BausteinId, Grundeinstellungen } from "../../modell/typen";
 import type { Sim } from "../simulation";
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Aenderung, useBlatt } from "./Blatt";
 import { FarbmodusKnopf, SprachKnopf, stand } from "./Anzeige";
 import { Regler } from "./Regler";
@@ -222,6 +222,18 @@ function Blattleiste({ sim, setzeLand, zeigeWirkung, setzeSprache }: Teil & { se
   const b = useBlatt();
   const seiten = useRef<HTMLDivElement>(null);
   const [aktiv, setAktiv] = useState(0);
+  // Die Tour öffnet das Blatt auf einer Seite (−1: wieder zu).
+  useEffect(() => {
+    const hoere = (ev: Event) => {
+      const i = (ev as CustomEvent<number>).detail;
+      if (i < 0) return b.setStufe("zu");
+      b.setStufe("halb");
+      setAktiv(i);
+      seiten.current?.scrollTo?.({ left: i * seiten.current.clientWidth });
+    };
+    window.addEventListener("ceteris-blatt", hoere);
+    return () => window.removeEventListener("ceteris-blatt", hoere);
+  }, []);
   const geheZu = (i: number) => {
     const el = seiten.current;
     if (el) el.scrollTo?.({ left: i * el.clientWidth, behavior: "smooth" });
@@ -336,7 +348,7 @@ function Inhalt({
         <>
           <section>
             <h3 className="group-title">{t("Grundeinstellungen")}</h3>
-            <div className="field">
+            <div className="field" data-tour="land">
               <label htmlFor="land">
                 {t("Land")}{" "}
                 <span
@@ -440,7 +452,7 @@ function Inhalt({
           </section>
 
           {anzeige && (
-            <section>
+            <section data-tour="anzeige">
               <h3 className="group-title">{t("Anzeige")}</h3>
               <div className="anzeige-knoepfe">{anzeige}</div>
             </section>

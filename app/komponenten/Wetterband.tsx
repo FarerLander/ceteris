@@ -227,7 +227,7 @@ export function Wetterband({ sim }: { sim: Sim }) {
       <p className="hinweis">
         {t("Boom, Rezession, Stagflation und Deflation entstehen vor allem durch Schocks und starke Eingriffe.")}
       </p>
-      <div className="shock-actions">
+      <div className="shock-actions" data-tour="schocks">
         {(Object.keys(SCHOCKS) as SchockArt[]).map((art) => (
           <button
             key={art}
