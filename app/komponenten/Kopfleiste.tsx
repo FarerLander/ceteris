@@ -1,3 +1,4 @@
+import { TourMenue } from "../tour/Menue";
 import { useEffect, useRef, useState } from "react";
 import { t } from "../../modell/sprache";
 import { HINWEIS } from "./Anzeige";
@@ -135,6 +136,7 @@ export function Kopfleiste({
               ))}
             </div>
           )}
+          <TourMenue />
           <button
             type="button"
             className="info-knopf"

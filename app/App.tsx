@@ -23,7 +23,10 @@ import { LAENDER, landAusLink } from "./land";
 import type { Landesdaten } from "../modell/typen";
 import { useSimulation } from "./simulation";
 import { Symbole } from "./Symbole";
-import { Tour, useTourStart } from "./tour/Tour";
+import { Einladung, Rueckfrage } from "./tour/Einladung";
+import { ladeTour, speichereTour } from "./tour/speicher";
+import { startTour, Tour, useTourStart } from "./tour/Tour";
+import type { Szenario } from "../modell/typen";
 import type { TourUi } from "./tour/typen";
 import {
   setzeSprache as setzeModellSprache,
@@ -154,9 +157,38 @@ function Ansichten({
       else setEingeklappt(true);
     },
   };
-  const tourEnde = () => {
+  // Einladung beim ersten Besuch, nicht bei einem geteilten Szenario-Link.
+  const [einladen, setEinladen] = useState(
+    () => !ladeTour().gesehen && !new URLSearchParams(window.location.search).has("s"),
+  );
+  const gesehen = () => {
+    speichereTour({ ...ladeTour(), gesehen: true });
+    setEinladen(false);
+  };
+  // Stand beim Start der Tour; hat die Tour das Szenario verändert, fragt sie am Ende nach.
+  const vorher = useRef<{ sz: Szenario; idx: number } | null>(null);
+  const [rueckfrage, setRueckfrage] = useState(false);
+  if (tour && !vorher.current) vorher.current = { sz: sim.sz, idx: sim.idx };
+  const tourEnde = (fertig: boolean) => {
     tourUi.schliesseSeitenleiste();
+    const stand = ladeTour();
+    speichereTour({
+      gesehen: true,
+      erledigt: fertig && tour && !stand.erledigt.includes(tour.id) ? [...stand.erledigt, tour.id] : stand.erledigt,
+    });
+    setEinladen(false);
     setTour(null);
+    if (vorher.current && vorher.current.sz !== sim.sz) setRueckfrage(true);
+    else vorher.current = null;
+  };
+  const rueckfrageEnde = (zurueck: boolean) => {
+    const v = vorher.current;
+    if (zurueck && v) {
+      sim.ladeSzenario(v.sz);
+      sim.setIdx(v.idx);
+    }
+    vorher.current = null;
+    setRueckfrage(false);
   };
   // Smartphone: Wischen nach links oder rechts wechselt den Reiter (nicht während der Tour).
   const wisch = useRef<{ x: number; y: number } | null>(null);
@@ -195,6 +227,15 @@ function Ansichten({
         />
         <main className="main" onTouchStart={wischStart} onTouchEnd={wischEnde}>
           <Kopfleiste ansicht={ansicht} setze={setze} verfuegbar={VERFUEGBAR} />
+          {einladen && !tour && (
+            <Einladung
+              los={() => {
+                gesehen();
+                startTour("erkundung");
+              }}
+              spaeter={gesehen}
+            />
+          )}
           {/* Abschnitte tragen Anker für die Chips der Kopfleiste. */}
           {(ansicht === "uebersicht" || ansicht === "vergleich") && (
             <div className="abschnitt" id="abschnitt-lage" data-tour="lage">
@@ -235,6 +276,7 @@ function Ansichten({
         </main>
       </div>
       {tour && <Tour sim={sim} ui={tourUi} kapitel={tour} handy={handy} ende={tourEnde} />}
+      {rueckfrage && <Rueckfrage zurueck={() => rueckfrageEnde(true)} lassen={() => rueckfrageEnde(false)} />}
     </>
   );
 }
