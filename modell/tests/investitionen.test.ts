@@ -4,6 +4,7 @@ import { startzustand } from "../start";
 import type { Szenario } from "../typen";
 import { eintrag } from "../verzeichnis";
 import { testland } from "./testland";
+import { IST, LAENDER, RUECKBLICK } from "../../app/land";
 
 // Spec 13.5 Teil B: Investitionen folgen der Auslastung; öffentliche Investitionen bauen einen Kapitalstock auf.
 const land = testland();
@@ -115,5 +116,42 @@ describe("Öffentliche Investitionen (Hypothese 6)", () => {
     expect(v[10].oeffKapital).toBeGreaterThan(v[30].oeffKapital * 2);
     expect(v[50].oeffWirk).toBeLessThan(v[10].oeffWirk / 3);
     expect(v[50].oeffWirk).toBeGreaterThan(0);
+  });
+});
+
+describe("Investitionsanker (M34)", () => {
+  it("gleitet zur Quote, die den Kapitalstock hält; aus = Startquote", () => {
+    const l = LAENDER.CN;
+    const sz = { ...basisSzenario(l), grund: { ...l.grund, politik: "fest" as const } };
+    const an = rechne(l, sz);
+    const aus = rechne(l, { ...sz, aus: [...sz.aus, "wachstum.investAnpassung"] });
+    const am = (r: typeof an, j: number) => r.find((z) => z.jahr === j)!;
+    expect(am(an, 2050).investQuote).toBeLessThan(am(aus, 2050).investQuote - 5);
+    expect(am(an, 2050).K / am(an, 2050).Y).toBeLessThan(am(aus, 2050).K / am(aus, 2050).Y);
+  });
+
+  it("Rückblick Deutschland trifft die Investitionsquote besser (vorher 4,7 Pp.)", () => {
+    const rb = rechne(RUECKBLICK.land, RUECKBLICK.sz);
+    const ist = IST.investQuote!;
+    const m = rb.filter((z) => ist[z.jahr] !== undefined);
+    const rmse = Math.sqrt(m.reduce((a, z) => a + (z.investQuote - ist[z.jahr]) ** 2, 0) / m.length);
+    expect(rmse).toBeLessThan(2.5);
+  });
+});
+
+describe("Öffentlicher Kapitalstock: gemessener Bestand als Bezug (M35)", () => {
+  const wirkung = (code: string) => {
+    const l = LAENDER[code];
+    const sz = { ...basisSzenario(l), grund: { ...l.grund, politik: "fest" as const } };
+    const b = rechne(l, sz), m = rechne(l, { ...sz, stell: { "staat.investitionen": l.standards["staat.investitionen"]! + 1 } });
+    const t = b.findIndex((z) => z.jahr === 2050);
+    return m[t].bipProKopf / b[t].bipProKopf - 1;
+  };
+  it("Bezug ist der IWF-Bestand des Landes", () => {
+    expect(startzustand(LAENDER.DE, basisSzenario(LAENDER.DE)).c.oeffKapital0).toBe(44);
+    expect(startzustand(LAENDER.JP, basisSzenario(LAENDER.JP)).c.oeffKapital0).toBe(121);
+  });
+  it("kleiner Bestand, größerer Ertrag je Euro: Deutschland gewinnt mehr als doppelt so viel wie Japan", () => {
+    expect(wirkung("DE")).toBeGreaterThan(2 * wirkung("JP"));
   });
 });

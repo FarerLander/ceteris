@@ -51,7 +51,9 @@
   },
   "werte": {
     "kapitalkoeffizient": 3.2,
-    "tfpTrend": 2.3,
+    "oeffKapitalQuote": 62,
+    "energieNettoImport": 24,
+    "tfpTrend": 2.55,
     "lohnquote": 0.52,
     "nairu": 4.8,
     "erwerbsquote": 0.76,
@@ -106,6 +108,8 @@
     "hausBewertung0": 0
   },
   "quellen": {
+    "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp); der IWF zählt Staatsbetriebe mit (Bestand 167 % BIP bei 16,2 % Investition), umgerechnet im Verhältnis der Investitionen auf 6 % BIP: 167 × 6 / 16,2",
+    "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Parteitag; kein Wahljahr-Effekt (Gewicht 0), letzte Wahl 2022, Legislatur 5 Jahre",
     "standards": "Steuersätze effektiv (IWF Article IV China 2025, OECD Revenue Statistics Asia), Rente: Anhebung 2025 schrittweise (Männer 63, Frauen 55/58), Mittel rund 60; Gesundheit (rund 3 % BIP) und Familie auf die Untergrenze des Verzeichnisses gesetzt; Nettozuwanderung leicht negativ, auf 0 gesetzt; ungeprüft",
     "ordnung.rechtsstaat": "Weltbank WGI Rule of Law Score 2025 (GOV_WGI_RL.SC), gerundet",
@@ -116,7 +120,7 @@
     "werte": "Kapitalkoeffizient Penn World Table; Mix Ember 2024; Industrie-Strom CEC; ungeprüft",
     "waehrung": "EZB-Referenzkurs 2025, gerundet",
     "geld.inflationsziel": "PBoC/Regierungsbericht 2025: Verbraucherpreisziel rund 2 %",
-    "tfpTrend": "Kalibriert gegen IWF WEO 2026–2031 (Ø 3,8 %); enthält das Aufholwachstum",
+    "tfpTrend": "Kalibriert gegen IWF WEO 2026–2031 (Ø 3,8 %); enthält das Aufholwachstum; nach dem gleitenden Investitionsanker neu geeicht (2,3 → 2,55)",
     "bankStaatsAnteil": "Anteil der Staatsschuld bei heimischen Banken, Größenordnung nach IWF, Arslanalp/Tsuda (Investorenbasis der Staatsschuld); ungeprüft",
     "hausVermoegen0": "Wohnimmobilien der privaten Haushalte (Gebäude und Boden) / BIP, Größenordnung nach nationaler Vermögensbilanz und OECD; ungeprüft",
     "bankKapital0": "World Bank FB.BNK.CAPA.ZS, letzter Wert beim Abruf 30.09.2026 (Ersatz)",

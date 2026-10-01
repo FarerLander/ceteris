@@ -12,7 +12,7 @@ import type {
   Szenario,
   Zustand,
 } from "./typen";
-import { eintrag } from "./verzeichnis";
+import { eintrag, VERZEICHNIS } from "./verzeichnis";
 
 export const LAEUFE = 200;
 export const SAAT = 1;
@@ -126,13 +126,85 @@ export function zieher(
   };
 }
 
+// Dreiecksverteilung zwischen unten und oben mit Spitze bei mitte, aus einer Gleichverteilten u.
+function dreieck(u: number, unten: number, mitte: number, oben: number): number {
+  if (oben <= unten) return mitte;
+  const f = (mitte - unten) / (oben - unten);
+  return u < f
+    ? unten + Math.sqrt(u * (oben - unten) * (mitte - unten))
+    : oben - Math.sqrt((1 - u) * (oben - unten) * (oben - mitte));
+}
+
+// Wirkstärken mit belegter Spanne zieht jeder Lauf neu (U2), Spitze beim Wert des Landes. Eigener
+// Generator: Die Schockfolge bleibt dieselbe. Für jede Spanne wird gezogen, auch wenn die Wirkstärke
+// abgeschaltet ist; so ändert ein Häkchen nicht die Ziehungen der übrigen.
+export function ziehungen(
+  land: Landesdaten,
+  sz: Szenario,
+  saat: number,
+  nr: number,
+): Record<string, number> {
+  return ziehe(land, sz, saat, nr).werte;
+}
+
+// Dazu der Produktivitätstrend aus dem Band seiner Schätzung (±1 Standardabweichung, gekappt bei zwei),
+// nur wenn die Schätzung gültig ist; sonst bleibt der Handwert.
+function ziehe(
+  land: Landesdaten,
+  sz: Szenario,
+  saat: number,
+  nr: number,
+): { werte: Record<string, number>; tfpTrend?: number } {
+  const anteil = p(land, sz, "zufall.spannen");
+  if (anteil <= 0) return { werte: {} };
+  const zufall = generator(
+    Math.imul(saat, 0x27d4eb2f) ^ Math.imul(nr + 1, 0x165667b1),
+  );
+  // Der Trend zuerst: Eine neue Spanne im Verzeichnis verschiebt so nicht seine Ziehung.
+  const n = normal(zufall(), zufall());
+  const trend = land.schaetzung?.werte.find((w) => w.groesse === "tfpTrend");
+  const werte: Record<string, number> = {};
+  for (const e of VERZEICHNIS) {
+    if (!e.spanne) continue;
+    const u = zufall();
+    if (sz.aus.includes(e.id)) continue;
+    const mitte = standardWert(e.id, land);
+    const unten = mitte + anteil * (Math.min(e.spanne[0], mitte) - mitte);
+    const oben = mitte + anteil * (Math.max(e.spanne[1], mitte) - mitte);
+    werte[e.id] = dreieck(u, unten, mitte, oben);
+  }
+  if (!trend?.gueltig) return { werte };
+  return {
+    werte,
+    tfpTrend: land.start.tfpTrend + anteil * trend.band * Math.max(-2, Math.min(2, n)),
+  };
+}
+
+function mitZiehungen(
+  land: Landesdaten,
+  sz: Szenario,
+  saat: number,
+  nr: number,
+): Landesdaten {
+  const { werte, tfpTrend } = ziehe(land, sz, saat, nr);
+  return {
+    ...land,
+    standards: { ...land.standards, ...werte },
+    start: tfpTrend === undefined ? land.start : { ...land.start, tfpTrend },
+  };
+}
+
 export function zufallsLauf(
   land: Landesdaten,
   sz: Szenario,
   saat: number,
   nr: number,
 ): Zustand[] {
-  return rechneZufall(land, sz, zieher(land, sz, saat, nr));
+  return rechneZufall(
+    mitZiehungen(land, sz, saat, nr),
+    sz,
+    zieher(land, sz, saat, nr),
+  );
 }
 
 // Schuldenkrise des Staates: Risikoaufschlag über der Krisenschwelle oder ein Ventil (Schuldenschnitt, Inflation).
@@ -181,7 +253,8 @@ export function naechsterLauf(s: Sammlung): boolean {
   if (s.fertig >= s.laeufe) return false;
   const nr = s.fertig;
   const z = zieher(s.land, s.sz, s.saat, nr);
-  const verlauf = rechneZufall(s.land, s.sz, (alt, jahr, schocks) => {
+  const land = mitZiehungen(s.land, s.sz, s.saat, nr);
+  const verlauf = rechneZufall(land, s.sz, (alt, jahr, schocks) => {
     const zug = z(alt, jahr, schocks);
     s.schocks += zug.schocks.length;
     return zug;

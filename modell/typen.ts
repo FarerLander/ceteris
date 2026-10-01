@@ -162,6 +162,8 @@ export interface Startwerte {
   // Update 4a, alle optional (G7: fehlen = 0)
   staatsanteil?: number; // % der Wirtschaftsleistung aus Staatsbetrieben
   rohstoffExporte?: number; // % BIP
+  energieNettoImport?: number; // % des Energieverbrauchs, negativ: Exporteur (fehlt: wie Deutschland)
+  oeffKapitalQuote?: number; // % BIP, gemessener öffentlicher Kapitalstock (fehlt: aus der Investition)
   rohstoffStaat?: number; // Anteil des Staates an den Rohstofferlösen, 0–1
   rohstoffFonds0?: number; // % BIP Stabilisierungsfonds im Startjahr
   rohstoffGewichte?: { oel: number; gas: number; metalle: number };
@@ -440,7 +442,8 @@ export interface Konstanten {
   eq0: number;
   y0: number;
   lb0: number;
-  oeffKapital0: number; // % BIP, öffentlicher Kapitalstock im Startjahr (Investition ÷ (Abschreibung + Trendwachstum))
+  investAnker: number; // % BIP, Investitionsquote, die den Kapitalkoeffizienten des Startjahres bei Trendwachstum hält
+  oeffKapital0: number; // % BIP, öffentlicher Kapitalstock im Startjahr (gemessen, sonst Investition ÷ (Abschreibung + Trendwachstum))
   // Spec 13.6 (ohne Bankdaten 0)
   bankVerlust0: number; // Abschreibung je Bilanz im ruhigen Startjahr; der Gewinn deckt sie
   bankZiel0: number; // % der Bilanz, Eigenkapital im Startjahr

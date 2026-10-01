@@ -11,7 +11,10 @@ describe("Annahmen-Ansicht", () => {
       screen.getByRole("heading", { name: "Annahmen und Kritikpunkte" }),
     ).toBeTruthy();
     expect(screen.getByText(/Handwerte ungeprüft/)).toBeTruthy();
-    expect(screen.getAllByText("Ramey 2019").length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/^Ramey 2019/).length).toBeGreaterThan(0);
+    // U2: belegte Spanne neben dem Wert
+    expect(screen.getAllByText("Spanne 0,6–1").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Spanne 0–2").length).toBeGreaterThan(0);
     expect(screen.getByRole("heading", { name: "Datenlage" })).toBeTruthy();
   });
   it("umstrittene Annahme abschalten zählt als Änderung", async () => {

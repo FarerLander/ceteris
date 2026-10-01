@@ -31,8 +31,10 @@ describe("Lagen im Verlauf", () => {
   );
   // Seit Spec 13.13 bewegt die Regierung die Wirtschaft selbst: Sparen kostet ein Rezessionsjahr, ein
   // Zuschuss für Industriestrom drückt die Preise (Japan 2029–2031). Wenige Jahre, kein Dauerzustand.
-  it.each(["DE", "US", "JP"])("%s mit Eingriffen der Regierung: solche Lagen bleiben die Ausnahme (höchstens fünf von 51 Jahren)", (code) => {
-    expect(basis(code).v.filter((z) => selten.has(z.lage)).length).toBeLessThanOrEqual(5);
+  // Japan: Seit dem gleitenden Investitionsanker wächst es langsamer, zwei Rezessionsjahre 2040–2041 statt
+  // einem 2058; mit den vier Jahren nach dem Leitzins-Sprung zum Start (M22) sind es sechs.
+  it.each([["DE", 5], ["US", 5], ["JP", 6]] as const)("%s mit Eingriffen der Regierung: solche Lagen bleiben die Ausnahme (höchstens %i von 51 Jahren)", (code, n) => {
+    expect(basis(code).v.filter((z) => selten.has(z.lage)).length).toBeLessThanOrEqual(n);
   });
   it("USA: schuldenfinanziertes Wachstum kommt vor (Begründung in Spec 10)", () => {
     expect(basis("US").v.some((z) => z.lage === "schuldenwachstum")).toBe(true);

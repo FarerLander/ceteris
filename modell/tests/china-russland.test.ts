@@ -10,7 +10,8 @@ describe("Update 4b: China und Russland", () => {
     const b = rechne(CN, basisSzenario(CN, 51));
     expect(b[0].verdeckteSchuld).toBe(35);
     expect(b.every((z) => z.uebernahme === 0)).toBe(true);
-    const r = rechne(CN, { ...basisSzenario(CN, 51), stell: { "ordnung.kreditlenkung": 70 } });
+    // Seit dem gleitenden Investitionsanker investiert China weniger; bei 70 bleibt die verdeckte Schuld knapp unter der Schwelle.
+    const r = rechne(CN, { ...basisSzenario(CN, 51), stell: { "ordnung.kreditlenkung": 90 } });
     expect(r.some((z) => z.uebernahme > 0)).toBe(true);
   });
   it("Russland: Ölpreis 35 $ ab Jahr 3 — Haushalt verliert, Fonds zahlt aus", () => {

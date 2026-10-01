@@ -14,6 +14,8 @@
   },
   "werte": {
     "kapitalkoeffizient": 3.0,
+    "oeffKapitalQuote": 44,
+    "energieNettoImport": 70.5,
     "tfpTrend": 0.4,
     "lohnquote": 0.53,
     "nairu": 3.5,
@@ -71,6 +73,8 @@
   "quellen": {
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Bundestagswahl, letzte Wahl 2025, Legislatur 4 Jahre",
     "kapitalkoeffizient": "Destatis VGR, Nettoanlagevermögen zu Wiederbeschaffungspreisen / BIP",
+    "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
+    "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "tfpTrend": "Zwischen Rückblick-Kalibrierung (0,3) und Sachverständigenrat-Potenzialschätzung (≈0,5); 0,4 % p. a.",
     "lohnquote": "Destatis VGR, Arbeitnehmerentgelt / BIP",
     "nairu": "EU-Kommission AMECO (NAWRU)",

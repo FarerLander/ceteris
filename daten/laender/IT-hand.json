@@ -47,6 +47,8 @@
   },
   "werte": {
     "kapitalkoeffizient": 3.4,
+    "oeffKapitalQuote": 56,
+    "energieNettoImport": 79.6,
     "tfpTrend": 0.2,
     "lohnquote": 0.52,
     "nairu": 6.8,
@@ -102,6 +104,8 @@
     "hausBewertung0": -10
   },
   "quellen": {
+    "oeffKapitalQuote": "IWF Investment and Capital Stock Dataset 2021, öffentlicher Kapitalstock 2019 in % BIP (kgov_rppp / GDP_rppp)",
+    "energieNettoImport": "Weltbank EG.IMP.CONS.ZS, Nettoimport von Energie in % des Verbrauchs, 2023; abgerufen 01.10.2026",
     "politik": "Wirksamkeit: Weltbank WGI Government Effectiveness Score 2025 (GOV_WGI_GE.SC), gerundet, abgerufen 30.09.2026. Wahltakt: Parlamentswahl, letzte Wahl 2022, Legislatur 5 Jahre",
     "standards": "MEF, OECD Taxing Wages, INPS/Ragioneria (Rentenniveau auf Verzeichnisgrenze 70 gesetzt, OECD-Ersatzquote rund 76 %), NATO, ISTAT; ungeprüft",
     "werte": "ISTAT, Banca d'Italia, MEF Debito pubblico, Terna, Eurostat; Fluchtreaktion positiv: Aufschläge stiegen 2011 und 2020; ungeprüft",

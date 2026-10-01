@@ -18,10 +18,11 @@ export interface Eintrag {
   kanal?: string; // „wirkt über …“ für die Erzählung
   haupt?: boolean;
   optionen?: string[]; // Auswahl: Index = Wert
+  spanne?: [number, number]; // belegte Spanne; die Zufallsläufe ziehen daraus (U2)
 }
 
 type Extra = Partial<
-  Pick<Eintrag, "umstritten" | "neutral" | "kanal" | "haupt" | "optionen">
+  Pick<Eintrag, "umstritten" | "neutral" | "kanal" | "haupt" | "optionen" | "spanne">
 >;
 const L: Eintrag[] = [];
 
@@ -840,7 +841,18 @@ wirk(
   "Eigene Schätzung auf der Macrohistory-Datenbank (Spec 13.5 Teil B): 0,04 bis 0,15 Pp. je Pp. realem Langfristzins; Chirinko/Fazzari/Meyer 1999 fanden eine kleine Nutzerkosten-Elastizität",
   "studie",
   "Bis Spec 13.5 Teil B stand hier 0,6. Damit rechnete das Modell im Rückblick Deutschland eine Investitionsquote von 28 bis 30 %, gemessen waren es 19 bis 23 %.",
-  U(0),
+  { ...U(0), spanne: [0.04, 0.15] },
+);
+wirk(
+  "wachstum.investAnpassung",
+  "wachstum",
+  "Investitionen kehren zum Normalwert zurück",
+  "Anteil pro Jahr",
+  0.1,
+  "Eigene Schätzung auf der Macrohistory-Datenbank: 18 Länder 1955–2019, Länder-Fixeffekte, 0,107 (Standardfehler 0,013; Spanne ±2 Standardfehler); 1986–2019 0,099",
+  "studie",
+  "Die Investitionsquote nähert sich jedes Jahr um diesen Teil des Abstands der Quote, die den Kapitalstock im Verhältnis zum BIP hält (Abschreibung plus Trendwachstum mal Kapitalkoeffizient). Aus: Sie bleibt für immer bei der Quote des Startjahres.",
+  { ...U(0), spanne: [0.08, 0.13] },
 );
 wirk(
   "wachstum.akzelerator",
@@ -848,10 +860,10 @@ wirk(
   "Auslastung → Investitionen (Akzelerator)",
   "Pp. BIP je % Lücke",
   0.44,
-  "Eigene Schätzung auf der Macrohistory-Datenbank (Spec 13.5 Teil B): 18 Länder 1955–2019, 0,44 mit der Lücke des Vorjahres (t 6,4); Gegenprobe auf den Daten der App in allen neun Ländern positiv",
+  "Eigene Schätzung auf der Macrohistory-Datenbank (Spec 13.5 Teil B): 18 Länder 1955–2019, 0,44 mit der Lücke des Vorjahres (t 6,4; Spanne ±2 Standardfehler); Gegenprobe auf den Daten der App in allen neun Ländern positiv",
   "studie",
   "Sind die Anlagen gut ausgelastet, investieren Firmen mehr; in der Rezession streichen sie Investitionen. Deshalb kostet eine Krise dauerhaft Wohlstand (Cerra/Saxena 2008).",
-  U(0),
+  { ...U(0), spanne: [0.3, 0.58] },
 );
 wirk(
   "wachstum.steuerkeilU",
@@ -900,10 +912,10 @@ wirk(
   "Fiskalmultiplikator",
   "Faktor",
   0.8,
-  "Ramey 2019",
+  "Ramey 2019 (die meisten Schätzungen 0,6 bis 1)",
   "studie",
   "",
-  U(0),
+  { ...U(0), spanne: [0.6, 1] },
 );
 wirk(
   "wachstum.kreditImpuls",
@@ -922,10 +934,10 @@ wirk(
   "Kreditrückgang wirkt stärker als Kreditzuwachs",
   "Faktor",
   1.2,
-  "Jordà/Schularick/Taylor 2013; eigene Schätzung auf der Macrohistory-Datenbank (Spec 13.5 Teil A): negativer Impuls rund 2,4-mal so stark wie positiver",
+  "Jordà/Schularick/Taylor 2013; eigene Schätzung auf der Macrohistory-Datenbank (Spec 13.5 Teil A): negativer Impuls rund 2,4-mal so stark wie positiver (Faktor 1,42)",
   "studie",
   "Ein negativer Kreditimpuls wirkt mit diesem Faktor, ein positiver mit 2 minus Faktor; der Mittelwert bleibt. 1 = symmetrisch. Gedämpft unter dem gemessenen 1,42, weil der Rückblick Deutschland sonst bei den Rentenausgaben schlechter wird.",
-  U(1),
+  { ...U(1), spanne: [1, 1.42] },
 );
 wirk(
   "wachstum.zinsWirkung",
@@ -2164,21 +2176,21 @@ stell(
   "Vorgeschriebenes Eigenkapital gegenüber heute, in Prozentpunkten der Bilanz. Mehr Eigenkapital verhindert Krisen nicht, macht sie aber milder; Kredit wird etwas teurer.",
   "Kreditzins und Puffer für Verluste",
 );
-wirk("banken.hausMomentum", "banken", "Schwung der Hauspreise", "Anteil", 0.5, "Case/Shiller 1989; Glaeser u. a. 2014 (Spanne 0,3–0,7)", "studie", "Was im Vorjahr stieg, steigt noch etwas weiter.");
-wirk("banken.hausAnpassung", "banken", "Hauspreis kehrt zum Grundwert zurück", "Anteil pro Jahr", 0.2, "Capozza/Hendershott/Mack 2004 (Spanne 0,05–0,2); kalibriert an USA 2000–2014 und Japan 1985–2005 (Gipfel im richtigen Jahr)", "kalibriert", "Jedes Jahr schließt sich dieser Teil des Abstands zum Grundwert aus Einkommen pro Kopf und Realzins.");
-wirk("banken.hausZins", "banken", "Realzins → Grundwert der Häuser", "% je Pp.", 5, "Poterba 1984; Kuttner 2014 (Spanne 2–8)", "studie", "Ein Prozentpunkt mehr Realzins senkt den Grundwert um so viel Prozent.", U(0));
-wirk("banken.hausKredit", "banken", "Kredit → Hauspreis", "% je Pp. BIP", 1, "Jordà/Schularick/Taylor 2015; kalibriert an den Krisenfällen (Spanne 0–2)", "kalibriert", "Neuer Kredit über der normalen Ausweitung treibt die Hauspreise.", U(0));
-wirk("banken.sicherheiten", "banken", "Hauspreis → Kredit (Sicherheiten)", "% je %", 0.2, "Goodhart/Hofmann 2008; Mian/Sufi 2011 (Spanne 0–0,3); kalibriert an USA 2000–2014, begrenzt durch ruhige Basisläufe bei hoher Privatschuld", "kalibriert", "Steigt der Hauspreis ein Prozent schneller als das Einkommen, wächst der Kreditbestand um so viel Prozent zusätzlich.", U(0));
-wirk("banken.nplAlq", "banken", "Arbeitslosigkeit → faule Kredite", "Pp. je Pp.", 1, "Nkusu 2011; Beck/Jakubik/Piloiu 2013 (Spanne 0,2–1); kalibriert an USA 2008–2011 (Höchststand 5 %, Laeven/Valencia 2018)", "kalibriert", "Je Prozentpunkt Arbeitslosigkeit über der strukturellen fallen mehr Kredite aus.");
-wirk("banken.nplHaus", "banken", "Fallende Hauspreise → faule Kredite", "Pp. je %", 0.3, "Nkusu 2011; Beck/Jakubik/Piloiu 2013 (Spanne 0,05–0,3); kalibriert an USA 2008–2011", "kalibriert", "Fällt der Hauspreis, decken die Sicherheiten den Kredit nicht mehr.");
-wirk("banken.nplDsr", "banken", "Schuldendienst → faule Kredite", "Pp. je Pp.", 0.3, "Nkusu 2011; Beck/Jakubik/Piloiu 2013 (Spanne 0–0,6)", "studie", "Zählt nur der Schuldendienst über der Schwelle des Landes.");
+wirk("banken.hausMomentum", "banken", "Schwung der Hauspreise", "Anteil", 0.5, "Case/Shiller 1989; Glaeser u. a. 2014 (Spanne 0,3–0,7)", "studie", "Was im Vorjahr stieg, steigt noch etwas weiter.", { spanne: [0.3, 0.7] });
+wirk("banken.hausAnpassung", "banken", "Hauspreis kehrt zum Grundwert zurück", "Anteil pro Jahr", 0.2, "Capozza/Hendershott/Mack 2004 (Spanne 0,05–0,2); kalibriert an USA 2000–2014 und Japan 1985–2005 (Gipfel im richtigen Jahr)", "kalibriert", "Jedes Jahr schließt sich dieser Teil des Abstands zum Grundwert aus Einkommen pro Kopf und Realzins.", { spanne: [0.05, 0.2] });
+wirk("banken.hausZins", "banken", "Realzins → Grundwert der Häuser", "% je Pp.", 5, "Poterba 1984; Kuttner 2014 (Spanne 2–8)", "studie", "Ein Prozentpunkt mehr Realzins senkt den Grundwert um so viel Prozent.", { ...U(0), spanne: [2, 8] });
+wirk("banken.hausKredit", "banken", "Kredit → Hauspreis", "% je Pp. BIP", 1, "Jordà/Schularick/Taylor 2015; kalibriert an den Krisenfällen (Spanne 0–2)", "kalibriert", "Neuer Kredit über der normalen Ausweitung treibt die Hauspreise.", { ...U(0), spanne: [0, 2] });
+wirk("banken.sicherheiten", "banken", "Hauspreis → Kredit (Sicherheiten)", "% je %", 0.2, "Goodhart/Hofmann 2008; Mian/Sufi 2011 (Spanne 0–0,3); kalibriert an USA 2000–2014, begrenzt durch ruhige Basisläufe bei hoher Privatschuld", "kalibriert", "Steigt der Hauspreis ein Prozent schneller als das Einkommen, wächst der Kreditbestand um so viel Prozent zusätzlich.", { ...U(0), spanne: [0, 0.3] });
+wirk("banken.nplAlq", "banken", "Arbeitslosigkeit → faule Kredite", "Pp. je Pp.", 1, "Nkusu 2011; Beck/Jakubik/Piloiu 2013 (Spanne 0,2–1); kalibriert an USA 2008–2011 (Höchststand 5 %, Laeven/Valencia 2018)", "kalibriert", "Je Prozentpunkt Arbeitslosigkeit über der strukturellen fallen mehr Kredite aus.", { spanne: [0.2, 1] });
+wirk("banken.nplHaus", "banken", "Fallende Hauspreise → faule Kredite", "Pp. je %", 0.3, "Nkusu 2011; Beck/Jakubik/Piloiu 2013 (Spanne 0,05–0,3); kalibriert an USA 2008–2011", "kalibriert", "Fällt der Hauspreis, decken die Sicherheiten den Kredit nicht mehr.", { spanne: [0.05, 0.3] });
+wirk("banken.nplDsr", "banken", "Schuldendienst → faule Kredite", "Pp. je Pp.", 0.3, "Nkusu 2011; Beck/Jakubik/Piloiu 2013 (Spanne 0–0,6)", "studie", "Zählt nur der Schuldendienst über der Schwelle des Landes.", { spanne: [0, 0.6] });
 wirk("banken.lgd", "banken", "Verlust je ausgefallenem Kredit", "Anteil", 0.45, "Basel II, IRB-Basisansatz (Verlustquote 45 %)", "lehrbuch", "So viel eines faulen Kredits ist beim Abschreiben verloren.");
-wirk("banken.abschreibung", "banken", "Abschreibung fauler Kredite, schnelle Rettung", "Anteil pro Jahr", 0.4, "kalibriert an den USA 2009–2013 (Spanne 0,15–0,4); der obere Rand steht auch für Wertpapierverluste, die das Modell nicht kennt", "kalibriert", "Dieser Teil der faulen Kredite wird jedes Jahr abgeschrieben und mindert das Eigenkapital.");
-wirk("banken.abschreibungZoegernd", "banken", "Abschreibung fauler Kredite, zögernde Rettung", "Anteil pro Jahr", 0.08, "kalibriert an Japan 1992–2002; Caballero/Hoshi/Kashyap 2008 (Spanne 0,04–0,12)", "kalibriert", "Faule Kredite bleiben in den Büchern; die Verluste kommen später, und es gesunden im selben Maß weniger.");
-wirk("banken.heilung", "banken", "Faule Kredite werden wieder bedient", "Anteil pro Jahr", 0.15, "EZB/EBA, Berichte zu notleidenden Krediten (Spanne 0,1–0,25)", "studie", "Dieser Teil der faulen Kredite gesundet jedes Jahr ohne Verlust.");
+wirk("banken.abschreibung", "banken", "Abschreibung fauler Kredite, schnelle Rettung", "Anteil pro Jahr", 0.4, "kalibriert an den USA 2009–2013 (Spanne 0,15–0,4); der obere Rand steht auch für Wertpapierverluste, die das Modell nicht kennt", "kalibriert", "Dieser Teil der faulen Kredite wird jedes Jahr abgeschrieben und mindert das Eigenkapital.", { spanne: [0.15, 0.4] });
+wirk("banken.abschreibungZoegernd", "banken", "Abschreibung fauler Kredite, zögernde Rettung", "Anteil pro Jahr", 0.08, "kalibriert an Japan 1992–2002; Caballero/Hoshi/Kashyap 2008 (Spanne 0,04–0,12)", "kalibriert", "Faule Kredite bleiben in den Büchern; die Verluste kommen später, und es gesunden im selben Maß weniger.", { spanne: [0.04, 0.12] });
+wirk("banken.heilung", "banken", "Faule Kredite werden wieder bedient", "Anteil pro Jahr", 0.15, "EZB/EBA, Berichte zu notleidenden Krediten (Spanne 0,1–0,25)", "studie", "Dieser Teil der faulen Kredite gesundet jedes Jahr ohne Verlust.", { spanne: [0.1, 0.25] });
 wirk("banken.rendite", "banken", "Eigenkapitalrendite der Banken", "% pro Jahr", 5, "Größenordnung nach EZB Financial Stability Review (Euroraum rund 5–8 %) und FDIC Quarterly Banking Profile (USA rund 10–12 %), im Original ungeprüft; Spanne 5–12; kalibriert am unteren Rand (USA 2008: Gewinne fingen die Verluste nicht ab)", "kalibriert", "Gewinn vor außergewöhnlichen Abschreibungen, beim Inflationsziel des Landes; mit höherer Inflation steigt er mit. Er fängt Verluste zuerst ab und baut das Eigenkapital nach einer Krise wieder auf; was über dem Ziel liegt, wird ausgeschüttet.");
-wirk("banken.klemme", "banken", "Kreditklemme", "Faktor", 2.5, "Bernanke/Lown 1991; Peek/Rosengren 1995 (Spanne 1–4)", "studie", "Fällt das Eigenkapital mehr als ein Zehntel unter den heutigen Wert (oder unter eine gesenkte Vorgabe), kürzen die Banken Kredit: je Prozentpunkt darunter um so viel Prozent des Bestands, jedes Jahr den halben Weg dorthin, höchstens 10 % im Jahr.", U(0));
-wirk("banken.kapitalkosten", "banken", "Mehr Eigenkapital → Kreditzins", "Pp. je Pp.", 0.13, "BIS 2010 (Macroeconomic Assessment Group); kleiner nach Admati/Hellwig 2013 (Spanne 0–0,2)", "studie", "Jeder Prozentpunkt mehr vorgeschriebenes Eigenkapital verteuert Kredit um so viel.", U(0));
+wirk("banken.klemme", "banken", "Kreditklemme", "Faktor", 2.5, "Bernanke/Lown 1991; Peek/Rosengren 1995 (Spanne 1–4)", "studie", "Fällt das Eigenkapital mehr als ein Zehntel unter den heutigen Wert (oder unter eine gesenkte Vorgabe), kürzen die Banken Kredit: je Prozentpunkt darunter um so viel Prozent des Bestands, jedes Jahr den halben Weg dorthin, höchstens 10 % im Jahr.", { ...U(0), spanne: [1, 4] });
+wirk("banken.kapitalkosten", "banken", "Mehr Eigenkapital → Kreditzins", "Pp. je Pp.", 0.13, "BIS 2010 (Macroeconomic Assessment Group); kleiner nach Admati/Hellwig 2013 (Spanne 0–0,2)", "studie", "Jeder Prozentpunkt mehr vorgeschriebenes Eigenkapital verteuert Kredit um so viel.", { ...U(0), spanne: [0, 0.2] });
 wirk("banken.staatBank", "banken", "Staat-Bank-Kreislauf", "Faktor", 1, "Acharya/Drechsler/Schnabl 2014; Brunnermeier u. a. 2016", "studie", "Steigt die Rendite, verlieren Banken Kurswert auf ihren Staatsanleihen. 0 = aus.", U(0));
 schwelle("schwelle.bankMindest", "banken", "Bankenrettung: Eigenkapital unter diesem Anteil des Startwerts", "Anteil", 0.5, "Spec 13.6 (Schwelle relativ zum Start, weil die Rechnungslegung je Land verschieden ist)", "Bei schneller Rettung füllt der Staat darunter auf das Ziel auf.");
 schwelle("schwelle.hausluecke", "banken", "Hauspreislücke über", "%", 15, "Borio/Drehmann 2009", "Abstand des realen Hauspreises zu seinem einseitigen HP-Trend. Zusammen mit der Kreditlücke warnt sie besser als eine allein.");
@@ -2196,7 +2208,7 @@ stell(
   "Straßen, Schienen, Netze, Schulen und andere Bauten des Staates, vor Abschreibungen. Der heutige Wert steckt in „Übrige Staatsausgaben“; hier zählt die Änderung.",
   "den öffentlichen Kapitalstock und damit die Produktivität, kurzfristig auch die Nachfrage",
 );
-wirk("staat.oeffKapital", "staat", "Öffentlicher Kapitalstock → Produktivität", "Elastizität", 0.1, "Bom/Ligthart 2014 (Meta-Analyse, 578 Schätzungen: 0,08 kurzfristig bis 0,12 langfristig; Spanne 0,05–0,17); Aschauer 1989 lag mit 0,39 weit darüber", "studie", "Ein Prozent mehr öffentlicher Kapitalstock hebt die Produktivität um so viel Prozent. Gerechnet wird nur die Abweichung vom Pfad mit heutiger Investition.", U(0));
+wirk("staat.oeffKapital", "staat", "Öffentlicher Kapitalstock → Produktivität", "Elastizität", 0.1, "Bom/Ligthart 2014 (Meta-Analyse, 578 Schätzungen: 0,08 kurzfristig bis 0,12 langfristig; Spanne 0,05–0,17); Aschauer 1989 lag mit 0,39 weit darüber", "studie", "Ein Prozent mehr öffentlicher Kapitalstock hebt die Produktivität um so viel Prozent. Gerechnet wird nur die Abweichung vom Pfad mit heutiger Investition, bezogen auf den gemessenen Bestand des Landes (IWF): Wo er klein ist, bringt ein Euro mehr.", { ...U(0), spanne: [0.05, 0.17] });
 wirk("staat.oeffAbschreibung", "staat", "Abschreibung des öffentlichen Kapitalstocks", "Anteil pro Jahr", 0.045, "Kamps 2006; IWF Investment and Capital Stock Dataset (2,5 bis 4,5 %); Eurostat: Abschreibungen des deutschen Staates rund 2,4 % BIP auf rund 50 % BIP Bestand", "studie", "Wer nicht investiert, verliert jedes Jahr diesen Teil des Bestands.");
 
 // ---------- Zufallsschocks (Spec 13.4) ----------
@@ -2206,9 +2218,11 @@ wirk("zufall.kriseKredit", "zufall", "Finanzkrise: Kreditlücke → Wahrscheinli
 wirk("zufall.kriseHaus", "zufall", "Finanzkrise: Hauspreislücke → Wahrscheinlichkeit", "Logit je %", 0.05, "Dieselbe Schätzung: 0,048 (t 2,8), zusammen mit der Kreditlücke; Jordà/Schularick/Taylor 2015", "kalibriert", "Zählt nur, wenn „Häuser und Banken“ an ist. 20 % Hauspreis über dem Trend heben die Wahrscheinlichkeit auf das 2,6-Fache.", U(0));
 wirk("zufall.kriseMax", "zufall", "Finanzkrise: höchste Wahrscheinlichkeit", "% pro Jahr", 15, "Annahme; die Schätzung ist über 20 Punkte Kreditlücke kaum belegt", "kalibriert", "Deckel, damit extreme Lücken keine sichere Krise ergeben.");
 wirk("zufall.kriseRuhe", "zufall", "Finanzkrise: Ruhezeit danach", "Jahre", 10, "Macrohistory-Datenbank: seit 1950 lagen im selben Land mindestens 16 Jahre zwischen zwei Krisen", "kalibriert", "So lange beginnt nach einer Finanzkrise keine neue Zufallskrise.");
-wirk("zufall.oel", "zufall", "Ölpreisschock: Wahrscheinlichkeit", "% pro Jahr", 5, "Annahme nach Hamilton 2013 (große Ölpreisschocks 1973, 1979, 1990, 2008), im Original ungeprüft", "kalibriert", "Rund alle 20 Jahre.", U(0));
+wirk("zufall.oel", "zufall", "Ölpreisschock: Wahrscheinlichkeit", "% pro Jahr", 5, "Gezählt an der Ölpreisreihe WTI seit 1946 (FRED WTISPLC, real mit US-Verbraucherpreisen): Jahresmittel mindestens 35 % über dem Höchststand der drei Vorjahre (Nettoanstieg nach Hamilton 1996) in 1974, 1980, 2000; 3,9 % pro Jahr über 1949–2025, 5,8 % seit 1974", "kalibriert", "Rund alle 20 Jahre.", U(0));
 wirk("zufall.pandemie", "zufall", "Pandemie: Wahrscheinlichkeit", "% pro Jahr", 2, "Marani u. a. 2021 (PNAS): rund 2 % pro Jahr für eine Pandemie wie Covid-19", "studie", "Rund alle 50 Jahre.", U(0));
 wirk("zufall.proxy", "zufall", "Krieg in der Nachbarschaft: Wahrscheinlichkeit", "% pro Jahr", 1.5, "Annahme: für Deutschland seit 1950 ein Fall mit Energieschock und Flüchtlingen (2022)", "kalibriert", "Rund alle 65 Jahre. Ein Krieg mit eigener Beteiligung wird nicht gewürfelt.", U(0));
+wirk("zufall.energieImport", "zufall", "Energieschocks treffen Importländer", "Anteil", 1, "Weltbank EG.IMP.CONS.ZS (Nettoimport in % des Energieverbrauchs, 2023); Bezug Deutschland 70,5 %", "kalibriert", "Ölpreisschock, Krieg in der Nachbarschaft und Lieferstopp kosten Nachfrage im Verhältnis des Nettoimports von Energie zu dem Deutschlands: Japan mehr, Frankreich weniger, Förderländer wie Kanada und Russland nichts. Aus: Alle Länder verlieren gleich viel.", U(0));
+wirk("zufall.spannen", "zufall", "Wirkstärken und Produktivitätstrend streuen", "Anteil der Spanne", 1, "Spannen aus den Quellen der Wirkstärken (Meta-Analysen, eigene Schätzungen mit ±2 Standardfehlern); Band des Produktivitätstrends aus der Kalman-Schätzung des Landes", "kalibriert", "Jeder Zufallslauf zieht die Wirkstärken mit belegter Spanne neu, aus einer Dreiecksverteilung mit dem Standard als Spitze, und den Produktivitätstrend aus dem Band seiner Schätzung (wo sie gültig ist). So zeigt das Band auch, wie wenig man über diese Werte weiß. Aus: Nur die Schocks streuen.", U(0));
 wirk("zufall.staerke", "zufall", "Streuung der Schockstärke", "Log-Standardabweichung", 0.4, "Macrohistory-Datenbank: Einbußen in 25 Krisen seit 1950, 10. bis 90. Perzentil beim 0,6- bis 1,8-Fachen des Medians", "kalibriert", "Jeder Zufallsschock ist mal schwächer, mal stärker als der Standardschock (meist zwischen 0,6- und 1,7-fach).");
 wirk("zufall.konjunktur", "zufall", "Gewöhnliche Konjunktur: Zufall in der Nachfrage", "% BIP, Standardabweichung", 1, "kalibriert am gemessenen Wachstum Deutschlands in ruhigen Jahren (Spec 13.4)", "kalibriert", "Kleine Zufallsstöße in jedem Jahr. Sie machen aus der glatten Linie eine wellige.", U(0));
 
