@@ -55,12 +55,14 @@ export function Tour({
   kapitel,
   handy,
   ende,
+  letzterErreicht,
 }: {
   sim: Sim;
   ui: TourUi;
   kapitel: Kapitel;
   handy: boolean;
   ende(fertig: boolean): void;
+  letzterErreicht?(): void; // für einen Abschluss, falls die Ansicht im letzten Schritt neu aufgebaut wird
 }) {
   const passt = (s: Schritt) => !s.nurWenn || s.nurWenn(sim);
   const [nr, setNr] = useState(() => kapitel.schritte.findIndex(passt));
@@ -69,6 +71,7 @@ export function Tour({
   // Ziel gefunden; bis dahin bleibt die Sprechblase weg.
   const [gefunden, setGefunden] = useState(false);
   const start = useRef<Momentaufnahme>(momentaufnahme(sim));
+  const blase = useRef<HTMLDivElement>(null);
   const schritt: Schritt | undefined = kapitel.schritte[nr];
 
   const weiter = () => {
@@ -109,7 +112,9 @@ export function Tour({
       }
       setGefunden(true);
       // Smartphone: Ziel nach oben, damit die Karte unten es nicht verdeckt.
-      el?.scrollIntoView?.({ block: handy ? "start" : "center", behavior: ruhig() ? "auto" : "smooth" });
+      // Im Blatt steht die Karte oben, also dort in die Mitte.
+      const oben = handy && schritt.seitenleiste === undefined;
+      el?.scrollIntoView?.({ block: oben ? "start" : "center", behavior: ruhig() ? "auto" : "smooth" });
       miss();
     };
     suche();
@@ -157,6 +162,9 @@ export function Tour({
   const offen = !!schritt?.aufgabe && !erledigt;
   useEffect(() => {
     const taste = (ev: KeyboardEvent) => {
+      // Tasten in Eingabefeldern, Auswahllisten und Reglern gehören dem Feld.
+      const z = ev.target as HTMLElement | null;
+      if (ev.defaultPrevented || z?.closest?.("input, select, textarea, [contenteditable=true], [role=slider]")) return;
       if (ev.key === "Escape") ende(false);
       else if (ev.key === "ArrowRight" && !offen) weiter();
       else if (ev.key === "ArrowLeft") zurueck();
@@ -164,6 +172,15 @@ export function Tour({
     window.addEventListener("keydown", taste);
     return () => window.removeEventListener("keydown", taste);
   });
+
+  // Fokus in die Sprechblase, sobald sie steht (auch bei Mitmach-Schritten ohne „Weiter“).
+  useEffect(() => {
+    if (gefunden || !schritt?.ziel) blase.current?.querySelector<HTMLElement>(".haupt")?.focus({ preventScroll: true });
+  }, [nr, gefunden, offen]);
+  // Letzter Schritt erreicht: Das Kapitel zählt als erledigt, auch wenn die Ansicht jetzt neu aufgebaut wird.
+  useEffect(() => {
+    if (schritt && !naechster({ kapitel, nr }, passt)) letzterErreicht?.();
+  }, [nr]);
 
   if (!schritt || (schritt.ziel && !gefunden)) return null;
   const vormachen = () => {
@@ -211,8 +228,9 @@ export function Tour({
       )}
       {!rect && <div className="tour-schleier" aria-hidden="true" />}
       <div
-        className={`tour-blase${handy ? " unten" : ""}${!handy && !rect ? " mitte" : ""}`}
+        className={`tour-blase${handy ? " unten" : ""}${handy && schritt.seitenleiste !== undefined && (!rect || rect.top + rect.height / 2 > window.innerHeight / 2) ? " oben" : ""}${!handy && !rect ? " mitte" : ""}`}
         role="dialog"
+        ref={blase}
         aria-label={t("Tour: {titel}", { titel: t(kapitel.titel) })}
         style={stil}
       >
@@ -249,7 +267,7 @@ export function Tour({
               </button>
             </>
           ) : (
-            <button type="button" className="haupt" onClick={weiter} autoFocus>
+            <button type="button" className="haupt" onClick={weiter}>
               {letzter ? t("Fertig") : t("Weiter")}
             </button>
           )}

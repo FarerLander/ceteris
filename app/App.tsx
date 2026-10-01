@@ -1,4 +1,4 @@
-import { useRef, useState, type TouchEvent } from "react";
+import { useEffect, useRef, useState, type TouchEvent } from "react";
 import {
   darfWischen,
   ladeEingeklappt,
@@ -27,7 +27,8 @@ import { Einladung, Rueckfrage } from "./tour/Einladung";
 import { ladeTour, speichereTour } from "./tour/speicher";
 import { startTour, Tour, useTourStart } from "./tour/Tour";
 import type { Szenario } from "../modell/typen";
-import type { TourUi } from "./tour/typen";
+import type { KapitelId, TourUi } from "./tour/typen";
+import { kodiere } from "../modell/szenario-code";
 import {
   setzeSprache as setzeModellSprache,
   t,
@@ -89,6 +90,8 @@ export function App() {
     );
     setCode(c);
   };
+  // Stand der Tour über den Neuaufbau hinweg (Sprachwechsel im letzten Schritt).
+  const tourStand = useRef<TourStand>({ laufend: null, letzter: false, vorher: null });
   // Neuaufbau bei Land- oder Sprachwechsel; das Szenario steht in der Adresse und bleibt.
   return (
     <Ansichten
@@ -96,18 +99,28 @@ export function App() {
       land={LAENDER[code]}
       setzeLand={setzeLand}
       setzeSprache={setzeSprache}
+      tourStand={tourStand}
     />
   );
+}
+
+// Laufende Tour, ob ihr letzter Schritt erreicht ist, und der Stand vor ihrem Start (Szenario als Link-Code).
+interface TourStand {
+  laufend: KapitelId | null;
+  letzter: boolean;
+  vorher: { code: string; land: string; idx: number; sz: Szenario } | null;
 }
 
 function Ansichten({
   land,
   setzeLand,
   setzeSprache,
+  tourStand,
 }: {
   land: Landesdaten;
   setzeLand(code: string): void;
   setzeSprache(s: Sprache): void;
+  tourStand: { current: TourStand };
 }) {
   const handy = useHandy();
   // Auf dem Smartphone passt ein langer Zeitraum schlecht ins Diagramm: ohne Link bis 2050.
@@ -138,23 +151,26 @@ function Ansichten({
   // Hilfe-Modus: Die Tour darf Reiter wechseln und die Seitenleiste öffnen; was sie geöffnet hat, schließt sie wieder.
   const [tour, setTour] = useTourStart();
   const tourOeffnete = useRef(false);
+  // Smartphone: Das Blatt merkt sich seine Stufe vor der Tour und kehrt beim Schließen dorthin zurück.
   const tourUi: TourUi = {
     setzeAnsicht: setze,
     setzeFokus,
     oeffneSeitenleiste(seite = 0) {
       if (handy) {
-        tourOeffnete.current = true;
+        // Seite nach oben: Das Blatt liegt fest über ihr, die Hervorhebung im Dokument; so decken sich beide.
+        window.scrollTo?.({ top: 0 });
         window.dispatchEvent(new CustomEvent("ceteris-blatt", { detail: seite }));
-      } else if (eingeklappt) {
+      }
+      else if (eingeklappt) {
         tourOeffnete.current = true;
         setEingeklappt(false);
       }
     },
     schliesseSeitenleiste() {
+      if (handy) return void window.dispatchEvent(new CustomEvent("ceteris-blatt", { detail: -1 }));
       if (!tourOeffnete.current) return;
       tourOeffnete.current = false;
-      if (handy) window.dispatchEvent(new CustomEvent("ceteris-blatt", { detail: -1 }));
-      else setEingeklappt(true);
+      setEingeklappt(true);
     },
   };
   // Einladung beim ersten Besuch, nicht bei einem geteilten Szenario-Link.
@@ -165,29 +181,53 @@ function Ansichten({
     speichereTour({ ...ladeTour(), gesehen: true });
     setEinladen(false);
   };
-  // Stand beim Start der Tour; hat die Tour das Szenario verändert, fragt sie am Ende nach.
-  const vorher = useRef<{ sz: Szenario; idx: number } | null>(null);
+  // Stand beim Start der Tour; hat die Tour das Szenario verändert, fragt sie am Ende nach. Hat sie nur das Jahr
+  // geändert, kehrt sie still zum alten Jahr zurück.
   const [rueckfrage, setRueckfrage] = useState(false);
-  if (tour && !vorher.current) vorher.current = { sz: sim.sz, idx: sim.idx };
+  const ts = tourStand.current;
+  if (tour && ts.laufend !== tour.id) {
+    // Neues Kapitel; eine offene Rückfrage gilt dann als „So lassen“.
+    if (!ts.laufend) ts.vorher = { code: kodiere(sim.szWirksam), land: land.code, idx: sim.idx, sz: sim.sz };
+    ts.laufend = tour.id;
+    ts.letzter = false;
+  }
+  useEffect(() => {
+    if (tour && rueckfrage) setRueckfrage(false);
+  }, [tour]);
+  const erledige = (id: KapitelId) => {
+    const stand = ladeTour();
+    speichereTour({ gesehen: true, erledigt: stand.erledigt.includes(id) ? stand.erledigt : [...stand.erledigt, id] });
+  };
+  const abschluss = (fertig: boolean, id: KapitelId) => {
+    if (fertig) erledige(id);
+    else speichereTour({ ...ladeTour(), gesehen: true });
+    const v = ts.vorher;
+    ts.laufend = null;
+    ts.letzter = false;
+    if (v && v.land === land.code && v.code !== kodiere(sim.szWirksam)) setRueckfrage(true);
+    else {
+      if (v && v.land === land.code && v.idx !== sim.idx) sim.setIdx(v.idx);
+      ts.vorher = null;
+    }
+  };
   const tourEnde = (fertig: boolean) => {
     tourUi.schliesseSeitenleiste();
-    const stand = ladeTour();
-    speichereTour({
-      gesehen: true,
-      erledigt: fertig && tour && !stand.erledigt.includes(tour.id) ? [...stand.erledigt, tour.id] : stand.erledigt,
-    });
     setEinladen(false);
+    if (tour) abschluss(fertig, tour.id);
     setTour(null);
-    if (vorher.current && vorher.current.sz !== sim.sz) setRueckfrage(true);
-    else vorher.current = null;
+    document.querySelector<HTMLElement>(".tour-menue-knopf")?.focus();
   };
+  // Neuaufbau mitten in der Tour (Land- oder Sprachwechsel): Tour sauber abschließen.
+  useEffect(() => {
+    if (ts.laufend && !tour) abschluss(ts.letzter, ts.laufend);
+  }, []);
   const rueckfrageEnde = (zurueck: boolean) => {
-    const v = vorher.current;
+    const v = ts.vorher;
     if (zurueck && v) {
       sim.ladeSzenario(v.sz);
       sim.setIdx(v.idx);
     }
-    vorher.current = null;
+    ts.vorher = null;
     setRueckfrage(false);
   };
   // Smartphone: Wischen nach links oder rechts wechselt den Reiter (nicht während der Tour).
@@ -287,7 +327,17 @@ function Ansichten({
           </p>
         </main>
       </div>
-      {tour && <Tour sim={sim} ui={tourUi} kapitel={tour} handy={handy} ende={tourEnde} />}
+      {tour && (
+        <Tour
+          key={tour.id}
+          sim={sim}
+          ui={tourUi}
+          kapitel={tour}
+          handy={handy}
+          ende={tourEnde}
+          letzterErreicht={() => (ts.letzter = true)}
+        />
+      )}
       {rueckfrage && <Rueckfrage zurueck={() => rueckfrageEnde(true)} lassen={() => rueckfrageEnde(false)} />}
     </>
   );

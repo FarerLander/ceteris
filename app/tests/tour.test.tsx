@@ -281,3 +281,122 @@ describe("Tour: Ziel erscheint verzögert", () => {
     spaet!.remove();
   });
 });
+
+describe("Tour: Befunde der Prüfung", () => {
+  const handy = () => {
+    const original = window.matchMedia;
+    window.matchMedia = ((q: string) => ({ ...original(q), matches: true })) as typeof window.matchMedia;
+    return () => { window.matchMedia = original; };
+  };
+  const bis = async (n: number, von = 10) => {
+    for (let i = 1; i < n; i++) {
+      const b = within(blase()!);
+      fireEvent.click(b.queryByRole("button", { name: "Weiter" }) ?? b.getByRole("button", { name: "Zeig’s mir" }));
+      await waitFor(() => expect(within(blase()!).getByText(`${i + 1} von ${von}`)).toBeTruthy());
+    }
+  };
+
+  it("M1: Ein anderes Kapitel mitten in der Tour beginnt bei seinem ersten Schritt", async () => {
+    render(<App />);
+    starte("erkundung");
+    await waitFor(() => expect(blase()).not.toBeNull());
+    await bis(3);
+    starte("pruefen");
+    await waitFor(() => expect(within(blase()!).getByText("1 von 3")).toBeTruthy());
+    expect(document.querySelector('[data-tour="vergleich"]')).not.toBeNull();
+  }, 15000);
+
+  it("M1: Ein Kapitel starten schließt eine offene Rückfrage; es steht nur ein Dialog da", async () => {
+    render(<App />);
+    starte("erkundung");
+    await waitFor(() => expect(blase()).not.toBeNull());
+    await bis(6);
+    fireEvent.click(within(blase()!).getByRole("button", { name: "Zeig’s mir" }));
+    await waitFor(() => expect(within(blase()!).getByText("7 von 10")).toBeTruthy());
+    fireEvent.keyDown(window, { key: "Escape" });
+    await screen.findByRole("dialog", { name: "Tour beendet" });
+    starte("pruefen");
+    await waitFor(() => expect(blase()).not.toBeNull());
+    expect(screen.queryByRole("dialog", { name: "Tour beendet" })).toBeNull();
+  }, 15000);
+
+  it("M2: Smartphone: Ziel in der Seitenleiste öffnet das Blatt ganz, die Karte steht dem Ziel gegenüber", async () => {
+    const zurueck = handy();
+    try {
+      render(<App />);
+      starte("erkundung");
+      await waitFor(() => expect(blase()).not.toBeNull());
+      await bis(2);
+      await waitFor(() => expect(document.querySelector("aside.blatt")!.className).toContain("voll"));
+      const r = document.querySelector('[data-tour="land"]')!.getBoundingClientRect();
+      expect(blase()!.className.includes("oben")).toBe(r.top + r.height / 2 > window.innerHeight / 2);
+    } finally {
+      zurueck();
+    }
+  }, 15000);
+
+  it("M3: Pfeiltasten und Esc in einem Eingabefeld gehören dem Feld, nicht der Tour", async () => {
+    render(<App />);
+    starte("erkundung");
+    await waitFor(() => expect(blase()).not.toBeNull());
+    await bis(2);
+    const feld = screen.getByLabelText(/^Land/);
+    fireEvent.keyDown(feld, { key: "ArrowLeft" });
+    fireEvent.keyDown(feld, { key: "Escape" });
+    expect(within(blase()!).getByText("2 von 10")).toBeTruthy();
+  }, 15000);
+
+  it("M4: Sprachwechsel im letzten Schritt: Kapitel erledigt, Rückfrage erscheint nach dem Neuaufbau", async () => {
+    render(<App />);
+    starte("erkundung");
+    await waitFor(() => expect(blase()).not.toBeNull());
+    await bis(10);
+    // Die Adresse übernimmt das Szenario 250 ms verzögert; wer liest, wartet länger.
+    await act(async () => { await new Promise((r) => setTimeout(r, 400)); });
+    fireEvent.click(screen.getByRole("button", { name: /^Sprache:/ }));
+    await screen.findByRole("dialog", { name: "Tour finished" });
+    fireEvent.click(screen.getByRole("button", { name: "Keep it" }));
+    fireEvent.click(screen.getByRole("button", { name: "Tour and help" }));
+    expect(within(screen.getByRole("menu", { name: "Tour and help" })).getByRole("menuitem", { name: /First exploration.*done/ })).toBeTruthy();
+  }, 15000);
+
+  it("M5: Bei einem Mitmach-Schritt liegt der Fokus in der Sprechblase", async () => {
+    render(<App />);
+    starte("erkundung");
+    await waitFor(() => expect(blase()).not.toBeNull());
+    await bis(3);
+    await waitFor(() => expect(blase()!.contains(document.activeElement)).toBe(true));
+  }, 15000);
+
+  it("H1: Hat die Tour nur das Jahr geändert, setzt Beenden es ohne Rückfrage zurück", async () => {
+    render(<App />);
+    const jahr = screen.getByLabelText("Gewähltes Jahr").textContent;
+    starte("erkundung");
+    await waitFor(() => expect(blase()).not.toBeNull());
+    await bis(3);
+    fireEvent.click(within(blase()!).getByRole("button", { name: "Zeig’s mir" }));
+    await waitFor(() => expect(within(blase()!).getByText("4 von 10")).toBeTruthy());
+    fireEvent.keyDown(window, { key: "Escape" });
+    await waitFor(() => expect(blase()).toBeNull());
+    expect(screen.queryByRole("dialog", { name: "Tour beendet" })).toBeNull();
+    expect(screen.getByLabelText("Gewähltes Jahr").textContent).toBe(jahr);
+  }, 15000);
+
+  it("H8: Smartphone: Ein Blatt, das schon offen war, bleibt nach der Tour offen", async () => {
+    const zurueck = handy();
+    try {
+      render(<App />);
+      fireEvent.click(screen.getByRole("button", { name: "Stellschrauben zeigen" }));
+      starte("erkundung");
+      await waitFor(() => expect(blase()).not.toBeNull());
+      await bis(2);
+      weiter();
+      await waitFor(() => expect(within(blase()!).getByText("3 von 10")).toBeTruthy());
+      fireEvent.keyDown(window, { key: "Escape" });
+      await waitFor(() => expect(blase()).toBeNull());
+      expect(document.querySelector("aside.blatt")!.className).not.toMatch(/\bzu\b/);
+    } finally {
+      zurueck();
+    }
+  }, 15000);
+});

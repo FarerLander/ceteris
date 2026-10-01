@@ -1990,3 +1990,7 @@
 [data-tour] {
   scroll-margin-top: 76px;
 }
+.tour-blase.unten.oben {
+  top: 52px;
+  bottom: auto;
+}

@@ -12,7 +12,7 @@ export function TourMenue() {
     <div className="tour-menue-rahmen">
       <button
         type="button"
-        className="info-knopf"
+        className="info-knopf tour-menue-knopf"
         aria-label={t("Tour und Hilfe")}
         aria-expanded={offen}
         aria-haspopup="menu"

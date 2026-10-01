@@ -13,7 +13,7 @@ import { stellschrauben } from "../../modell/verzeichnis";
 import type { BausteinId, Grundeinstellungen } from "../../modell/typen";
 import type { Sim } from "../simulation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Aenderung, useBlatt } from "./Blatt";
+import { Aenderung, type Stufe, useBlatt } from "./Blatt";
 import { FarbmodusKnopf, SprachKnopf, stand } from "./Anzeige";
 import { Regler } from "./Regler";
 import { Szenarien } from "./Szenarien";
@@ -222,12 +222,20 @@ function Blattleiste({ sim, setzeLand, zeigeWirkung, setzeSprache }: Teil & { se
   const b = useBlatt();
   const seiten = useRef<HTMLDivElement>(null);
   const [aktiv, setAktiv] = useState(0);
-  // Die Tour öffnet das Blatt auf einer Seite (−1: wieder zu).
+  // Die Tour öffnet das Blatt ganz auf einer Seite und stellt danach die Stufe von vorher wieder her (−1).
+  const stufeVorTour = useRef<Stufe | null>(null);
+  const stufeJetzt = useRef(b.stufe);
+  stufeJetzt.current = b.stufe;
   useEffect(() => {
     const hoere = (ev: Event) => {
       const i = (ev as CustomEvent<number>).detail;
-      if (i < 0) return b.setStufe("zu");
-      b.setStufe("halb");
+      if (i < 0) {
+        if (stufeVorTour.current) b.setStufe(stufeVorTour.current);
+        stufeVorTour.current = null;
+        return;
+      }
+      stufeVorTour.current ??= stufeJetzt.current;
+      b.setStufe("voll");
       setAktiv(i);
       seiten.current?.scrollTo?.({ left: i * seiten.current.clientWidth });
     };
