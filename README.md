@@ -47,6 +47,11 @@ npm test         # Tests
 npm run daten    # Daten neu holen / refresh data
 ```
 
+## Datenschutz / Privacy
+
+Die Seite zählt Besuche anonym mit [GoatCounter](https://www.goatcounter.com): keine Cookies, keine IP-Adressen, keine persönlichen Daten.
+The site counts visits anonymously with [GoatCounter](https://www.goatcounter.com): no cookies, no IP addresses, no personal data.
+
 ## Lizenz / License
 
 Code: [MIT](LICENSE). Ausnahme / exception: `daten/kalibrierung/jst-auszug.csv` unter CC BY-NC-SA 4.0 ([Hinweis / notice](daten/kalibrierung/JST-LIZENZ.md)).
