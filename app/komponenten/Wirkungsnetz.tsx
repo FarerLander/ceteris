@@ -6,7 +6,7 @@ import { t } from "../../modell/sprache";
 import { landkarte, schreibeMit } from "../../modell/netz/mitschrift";
 import { berechneWeg, type WegKnoten } from "../../modell/netz/weg";
 import type { BausteinId } from "../../modell/typen";
-import { stellschrauben, vName } from "../../modell/verzeichnis";
+import { eintrag, stellschrauben, vName } from "../../modell/verzeichnis";
 import type { Sim } from "../simulation";
 import { PolitikRegeln } from "./PolitikRegeln";
 import { KARTE_ZEICHEN, WEG_ZEICHEN, zeilen } from "../textumbruch";
@@ -141,9 +141,9 @@ function WegBild({ weg }: { weg: ReturnType<typeof berechneWeg> }) {
     >
       {[
         t("Stellschraube"),
-        t("im ersten Jahr"),
-        t("nach 2–3 Jahren"),
-        t("nach 4–10 Jahren"),
+        ...(weg.ab === null
+          ? [t("im ersten Jahr"), t("nach 2–3 Jahren"), t("nach 4–10 Jahren")]
+          : [String(weg.ab), `${weg.ab + 1}–${weg.ab + 2}`, `${weg.ab + 3}–${weg.ab + weg.jahr - 1}`]),
         t("Kennzahlen"),
       ].map((spalte, s) => (
         <text key={spalte} x={10 + s * 200} y={12} className="netz-spalte">
@@ -308,7 +308,9 @@ export function Wirkungsnetz({
             </p>
             <WegBild weg={weg} />
             <p className="hint">
-              {t("Gerechnet im aktuellen Szenario: einmal wie eingestellt, einmal mit der Stellschraube um 10 % ihrer Spanne verstellt. Die Linien zeigen, worüber eine Wirkung laufen kann, nicht wie viel über welchen Zweig läuft.")}
+              {eintrag(weg.id).optionen
+                ? t("Gerechnet im aktuellen Szenario: einmal wie eingestellt, einmal mit der gezeigten anderen Auswahl. Die Linien zeigen, worüber eine Wirkung laufen kann, nicht wie viel über welchen Zweig läuft.")
+                : t("Gerechnet im aktuellen Szenario: einmal wie eingestellt, einmal mit der Stellschraube um 10 % ihrer Spanne verstellt. Die Linien zeigen, worüber eine Wirkung laufen kann, nicht wie viel über welchen Zweig läuft.")}
             </p>
           </>
         )}

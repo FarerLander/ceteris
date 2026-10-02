@@ -26,6 +26,7 @@ export interface Weg {
   knoten: WegKnoten[];
   kanten: [string, string][];
   satz: string;
+  ab: number | null; // Kalenderjahr, mit dem das Fenster beginnt, wenn die Wirkung erst spät einsetzt
 }
 
 const wertIn = (z: Zustand, f: string) =>
@@ -45,7 +46,7 @@ export function berechneWeg(
 ): Weg {
   const e = eintrag(id);
   const von = aktuell(land, sz, id);
-  const lang = Math.min(sz.jahre, 31);
+  const lang = Math.min(sz.jahre, 41);
   const a = rechne(land, { ...sz, jahre: lang });
   const mit = (w: number) => rechne(land, { ...sz, jahre: lang, stell: { ...sz.stell, [id]: w } });
   const bewegt = (v: Zustand[]) =>
@@ -61,14 +62,24 @@ export function berechneWeg(
     const v = mit(w);
     if (bewegt(v)) [nach, b] = [w, v];
   }
-  const n = Math.min(10, lang - 1);
+  // Setzt die Wirkung erst nach dem Zehn-Jahres-Fenster ein (neue Reaktoren nach dem Vorlauf), beginnt das
+  // Fenster mit dem ersten merklichen Jahr; sonst zeigte das Bild nichts.
+  const merkt = (tt: number) =>
+    Object.entries(GROESSEN).some(([f, g]) => Math.abs(abweichung(g, wertIn(a[tt], f), wertIn(b[tt], f))) >= merklich(g));
+  let erstesJahr = 0;
+  for (let tt = 1; tt < lang && !erstesJahr; tt++) if (merkt(tt)) erstesJahr = tt;
+  const n0 = Math.min(10, lang - 1);
+  const versatz = erstesJahr > n0 ? Math.min(erstesJahr - 1, lang - 1 - n0) : 0;
+  const n = Math.min(10, lang - 1 - versatz);
+  const at = (tt: number) => a[versatz + tt];
+  const bt = (tt: number) => b[versatz + tt];
 
   const alle = Object.entries(GROESSEN).map(([feld, g]) => {
-    const wert = abweichung(g, wertIn(a[n], feld), wertIn(b[n], feld));
+    const wert = abweichung(g, wertIn(at(n), feld), wertIn(bt(n), feld));
     let erstes = 0;
     for (let t = 1; t <= n; t++)
       if (
-        Math.abs(abweichung(g, wertIn(a[t], feld), wertIn(b[t], feld))) >=
+        Math.abs(abweichung(g, wertIn(at(t), feld), wertIn(bt(t), feld))) >=
         merklich(g)
       ) {
         erstes = t;
@@ -140,25 +151,25 @@ export function berechneWeg(
     .filter((x) => Math.abs(x.wert) >= merklich(x.g))
     .sort((x, y) => y.staerke - x.staerke)[0];
   let satz: string;
+  const ab = versatz > 0 ? at(1).jahr : null;
+  const spaet = ab === null ? "" : `${t("Die Wirkung setzt erst {jahr} ein, nach {m} Jahren.", { jahr: ab, m: erstesJahr })} `;
   if (!stark && zwischen.length === 0) {
-    // Erstes Jahr nach dem Fenster, in dem sich etwas merklich bewegt (z. B. neue Reaktoren nach dem Vorlauf).
-    let spaet = 0;
-    for (let tt = n + 1; tt < lang && !spaet; tt++)
-      if (Object.entries(GROESSEN).some(([f, g]) => Math.abs(abweichung(g, wertIn(a[tt], f), wertIn(b[tt], f))) >= merklich(g)))
-        spaet = tt;
-    satz = spaet
-      ? t("{kopf}: innerhalb von {n} Jahren kaum Wirkung; merklich wird sie erst nach {m} Jahren ({jahr}).", { kopf, n, m: spaet, jahr: a[spaet].jahr })
-      : t("{kopf}: innerhalb von {n} Jahren kaum Wirkung.", { kopf, n });
+    satz = t("{kopf}: innerhalb von {n} Jahren kaum Wirkung.", { kopf, n: versatz + n });
   } else {
     const ueber = merkZ.length
       ? ` ${t("Der Weg führt über {stationen}.", { stationen: merkZ.slice(0, 2).join(t(" und ")) })}`
       : "";
+    const bis = at(n).jahr;
     const wirkung = stark
-      ? t("nach {n} Jahren {groesse} {delta}", { n, groesse: gName(stark.feld), delta: deltaText(stark.feld, stark.wert) })
-      : t("nach {n} Jahren bewegen sich die fünf Kennzahlen kaum", { n });
-    satz = `${kopf}: ${wirkung}${wirkung.endsWith(".") ? "" : "."}${ueber}`;
+      ? ab === null
+        ? t("nach {n} Jahren {groesse} {delta}", { n, groesse: gName(stark.feld), delta: deltaText(stark.feld, stark.wert) })
+        : t("Bis {jahr}: {groesse} {delta}", { jahr: bis, groesse: gName(stark.feld), delta: deltaText(stark.feld, stark.wert) })
+      : ab === null
+        ? t("nach {n} Jahren bewegen sich die fünf Kennzahlen kaum", { n })
+        : t("Bis {jahr} bewegen sich die fünf Kennzahlen kaum", { jahr: bis });
+    satz = `${kopf}: ${spaet}${wirkung}${wirkung.endsWith(".") ? "" : "."}${ueber}`;
   }
-  return { id, name: vName(e), von, nach, jahr: n, knoten, kanten, satz };
+  return { id, name: vName(e), von, nach, jahr: n, knoten, kanten, satz, ab };
 }
 
 export { deltaText };

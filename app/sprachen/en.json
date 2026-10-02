@@ -1712,7 +1712,6 @@
   "Wer dreht an den Stellschrauben?": "Who turns the levers?",
   "Die Regler stellst du selbst. Steht die Grundeinstellung „Politik“ auf „Reagiert“, dreht auch die Regierung an Stellschrauben. Ihre Eingriffe laufen dieselben Wege wie deine.": "You set the sliders yourself. If the basic setting “Policy” is on “Reacting”, the government turns levers too. Its interventions travel the same paths as yours.",
   "Teil der Annahmen": "Part of the assumptions",
-  "{kopf}: innerhalb von {n} Jahren kaum Wirkung; merklich wird sie erst nach {m} Jahren ({jahr}).": "{kopf}: hardly any effect within {n} years; it becomes noticeable only after {m} years ({jahr}).",
   "% des Stroms": "% of electricity",
   "v:energie.atomZiel:name": "Nuclear expansion target",
   "v:energie.atomZiel:erklaerung": "Up to which share of electricity new reactors are built. Only with “New build”; a country with more nuclear keeps its share.",
@@ -1724,5 +1723,9 @@
   "v:energie.atomZubau:name": "Build-out of new reactors",
   "v:energie.atomZubau:erklaerung": "By how many percentage points the nuclear share of electricity rises per year once building starts.",
   "v:energie.atomAbzahlung:name": "Pay-off period of new reactors",
-  "v:energie.atomAbzahlung:erklaerung": "For this long new reactors pay off their construction costs. After that they only cost continued operation."
+  "v:energie.atomAbzahlung:erklaerung": "For this long new reactors pay off their construction costs. After that they only cost continued operation.",
+  "Die Wirkung setzt erst {jahr} ein, nach {m} Jahren.": "The effect only sets in in {jahr}, after {m} years.",
+  "Bis {jahr}: {groesse} {delta}": "By {jahr}: {groesse} {delta}",
+  "Bis {jahr} bewegen sich die fünf Kennzahlen kaum": "By {jahr} the five key figures hardly move",
+  "Gerechnet im aktuellen Szenario: einmal wie eingestellt, einmal mit der gezeigten anderen Auswahl. Die Linien zeigen, worüber eine Wirkung laufen kann, nicht wie viel über welchen Zweig läuft.": "Computed in the current scenario: once as set, once with the other choice shown. The lines show which paths an effect can take, not how much runs through which branch."
 }

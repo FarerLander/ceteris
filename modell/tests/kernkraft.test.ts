@@ -36,3 +36,24 @@ describe("Kernkraft-Neubau", () => {
     expect(kurz[60].energiepreis).toBeLessThan(normal[60].energiepreis - 1);
   });
 });
+
+describe("Wirkungsnetz bei später Wirkung", () => {
+  it("Neubau in Deutschland: Fenster beginnt 2038, Spalten zeigen die Wirkung", async () => {
+    const { schreibeMit } = await import("../netz/mitschrift");
+    const { berechneWeg } = await import("../netz/weg");
+    const de = LAENDER.DE;
+    const sz = basisSzenario(de, 51);
+    const w = berechneWeg(de, sz, "energie.atom", schreibeMit(de, sz));
+    expect(w.nach).toBe(2);
+    expect(w.ab).toBe(2038);
+    expect(w.satz).toContain("Die Wirkung setzt erst 2038 ein, nach 13 Jahren.");
+    expect(w.knoten.some((k) => !k.kennzahl && k.name === "Energiepreis")).toBe(true);
+  });
+  it("frühe Wirkung behält das gewohnte Fenster", async () => {
+    const { schreibeMit } = await import("../netz/mitschrift");
+    const { berechneWeg } = await import("../netz/weg");
+    const de = LAENDER.DE;
+    const sz = basisSzenario(de, 51);
+    expect(berechneWeg(de, sz, "rente.alter", schreibeMit(de, sz)).ab).toBeNull();
+  });
+});
