@@ -231,6 +231,25 @@ describe("Tour: weitere Kapitel", () => {
     expect(gesehen).not.toContain("4 von 6");
   }, 15000);
 
+  it("Erste Erkundung nach dem Wirkungsnetz: holt die Übersicht zurück und zeigt alle zehn Schritte", async () => {
+    render(<App />);
+    starte("wirkungsnetz");
+    await durch();
+    // Die Ansicht steht jetzt noch im Wirkungsnetz.
+    expect(document.querySelector('[data-tour="lage"]')).toBeNull();
+    starte("erkundung");
+    // Nach dem Reiterwechsel fehlt die Sprechblase kurz, bis das Ziel gezeichnet ist: auf jede warten.
+    const gesehen: string[] = [];
+    while (!gesehen.includes("10 von 10")) {
+      await waitFor(() => expect(blase()).not.toBeNull());
+      const b = within(blase()!);
+      gesehen.push(b.getByText(/^\d+ von \d+$/).textContent!);
+      fireEvent.click(b.queryByRole("button", { name: "Fertig" }) ?? b.queryByRole("button", { name: "Weiter" }) ?? b.getByRole("button", { name: "Zeig’s mir" }));
+      await act(async () => { await new Promise((r) => setTimeout(r, 0)); });
+    }
+    expect(gesehen).toEqual(Array.from({ length: 10 }, (_, i) => `${i + 1} von 10`));
+  }, 30000);
+
   it("Vergleichen und prüfen öffnet Vergleich, Rückblick und Annahmen", async () => {
     render(<App />);
     starte("pruefen");
