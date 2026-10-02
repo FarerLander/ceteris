@@ -1,8 +1,11 @@
 import { standardWert } from "../../modell/kontext";
 import type { ReihenId } from "../../modell/reihen";
-import type { Kapitel } from "./typen";
+import type { Kapitel, TourUi } from "./typen";
 
 // Hilfe-Modus: Kapitel der geführten Tour. Texte auf Deutsch, übersetzt über t() (en.json).
+
+// Die Schritte der Erkundung liegen in der Übersicht; ein vorher gestartetes Kapitel kann einen anderen Reiter offen lassen.
+const zurUebersicht = (ui: TourUi) => ui.setzeAnsicht("uebersicht");
 
 const erkundung: Kapitel = {
   id: "erkundung",
@@ -22,6 +25,7 @@ const erkundung: Kapitel = {
     {
       id: "jahr",
       ziel: "lage",
+      vorbereiten: zurUebersicht,
       text: "Das Wetterband zeigt die Lage Jahr für Jahr: Wachstum, Stagnation, Krise. Tippe auf ein späteres Jahr, etwa 2050.",
       aufgabe: { art: "sim", erledigt: (a, b) => b.idx !== a.idx },
       vormachen: (sim) =>
@@ -32,6 +36,7 @@ const erkundung: Kapitel = {
     {
       id: "kennzahlen",
       ziel: "kennzahlen",
+      vorbereiten: zurUebersicht,
       text: "Die Kennzahlen gelten für das gewählte Jahr, verglichen mit der Basislinie: heutige Politik, unverändert fortgeschrieben. Tippe eine Kachel an.",
       aufgabe: { art: "sim", erledigt: (a, b) => b.detail !== a.detail },
       vormachen: (sim) =>
@@ -42,11 +47,13 @@ const erkundung: Kapitel = {
     {
       id: "diagramm",
       ziel: "diagramm",
+      vorbereiten: zurUebersicht,
       text: "Das Diagramm zeigt deine Linie, die Basislinie und ein Band aus vielen Zufallsläufen: So weit können unvorhergesehene Schocks den Verlauf verschieben. Die Punkte sind Prognosen des IWF.",
     },
     {
       id: "schock",
       ziel: "schocks",
+      vorbereiten: zurUebersicht,
       text: "Was passiert in einer Krise? Setz eine Finanzkrise im gewählten Jahr. Mit dem × in der Liste darunter nimmst du sie wieder heraus.",
       aufgabe: { art: "sim", erledigt: (a, b) => b.schocks > a.schocks },
       vormachen: (sim) => sim.schockHinzu("krise"),
@@ -54,16 +61,19 @@ const erkundung: Kapitel = {
     {
       id: "warnlampen",
       ziel: "warnlampen",
+      vorbereiten: zurUebersicht,
       text: "Die Warnlampen melden, wenn etwas kippt: etwa wenn die Zinsen schneller wachsen als die Wirtschaft oder die Märkte an der Tragfähigkeit zweifeln.",
     },
     {
       id: "erzaehlung",
       ziel: "erzaehlung",
+      vorbereiten: zurUebersicht,
       text: "„Was passiert hier?“ erzählt den Verlauf in Worten, auch was die Regierung von selbst tut.",
     },
     {
       id: "wege",
       ziel: "wege",
+      vorbereiten: zurUebersicht,
       text: "Drei Politikpakete, die den Wohlstand am stärksten heben, jeweils mit ihrem Preis. Übernimm eines und schau, was sich ändert.",
       aufgabe: {
         art: "sim",
