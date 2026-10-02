@@ -1,10 +1,13 @@
 import { EINSTELLUNG } from "../faecher";
+import { LAND_EINSTELLUNG } from "../land";
 import { SPRACH_EINSTELLUNG } from "../sprache";
 // jsdom kennt einige Browser-APIs nicht, die Recharts und die Bewegung nutzen.
 if (typeof window !== "undefined") {
   // Tests laufen auf Deutsch. Die veröffentlichte App startet auf Englisch (sprache.test.tsx prüft das).
   Object.defineProperty(window.navigator, "language", { value: "de-DE", configurable: true });
   SPRACH_EINSTELLUNG.standard = "de";
+  // Tests starten mit Deutschland. Die veröffentlichte App startet mit den USA (land.test prüft das).
+  LAND_EINSTELLUNG.standard = "DE";
   class Beobachter {
     observe() {}
     unobserve() {}

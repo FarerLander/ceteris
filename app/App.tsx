@@ -19,7 +19,7 @@ import { Warnlampen } from "./komponenten/Warnlampen";
 import { Wetterband } from "./komponenten/Wetterband";
 import { Wirkungsnetz } from "./komponenten/Wirkungsnetz";
 import { stellschrauben } from "../modell/verzeichnis";
-import { LAENDER, landAusLink } from "./land";
+import { LAENDER, landAusLink, landImLink } from "./land";
 import type { Landesdaten } from "../modell/typen";
 import { useSimulation } from "./simulation";
 import { Symbole } from "./Symbole";
@@ -80,7 +80,7 @@ export function App() {
     // Adresszeile vor dem Neuaufbau zurücksetzen, damit kein Szenario des alten Landes ins neue gerät.
     const spr = new URLSearchParams(window.location.search).get("sprache");
     const teile = [
-      c === "DE" ? "" : `l=${c}`,
+      landImLink(c, false),
       spr ? `sprache=${spr}` : "",
     ].filter(Boolean);
     window.history.replaceState(

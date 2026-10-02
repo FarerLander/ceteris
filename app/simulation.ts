@@ -14,6 +14,7 @@ import { basisSzenario, rechne } from "../modell/rechne";
 import type { Ausloeser, Motiv } from "../modell/politik-modus";
 import type { ReihenId } from "../modell/reihen";
 import { dekodiere, istBasis, kodiere } from "../modell/szenario-code";
+import { landImLink } from "./land";
 import type {
   Grundeinstellungen,
   Landesdaten,
@@ -89,7 +90,8 @@ export function useSimulation(land: Landesdaten, jahre = 51): Sim {
       try {
         // Eine Sprache aus dem Link bleibt erhalten, damit geteilte Links ihre Sprache behalten.
         const spr = new URLSearchParams(window.location.search).get("sprache");
-        const teile = [land.code === "DE" ? "" : `l=${land.code}`, istBasis(szWirksam, land) ? "" : `s=${kodiere(szWirksam)}`, spr ? `sprache=${spr}` : ""].filter(Boolean);
+        const basis = istBasis(szWirksam, land);
+        const teile = [landImLink(land.code, !basis), basis ? "" : `s=${kodiere(szWirksam)}`, spr ? `sprache=${spr}` : ""].filter(Boolean);
         const suche = teile.length ? `?${teile.join("&")}` : "";
         window.history.replaceState(null, "", `${window.location.pathname}${suche}${window.location.hash}`);
       } catch {
