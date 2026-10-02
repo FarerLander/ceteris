@@ -7,11 +7,15 @@ export const energie: Baustein = (alt, neu, k) => {
   m.ern = Math.min(0.95, alt.mix.ern + k.w("energie.ausbauTempo") / 100);
   const rest = k.w("energie.kohleausstieg") - k.jahr;
   m.kohle = rest <= 0 ? 0 : alt.mix.kohle * (rest / (rest + 1));
+  // Neubau: erst nach dem Vorlauf, dann ein fester Zubau je Jahr bis zum Ausbauziel. Ein Land, das
+  // schon mehr Kernkraft hat als das Ziel, hält seinen Anteil.
   const modus = Math.round(k.w("energie.atom"));
+  const start = k.land.start.mix.atom;
   if (modus === 0) m.atom = Math.max(0, alt.mix.atom - 0.02);
-  else if (modus === 2 && k.t > 12)
-    m.atom = Math.min(0.25, alt.mix.atom + 0.01);
-  else m.atom = alt.mix.atom;
+  else if (modus === 2 && k.t > k.p("energie.atomVorlauf")) {
+    const ziel = Math.max(start, k.w("energie.atomZiel") / 100);
+    m.atom = Math.max(alt.mix.atom, Math.min(ziel, alt.mix.atom + k.p("energie.atomZubau") / 100));
+  } else m.atom = alt.mix.atom;
   const fossil = 1 - m.ern - m.kohle - m.atom;
   if (fossil < 0) {
     m.ern = Math.max(0, 1 - m.kohle - m.atom);
@@ -23,10 +27,12 @@ export const energie: Baustein = (alt, neu, k) => {
   }
   neu.mix = m;
 
+  // Neue Reaktoren kosten die Neubaukosten, solange sie abbezahlt werden; danach nur noch den Weiterbetrieb.
+  neu.atomZubau = [...alt.atomZubau, Math.max(0, m.atom - alt.mix.atom)];
+  const abzahlung = k.p("energie.atomAbzahlung");
+  const inAbzahlung = neu.atomZubau.slice(-abzahlung).reduce((s, x) => s + x, 0);
   const atomNeu =
-    modus === 2 && m.atom > 0
-      ? Math.max(0, m.atom - k.land.start.mix.atom) / m.atom
-      : 0;
+    m.atom > 0 ? Math.min(inAbzahlung, Math.max(0, m.atom - start)) / m.atom : 0;
   const daempfung =
     (1 - 0.5 * k.w("energie.diversifizierung")) * (1.2 - 0.5 * alt.steuerbar);
   const faktor = 1 + (k.schock.energie / 100) * Math.max(0, daempfung);

@@ -317,6 +317,7 @@ export interface Zustand {
   co2Einnahmen: number; // Mrd €
   umbauInvest: number;
   steuerbar: number;
+  atomZubau: number[]; // Zubau neuer Kernkraft je Jahr (Anteil am Strom), für die Abzahlung
   // Innovation
   vcQuote: number;
   fueWirk: number;

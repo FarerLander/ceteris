@@ -477,9 +477,21 @@ stell(
   [0, 2],
   1,
   "Atomgesetz",
-  "Ausstieg, Laufzeitverlängerung oder Neubau (10–15 Jahre Vorlauf).",
+  "Ausstieg, Laufzeitverlängerung oder Neubau (erster Strom nach dem Vorlauf).",
   "Strommix und steuerbare Leistung",
   { optionen: ["Ausstieg", "Laufzeit verlängern", "Neubau"] },
+);
+stell(
+  "energie.atomZiel",
+  "energie",
+  "Ausbauziel Kernkraft",
+  "% des Stroms",
+  25,
+  [0, 80],
+  5,
+  "Frankreich erreichte rund 75 % (IAEA PRIS)",
+  "Bis zu welchem Anteil am Strom neue Reaktoren gebaut werden. Wirkt nur bei „Neubau“; ein Land mit mehr Kernkraft hält seinen Anteil.",
+  "Strommix, Energiepreis und Importabhängigkeit",
 );
 stell(
   "energie.co2Preis",
@@ -576,19 +588,50 @@ wirk(
   "Stromkosten bestehende Atomkraftwerke",
   "€/MWh",
   35,
-  "IEA/NEA 2020",
+  "IEA/NEA 2020: Weiterbetrieb 30–50 $/MWh",
   "studie",
-  "",
+  "Abbezahlte Reaktoren kosten nur noch Betrieb, Brennstoff und Nachrüstung.",
 );
 wirk(
   "energie.kostenAtomNeu",
   "energie",
   "Stromkosten neue Atomkraftwerke",
   "€/MWh",
-  95,
-  "IEA/NEA 2020",
+  70,
+  "IEA/NEA 2020: Median 69 $/MWh bei 7 % Zins, inklusive Rückbau und Entsorgung; Spanne von 3 % Zins (29–64 $) bis Hinkley Point C (Abnahmepreis 92,50 £ in Preisen von 2012)",
   "studie",
-  "",
+  "Kosten je MWh über die Lebensdauer, mit Kapital, Betrieb, Brennstoff, Rückbau und Endlager. Neubauten in Europa und den USA lagen zuletzt deutlich darüber; die Zufallsläufe ziehen aus der Spanne.",
+  { spanne: [45, 150] },
+);
+wirk(
+  "energie.atomVorlauf",
+  "energie",
+  "Vorlauf neuer Reaktoren",
+  "Jahre",
+  12,
+  "IAEA PRIS: Bauzeit zuletzt rund 7 Jahre im Median; dazu Planung und Genehmigung",
+  "studie",
+  "So viele Jahre nach dem Beschluss liefert der erste neue Reaktor Strom.",
+);
+wirk(
+  "energie.atomZubau",
+  "energie",
+  "Zubau neuer Reaktoren",
+  "Pp. pro Jahr",
+  1,
+  "Setzung; Frankreich baute 1980–1990 rund 5 Pp. pro Jahr zu (IAEA PRIS)",
+  "studie",
+  "Um wie viele Prozentpunkte der Anteil der Kernkraft am Strom je Jahr steigt, sobald gebaut wird.",
+);
+wirk(
+  "energie.atomAbzahlung",
+  "energie",
+  "Abzahlung neuer Reaktoren",
+  "Jahre",
+  60,
+  "IEA/NEA 2020 rechnet mit 60 Jahren Betrieb; Genehmigungen in den USA reichen bis 80 Jahre (NRC)",
+  "studie",
+  "So lange zahlen neue Reaktoren ihre Baukosten ab. Danach kosten sie nur noch den Weiterbetrieb.",
 );
 wirk(
   "energie.umbauKosten",
