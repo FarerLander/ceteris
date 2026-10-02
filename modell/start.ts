@@ -221,6 +221,7 @@ export function startzustand(
     co2Einnahmen,
     umbauInvest: umbau0,
     steuerbar: s.mix.kohle + s.mix.gas + s.mix.oel + s.mix.atom,
+    atomZubau: [],
     vcQuote: s.vcBasis,
     fueWirk: 0,
     vcWirk: 0,

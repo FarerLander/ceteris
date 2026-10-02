@@ -27,6 +27,7 @@ export function kopie(z: Zustand): Zustand {
     alter: [...z.alter],
     migJahrgaenge: z.migJahrgaenge.map((j) => ({ ...j })),
     mix: { ...z.mix },
+    atomZubau: [...z.atomZubau],
     politik: [],
   };
 }

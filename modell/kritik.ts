@@ -137,7 +137,7 @@ export const KRITIK: Kritikpunkt[] = [
     "id": "M8",
     "bereich": "Mechanik und Wirkstärken",
     "titel": "Stromkosten-Formel vereinfacht:",
-    "text": "feste Brennstoff-Umrechnungen, Integrationskosten quadratisch im Erneuerbaren-Anteil.",
+    "text": "feste Brennstoff-Umrechnungen, Integrationskosten quadratisch im Erneuerbaren-Anteil. Kernkraft (seit Oktober 2026): Kosten je MWh nach dem Median von IEA/NEA 2020, westliche Neubauten lagen zuletzt deutlich darüber (nur in der Spanne der Zufallsläufe); Vorlauf 12 Jahre und Zubau 1 Pp. pro Jahr sind Setzungen; Uran zählt nicht als Import; CO₂ im Betrieb null (Lebenszyklus rund 12 g je kWh, IPCC).",
     "wirkung": "mittel",
     "behebung": "Gegen Strommarkt-Studien (Agora, EWI) kalibrieren."
   },

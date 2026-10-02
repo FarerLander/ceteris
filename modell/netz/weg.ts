@@ -45,14 +45,22 @@ export function berechneWeg(
 ): Weg {
   const e = eintrag(id);
   const von = aktuell(land, sz, id);
-  const nach = stoss(id, von);
   const lang = Math.min(sz.jahre, 31);
   const a = rechne(land, { ...sz, jahre: lang });
-  const b = rechne(land, {
-    ...sz,
-    jahre: lang,
-    stell: { ...sz.stell, [id]: nach },
-  });
+  const mit = (w: number) => rechne(land, { ...sz, jahre: lang, stell: { ...sz.stell, [id]: w } });
+  const bewegt = (v: Zustand[]) =>
+    Object.entries(GROESSEN).some(([f, g]) => Math.abs(abweichung(g, wertIn(a[lang - 1], f), wertIn(v[lang - 1], f))) >= merklich(g));
+  // Auswahl: die nächste Möglichkeit, die etwas bewegt (ohne Reaktoren sind Ausstieg und Laufzeit verlängern gleich).
+  const kandidaten = e.optionen
+    ? e.optionen.slice(1).map((_, i) => (Math.round(von) + 1 + i) % e.optionen!.length)
+    : [stoss(id, von)];
+  let nach = kandidaten[0];
+  let b = mit(nach);
+  for (const w of kandidaten.slice(1)) {
+    if (bewegt(b)) break;
+    const v = mit(w);
+    if (bewegt(v)) [nach, b] = [w, v];
+  }
   const n = Math.min(10, lang - 1);
 
   const alle = Object.entries(GROESSEN).map(([feld, g]) => {
@@ -133,18 +141,13 @@ export function berechneWeg(
     .sort((x, y) => y.staerke - x.staerke)[0];
   let satz: string;
   if (!stark && zwischen.length === 0) {
-    const spaet = alle.some(
-      (x) =>
-        Math.abs(
-          abweichung(
-            x.g,
-            wertIn(a[lang - 1], x.feld),
-            wertIn(b[lang - 1], x.feld),
-          ),
-        ) >= merklich(x.g),
-    );
+    // Erstes Jahr nach dem Fenster, in dem sich etwas merklich bewegt (z. B. neue Reaktoren nach dem Vorlauf).
+    let spaet = 0;
+    for (let tt = n + 1; tt < lang && !spaet; tt++)
+      if (Object.entries(GROESSEN).some(([f, g]) => Math.abs(abweichung(g, wertIn(a[tt], f), wertIn(b[tt], f))) >= merklich(g)))
+        spaet = tt;
     satz = spaet
-      ? t("{kopf}: innerhalb von {n} Jahren kaum Wirkung; merklich wird sie erst später.", { kopf, n })
+      ? t("{kopf}: innerhalb von {n} Jahren kaum Wirkung; merklich wird sie erst nach {m} Jahren ({jahr}).", { kopf, n, m: spaet, jahr: a[spaet].jahr })
       : t("{kopf}: innerhalb von {n} Jahren kaum Wirkung.", { kopf, n });
   } else {
     const ueber = merkZ.length
