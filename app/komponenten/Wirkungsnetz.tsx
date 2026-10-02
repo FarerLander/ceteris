@@ -8,6 +8,7 @@ import { berechneWeg, type WegKnoten } from "../../modell/netz/weg";
 import type { BausteinId } from "../../modell/typen";
 import { stellschrauben, vName } from "../../modell/verzeichnis";
 import type { Sim } from "../simulation";
+import { PolitikRegeln } from "./PolitikRegeln";
 import { KARTE_ZEICHEN, WEG_ZEICHEN, zeilen } from "../textumbruch";
 
 const B = 150; // Breite eines Bausteins
@@ -312,6 +313,7 @@ export function Wirkungsnetz({
           </>
         )}
       </section>
+      <PolitikRegeln sim={sim} />
     </>
   );
 }

@@ -66,6 +66,7 @@ describe("13.4 Unsicherheitsband", () => {
   it("Annahmen: Block Zufallsschocks mit Häufigkeiten und Schalter", () => {
     render(<App />);
     oeffne("Annahmen");
+    fireEvent.click(screen.getByRole("button", { name: "Wirkstärken" }));
     expect(screen.getByText("Zufallsschocks", { selector: "summary" })).toBeTruthy();
     expect(screen.getByText("Pandemie: Wahrscheinlichkeit")).toBeTruthy();
     expect(screen.getByText("Finanzkrise: Kreditlücke → Wahrscheinlichkeit")).toBeTruthy();

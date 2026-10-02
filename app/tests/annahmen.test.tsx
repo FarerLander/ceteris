@@ -4,22 +4,27 @@ import { oeffne } from "./ansicht";
 import { GeschaetzteStartwerte } from "../komponenten/Annahmen";
 
 describe("Annahmen-Ansicht", () => {
-  it("zeigt Kritikpunkte, Wirkstärken mit Quelle und die Datenlage", () => {
+  it("zeigt Kritikpunkte, Wirkstärken mit Quelle und die Datenlage, je über eine Pille", () => {
     render(<App />);
     oeffne("Annahmen");
     expect(
       screen.getByRole("heading", { name: "Annahmen und Kritikpunkte" }),
     ).toBeTruthy();
     expect(screen.getByText(/Handwerte ungeprüft/)).toBeTruthy();
+    expect(screen.queryByRole("heading", { name: "Datenlage" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Wirkstärken" }));
+    expect(screen.queryByRole("heading", { name: "Annahmen und Kritikpunkte" })).toBeNull();
     expect(screen.getAllByText(/^Ramey 2019/).length).toBeGreaterThan(0);
     // U2: belegte Spanne neben dem Wert
     expect(screen.getAllByText("Spanne 0,6–1").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Spanne 0–2").length).toBeGreaterThan(0);
+    fireEvent.click(screen.getByRole("button", { name: "Datenlage" }));
     expect(screen.getByRole("heading", { name: "Datenlage" })).toBeTruthy();
   });
   it("umstrittene Annahme abschalten zählt als Änderung", async () => {
     render(<App />);
     oeffne("Annahmen");
+    fireEvent.click(screen.getByRole("button", { name: "Wirkstärken" }));
     fireEvent.click(
       screen.getByRole("checkbox", { name: "Fiskalmultiplikator" }),
     );
@@ -29,6 +34,7 @@ describe("Annahmen-Ansicht", () => {
   it("13.1: geschätzte Startwerte Deutschlands mit Band und Quelle", () => {
     render(<App />);
     oeffne("Annahmen");
+    fireEvent.click(screen.getByRole("button", { name: "Datenlage" }));
     expect(screen.getByRole("heading", { name: "Geschätzte Startwerte" })).toBeTruthy();
     expect(screen.getByText("Produktivitätstrend")).toBeTruthy();
     expect(screen.getAllByText(/geschätzt, Kalman, ±/).length).toBeGreaterThan(1);
@@ -72,10 +78,12 @@ describe("13.2 Vorab-Hinweis", () => {
     render(<App />);
     expect(screen.getByText(/Diese Prognose enthält keinen unvorhergesehenen Schock\. Im Rückblick 2000–2025 traf Deutschland etwa alle 9 Jahre ein großer\./)).toBeTruthy();
   });
-  it("13.13: „So entscheidet die Regierung im Modell“ mit sechs Verzerrungen, Werten, Quellen und den Landesdaten", () => {
+  it("13.13: „So entscheidet die Regierung im Modell“ steht im Wirkungsnetz, mit sechs Verzerrungen, Werten, Quellen und den Landesdaten", () => {
     render(<App />);
     oeffne("Annahmen");
-    const abschnitt = screen.getByRole("region", { name: "So entscheidet die Regierung im Modell" });
+    expect(screen.queryByRole("region", { name: "Wer dreht an den Stellschrauben?" })).toBeNull();
+    oeffne("Wirkungsnetz");
+    const abschnitt = screen.getByRole("region", { name: "Wer dreht an den Stellschrauben?" });
     expect(within(abschnitt).getByRole("heading", { name: "So entscheidet die Regierung im Modell" })).toBeTruthy();
     expect(abschnitt.textContent).toContain("Die Regierung im Modell wählt nicht die beste Lösung.");
     const zeilen = within(abschnitt).getAllByRole("row").slice(1);
@@ -92,8 +100,8 @@ describe("13.2 Vorab-Hinweis", () => {
   it("13.13: Land ohne Wahltakt-Wirkung (China) sagt das", () => {
     window.history.replaceState(null, "", "/?l=CN");
     render(<App />);
-    oeffne("Annahmen");
-    const abschnitt = screen.getByRole("region", { name: "So entscheidet die Regierung im Modell" });
+    oeffne("Wirkungsnetz");
+    const abschnitt = screen.getByRole("region", { name: "Wer dreht an den Stellschrauben?" });
     expect(abschnitt.textContent).toContain("Der Wahltakt wirkt in diesem Land nicht.");
     expect(abschnitt.textContent).toContain("keine ausgeprägte Struktur");
   });
