@@ -86,7 +86,18 @@ export const DE = LAENDER.DE;
 export const IST = istReihen(autoDE as unknown as AutoDatei, histDE as unknown as HistorieDatei);
 export const RUECKBLICK = baueRueckblick(autoDE as unknown as AutoDatei, handDE as unknown as HandDatei, histDE as unknown as HistorieDatei);
 
+// Startland ohne Link. Die Tests setzen Deutschland (setup.ts), die veröffentlichte App startet mit den USA.
+export const LAND_EINSTELLUNG = { standard: "US" };
+
 export function landAusLink(): string {
-  const l = typeof window === "undefined" ? null : new URLSearchParams(window.location.search).get("l");
-  return l && Object.hasOwn(LAENDER, l) ? l : "DE";
+  const such = typeof window === "undefined" ? null : new URLSearchParams(window.location.search);
+  const l = such?.get("l");
+  if (l && Object.hasOwn(LAENDER, l)) return l;
+  // Links von vor Oktober 2026 tragen ein Szenario ohne Land; damals war Deutschland das Startland.
+  if (such?.has("s")) return "DE";
+  return LAND_EINSTELLUNG.standard;
 }
+
+// Das Land steht im Link, außer beim Startland ohne Szenario (ein Szenario ohne Land liest sich als alter deutscher Link).
+export const landImLink = (code: string, szenario: boolean): string =>
+  code !== LAND_EINSTELLUNG.standard || (szenario && code !== "DE") ? `l=${code}` : "";
