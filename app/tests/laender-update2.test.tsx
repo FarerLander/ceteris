@@ -60,6 +60,7 @@ describe("Update 2 in der Oberfläche", () => {
   it("Annahmen nennen den Hinweis bei Italien", () => {
     window.history.replaceState(null, "", "/?l=IT#annahmen");
     render(<App />);
+    fireEvent.click(screen.getByRole("button", { name: "Datenlage" }));
     expect(screen.getAllByText(HINWEIS).length).toBeGreaterThanOrEqual(2);
   });
 });
@@ -68,10 +69,12 @@ describe("Reservefonds in den Annahmen", () => {
   it("Kanada nennt seinen Rentenreservefonds, Deutschland keinen", () => {
     window.history.replaceState(null, "", "/?l=CA#annahmen");
     render(<App />);
+    fireEvent.click(screen.getByRole("button", { name: "Datenlage" }));
     expect(screen.getByText(/Rentenreservefonds im Startjahr: 23 % BIP/)).toBeTruthy();
     cleanup();
     window.history.replaceState(null, "", "/#annahmen");
     render(<App />);
+    fireEvent.click(screen.getByRole("button", { name: "Datenlage" }));
     expect(screen.queryByText(/Rentenreservefonds/)).toBeNull();
   });
 });

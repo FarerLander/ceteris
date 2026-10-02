@@ -107,6 +107,12 @@ const wirkungsnetz: Kapitel = {
       vormachen: () => ({ klick: '[data-baustein="staat"]' }),
     },
     {
+      id: "regierung",
+      ziel: "netz-regierung",
+      vorbereiten: (ui) => ui.setzeAnsicht("wirkungsnetz"),
+      text: "Nicht nur du drehst an den Stellschrauben. Steht die Politik auf „Reagiert“, greift auch die Regierung ein, mit typischen Schwächen: zu spät, verwässert, vor der Wahl gar nicht. Hier steht, wie sie im Modell entscheidet.",
+    },
+    {
       id: "regler",
       ziel: "hauptregler",
       seitenleiste: 1,
@@ -184,7 +190,7 @@ const pruefen: Kapitel = {
       id: "annahmen",
       ziel: "annahmen",
       vorbereiten: (ui) => ui.setzeAnsicht("annahmen"),
-      text: "Unter Annahmen stehen Quellen, Wirkstärken und Kritikpunkte. Umstrittene Wirkstärken kannst du einzeln abschalten. Hier zeigt das Modell ehrlich seine Grenzen.",
+      text: "Unter Annahmen zeigt das Modell ehrlich seine Grenzen: oben wählst du Kritikpunkte, Wirkstärken oder Datenlage. Umstrittene Wirkstärken kannst du einzeln abschalten.",
     },
   ],
 };
