@@ -1,6 +1,6 @@
 {
  "code": "RU",
- "stand": "2026-09-29T14:42:12.363Z",
+ "stand": "2026-11-01T12:14:04.354Z",
  "methode": "Kalman-Filter und -Glätter, Zustandsraummodell nach Laubach/Williams und OECD-NAIRU (Spec 13.1)",
  "jahr": 2025,
  "kappa": 3.07,
