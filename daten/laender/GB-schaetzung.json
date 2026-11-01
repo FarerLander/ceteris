@@ -1,6 +1,6 @@
 {
  "code": "GB",
- "stand": "2026-09-28T20:11:21.514Z",
+ "stand": "2026-11-01T11:50:39.894Z",
  "methode": "Kalman-Filter und -Glätter, Zustandsraummodell nach Laubach/Williams und OECD-NAIRU (Spec 13.1)",
  "jahr": 2025,
  "kappa": 2.169,
@@ -39,9 +39,9 @@
  },
  "haus": {
   "jahr": 2025,
-  "trend": 9.652,
-  "steigung": 1.057,
-  "wachstum": -0.781
+  "trend": 9.671,
+  "steigung": 1.056,
+  "wachstum": -0.805
  },
  "reihen": {
   "g": [
